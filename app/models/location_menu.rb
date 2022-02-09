@@ -1,0 +1,2 @@
+class LocationMenu < ApplicationRecord
+end
