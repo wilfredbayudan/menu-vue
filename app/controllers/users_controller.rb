@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  ## POST '/signup'
   def create
     user = User.create(user_params)
     if user.valid?
@@ -9,6 +11,7 @@ class UsersController < ApplicationController
     end
   end
 
+  ## GET '/me'
   def show
     user = User.find_by(id: session[:user_id])
     if user
