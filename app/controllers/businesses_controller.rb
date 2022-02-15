@@ -11,7 +11,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   ## POST '/businesses'
   def create
     user = User.find(session[:user_id])
-    business = user.create_business(business_params)
+    business = user.businesses.create(business_params)
     if business.valid?
       render json: business, status: :created
     else
@@ -32,7 +32,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   private
   
   def business_params
-    params.permit(:name, :description)
+    params.permit(:name, :description, :image)
   end
 
   def find_business
