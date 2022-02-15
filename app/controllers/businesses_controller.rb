@@ -13,6 +13,10 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
     user = User.find(session[:user_id])
     business = user.businesses.create(business_params)
     if business.valid?
+      role = business.user_businesses.last
+      role.owner = true
+      role.save
+      business.create_menu
       render json: business, status: :created
     else
       render json: { errors: business.errors.full_messages }, status: :unprocessable_entity
