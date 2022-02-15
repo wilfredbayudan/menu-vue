@@ -1,0 +1,2 @@
+class UserBusiness < ApplicationRecord
+end

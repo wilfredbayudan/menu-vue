@@ -1,5 +1,16 @@
 class LocationsController < ApplicationController
 
+  ## GET '/locations' or '/businesses/:id/locations'
+  def index
+    if params[:id]
+      business = Business.find(params[:id])
+      locations = business.locations
+    else
+      locations = Location.all
+    end
+    render json: locations
+  end
+
   ## POST '/businesses/:id/locations'
   def create
     business = Business.find(params[:id])
