@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_secure_password
-  has_one :business
+  has_many :user_businesses
+  has_many :businesses, through: :user_businesses
   validates :email, presence: true
   validates :username, presence: true, uniqueness: true
   validates :first_name, presence: true

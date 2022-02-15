@@ -1,8 +1,5 @@
 class BusinessSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :owner_id
+  attributes :id, :name, :description
   has_many :locations
 
-  def owner_id
-    object.user_id
-  end
 end

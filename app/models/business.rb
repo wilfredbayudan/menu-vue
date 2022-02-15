@@ -1,5 +1,5 @@
 class Business < ApplicationRecord
-  belongs_to :user
-  has_many :locations
+  has_many :user_businesses
+  has_many :users, through: :user_businesses
   validates :name, presence: true, uniqueness: true
 end
