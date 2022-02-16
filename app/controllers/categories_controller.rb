@@ -1,16 +1,19 @@
 class CategoriesController < ApplicationController
 
+  # GET '/businesses/:business_id/menu/categories'
   def index
     business = find_business
     categories = business.menu.categories
     render json: categories
   end
 
+  # GET '/businesses/:business_id/menu/categories/:id'
   def show
     category = find_category
     render json: category
   end
 
+  # POST '/businesses/:business_id/menu/categories'
   def create
     menu = find_menu
     category = menu.categories.create!(category_params)

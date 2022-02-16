@@ -2,6 +2,7 @@ class MenusController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
+  # GET '/businesses/:business_id/menu'
   def show
     business = Business.find(params[:business_id])
     menu = business.menu
