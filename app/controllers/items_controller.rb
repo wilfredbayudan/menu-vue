@@ -17,14 +17,14 @@ class ItemsController < ApplicationController
 
   # POST '/businesses/:business_id/menus/categories/:category_id/items
   def create
-    item = find_category.items.create(item_params)
+    item = find_category.items.create!(item_params)
     render json: item, status: :created
   end
 
   # PATCH '/businesses/:business_id/menus/categories/:category_id/items/:id
   def update
     item = find_item
-    item.update(item_params)
+    item.update!(item_params)
     render json: item, status: :accepted
   end
 
@@ -58,7 +58,7 @@ class ItemsController < ApplicationController
   end
 
   def item_params
-    params.permit(:name, :description, :image, :price)
+    params.permit(:item, :description, :image, :price)
   end
 
 end
