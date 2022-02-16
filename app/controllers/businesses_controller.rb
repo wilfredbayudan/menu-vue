@@ -28,16 +28,16 @@ class BusinessesController < ApplicationController
 
   private
   
+  def authorize
+    return render json: { errors: ["Not authorized"] }, status: :unauthorized unless session.include? :user_id
+  end
+
   def business_params
     params.permit(:name, :description, :image)
   end
 
   def find_business
     Business.find(params[:id])
-  end
-
-  def authorize
-    return render json: { errors: ["Not authorized"] }, status: :unauthorized unless session.include? :user_id
   end
 
 end

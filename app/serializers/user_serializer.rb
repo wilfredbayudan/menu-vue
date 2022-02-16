@@ -7,7 +7,6 @@ class UserSerializer < ActiveModel::Serializer
       { 
         business_id: user_business.id,
         name: business.name,
-        description: business.description,
         owner: user_business.owner
       }
     end
