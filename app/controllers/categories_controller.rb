@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 
-  before_action :authorize
-  skip_before_action :authorize, only: [:index, :show]
+  before_action :authorize_permission
+  skip_before_action :authorize_permission, only: [:index, :show]
 
   # GET '/businesses/:business_id/menu/categories'
   def index
@@ -22,11 +22,25 @@ class CategoriesController < ApplicationController
     category = menu.categories.create!(category_params)
     render json: category
   end
+
+  # PATCH '/businesses/:business_id/menu/categories/:id
+  def update
+    category = find_category
+    category.update(category_params)
+    render json: category, status: :accepted
+  end
   
+  # DELETE '/businesses/:business_id/menu/categories/:id
+  def destroy
+    caterogy = find_category
+    category.destroy
+    head :no_content
+  end
 
   private
 
-  def authorize
+  def authorize_permission
+    @business = find_business
     super
   end
 
@@ -39,7 +53,7 @@ class CategoriesController < ApplicationController
   end
 
   def find_category
-    Category.find(params[:id])
+    find_business.menu.categories.find(params[:id])
   end
 
   def category_params

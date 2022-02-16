@@ -49,7 +49,7 @@ class BusinessesController < ApplicationController
   end
 
   def authorize_permission
-    @business = Business.find(params[:id])
+    @business = find_business
     super
   end
 
