@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resource :menu, only: [:show] do
       resources :categories do
         resources :items do
-          resources :comments
+          resources :comments, except: [:update]
         end
       end
     end
