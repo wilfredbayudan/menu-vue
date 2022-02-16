@@ -44,7 +44,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   end
 
   def render_not_found_response
-    render json: { error: "Business not found " }, status: :not_found
+    render json: { error: "Business not found" }, status: :not_found
   end
 
 end

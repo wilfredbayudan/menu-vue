@@ -5,8 +5,14 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :businesses, only: [:index, :create, :show] do
-    resource :menu
+  resources :businesses do
+    resource :menu, only: [:show] do
+      resources :categories do
+        resources :items do
+          resources :comments
+        end
+      end
+    end
   end
 
   get '*path',
