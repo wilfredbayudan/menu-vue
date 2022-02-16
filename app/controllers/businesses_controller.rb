@@ -1,7 +1,7 @@
 class BusinessesController < ApplicationController
 
-rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
+# rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
+# rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
 
   ## GET '/businesses'
   def index
@@ -36,12 +36,12 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_invalid_response
     Business.find(params[:id])
   end
 
-  def render_not_found_response
-    render json: { errors: ["Business not found"] }, status: :not_found
-  end
+  # def render_not_found_response
+  #   render json: { errors: ["Business not found"] }, status: :not_found
+  # end
 
-  def render_invalid_response(invalid)
-    render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
-  end
+  # def render_invalid_response(invalid)
+  #   render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
+  # end
 
 end
