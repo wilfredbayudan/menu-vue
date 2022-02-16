@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
-  resources :businesses, only: [:index, :create, :show]
+  resources :businesses, only: [:index, :create, :show] do
+    resource :menu
+  end
 
   get '*path',
     to: 'fallback#index',

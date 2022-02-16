@@ -1,7 +1,5 @@
 class BusinessSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :image, :menu_id
+  attributes :id, :name, :description, :image
 
-  def menu_id
-    object.menu.id
-  end
+  has_one :menu
 end

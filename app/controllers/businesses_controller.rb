@@ -5,7 +5,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   ## GET '/businesses'
   def index
     businesses = Business.all
-    render json: businesses
+    render json: businesses, each_serializer: BusinessSummarySerializer
   end
 
   ## POST '/businesses'
@@ -27,7 +27,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
   def show
     business = find_business
     if business
-      render json: business
+      render json: business, include: ['menu', 'menu.categories', 'menu.items']
     else
       render json: { errors: ['e']}
     end
