@@ -2,5 +2,6 @@ class Business < ApplicationRecord
   has_many :user_businesses, dependent: :destroy
   has_many :users, through: :user_businesses
   has_one :menu, dependent: :destroy
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
+  validates :description, length: { maximum: 350 }
 end
