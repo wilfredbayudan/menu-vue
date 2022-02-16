@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  ## POST '/login'
+  # POST '/login'
   def create
     user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  ## DELETE '/logout'
+  # DELETE '/logout'
   def destroy
     if session[:user_id]
       session.delete :user_id

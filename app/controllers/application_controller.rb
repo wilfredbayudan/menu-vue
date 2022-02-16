@@ -12,8 +12,13 @@ class ApplicationController < ActionController::API
 
   private
 
+  def authorize
+    return render json: { errors: ["Not authorized"] }, status: :unauthorized unless session.include? :user_id
+  end
+
   def render_not_found_response
-    render json: { errors: ["Resource not found"] }, status: :not_found
+    resource = self.class.name.gsub("Controller", "").singularize
+    render json: { errors: ["#{resource} not found"] }, status: :not_found
   end
 
   def render_invalid_response(invalid)
