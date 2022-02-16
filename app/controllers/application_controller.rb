@@ -17,7 +17,12 @@ class ApplicationController < ActionController::API
   end
 
   def authorize_permission
+    @business = find_business
     return render json: { errors: ["Not authorized"] }, status: :unauthorized unless @business.users.find { |user| user.id == session[:user_id]}
+  end
+
+  def find_business
+    Business.find(params[:business_id] || params[:id])
   end
 
   def render_not_found_response

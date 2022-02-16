@@ -45,7 +45,7 @@ class CategoriesController < ApplicationController
   end
 
   def find_business
-    Business.find(params[:business_id])
+    super
   end
 
   def find_menu
@@ -53,7 +53,7 @@ class CategoriesController < ApplicationController
   end
 
   def find_category
-    find_business.menu.categories.find(params[:id])
+    find_menu.categories.find(params[:id])
   end
 
   def category_params
