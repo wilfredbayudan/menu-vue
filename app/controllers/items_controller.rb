@@ -54,7 +54,7 @@ class ItemsController < ApplicationController
   end
 
   def find_item
-    find_category.items.find(params[:id])
+    super
   end
 
   def item_params
