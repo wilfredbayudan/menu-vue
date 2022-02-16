@@ -16,6 +16,10 @@ class ApplicationController < ActionController::API
     return render json: { errors: ["Not authorized"] }, status: :unauthorized unless session.include? :user_id
   end
 
+  def authorize_permission
+    return render json: { errors: ["Not authorized"] }, status: :unauthorized unless @business.users.find { |user| user.id == session[:user_id]}
+  end
+
   def render_not_found_response
     resource = self.class.name.gsub("Controller", "").singularize
     render json: { errors: ["#{resource} not found"] }, status: :not_found

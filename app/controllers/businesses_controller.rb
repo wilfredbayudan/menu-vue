@@ -1,12 +1,20 @@
 class BusinessesController < ApplicationController
 
   before_action :authorize
+  before_action :authorize_permission
   skip_before_action :authorize, only: [:index, :show]
+  skip_before_action :authorize_permission, only: [:index, :show, :create]
 
   # GET '/businesses'
   def index
     businesses = Business.all
     render json: businesses, each_serializer: BusinessSummarySerializer
+  end
+
+  # GET '/businesses/:id'
+  def show
+    business = find_business
+    render json: business, include: ['menu', 'menu.categories', 'menu.items']
   end
 
   # POST '/businesses'
@@ -20,15 +28,28 @@ class BusinessesController < ApplicationController
     render json: business, status: :created 
   end
 
-  # GET '/businesses/:id'
-  def show
+  # PATCH '/businesses/:id'
+  def update
     business = find_business
-    render json: business, include: ['menu', 'menu.categories', 'menu.items']
+    business.update(business_params)
+    render json: business, status: :accepted
+  end
+
+  # DELETE '/businesses/:id'
+  def destroy
+    business = find_business
+    business.destroy
+    head :no_content
   end
 
   private
-  
+
   def authorize
+    super
+  end
+
+  def authorize_permission
+    @business = Business.find(params[:id])
     super
   end
 
