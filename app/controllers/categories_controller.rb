@@ -1,5 +1,8 @@
 class CategoriesController < ApplicationController
 
+  before_action :authorize
+  skip_before_action :authorize, only: [:index, :show]
+
   # GET '/businesses/:business_id/menu/categories'
   def index
     business = find_business
@@ -22,6 +25,10 @@ class CategoriesController < ApplicationController
   
 
   private
+
+  def authorize
+    super
+  end
 
   def find_business
     Business.find(params[:business_id])
