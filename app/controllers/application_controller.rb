@@ -30,7 +30,7 @@ class ApplicationController < ActionController::API
   end
 
   def find_category
-    find_menu.categories.find(params[:id])
+    find_menu.categories.find(params[:category_id] || params[:id])
   end
 
   def render_not_found_response
