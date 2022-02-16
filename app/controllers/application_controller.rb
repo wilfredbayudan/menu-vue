@@ -33,7 +33,7 @@ class ApplicationController < ActionController::API
 
   def render_not_found_response
     resource = self.class.name.gsub("Controller", "").singularize
-    render json: { errors: ["#{resource} or dependent resource not found"] }, status: :not_found
+    render json: { errors: ["#{resource} or a dependent resource not found"] }, status: :not_found
   end
 
   def render_invalid_response(invalid)
