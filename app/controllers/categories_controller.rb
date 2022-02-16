@@ -32,7 +32,7 @@ class CategoriesController < ApplicationController
   
   # DELETE '/businesses/:business_id/menu/categories/:id
   def destroy
-    caterogy = find_category
+    category = find_category
     category.destroy
     head :no_content
   end
