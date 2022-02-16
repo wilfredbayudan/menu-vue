@@ -40,7 +40,6 @@ class CategoriesController < ApplicationController
   private
 
   def authorize_permission
-    @business = find_business
     super
   end
 
@@ -49,11 +48,11 @@ class CategoriesController < ApplicationController
   end
 
   def find_menu
-    find_business.menu
+    super
   end
 
   def find_category
-    find_menu.categories.find(params[:id])
+    super
   end
 
   def category_params

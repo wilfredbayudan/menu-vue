@@ -25,6 +25,14 @@ class ApplicationController < ActionController::API
     Business.find(params[:business_id] || params[:id])
   end
 
+  def find_menu
+    find_business.menu
+  end
+
+  def find_category
+    find_menu.categories.find(params[:id])
+  end
+
   def render_not_found_response
     resource = self.class.name.gsub("Controller", "").singularize
     render json: { errors: ["#{resource} not found"] }, status: :not_found

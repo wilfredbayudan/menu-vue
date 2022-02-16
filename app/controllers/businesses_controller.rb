@@ -49,16 +49,15 @@ class BusinessesController < ApplicationController
   end
 
   def authorize_permission
-    @business = find_business
+    super
+  end
+
+  def find_business
     super
   end
 
   def business_params
     params.permit(:name, :description, :image)
-  end
-
-  def find_business
-    Business.find(params[:id])
   end
 
 end
