@@ -1,5 +1,8 @@
 class BusinessesController < ApplicationController
 
+  before_action :authorize
+  skip_before_action :authorize, only: [:index, :show]
+
   # GET '/businesses'
   def index
     businesses = Business.all
@@ -31,6 +34,10 @@ class BusinessesController < ApplicationController
 
   def find_business
     Business.find(params[:id])
+  end
+
+  def authorize
+    return render json: { errors: ["Not authorized"] }, status: :unauthorized unless session.include? :user_id
   end
 
 end
