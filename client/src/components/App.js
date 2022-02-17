@@ -9,7 +9,8 @@ function App() {
 
   useEffect(() => {
     fetch('/me')
-      .then()
+      .then(res => res.json())
+      .then(json => console.log(json))
   })
 
   const Home = () => {
