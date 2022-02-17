@@ -7,6 +7,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import RoomIcon from '@mui/icons-material/Room';
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import { useParams } from "react-router-dom";
+import { primaryColor } from "../styles/colorList";
 
 const StyledFooter = styled.footer`
   flex-shrink: 0;
@@ -17,7 +19,7 @@ const FullBar = styled.div`
   padding: 25px;
   display: none;
   @media (min-width: 768px) {
-    display: flex;
+    display: ${ props => props.display === "true" ? "flex" : "none" };
   }
 `;
 
@@ -57,7 +59,7 @@ const StyledLink = styled.a`
   gap: 5px;
   cursor: pointer;
   &:hover {
-    color: #ec6c2d;
+    color: ${primaryColor};
   }
 `;
 
@@ -88,11 +90,21 @@ const PolicyLinks = styled.div`
   }
 `;
 
-const Header = () => {
+const Footer = () => {
+
+  const params = useParams();
+
+  let fullBarDisplay = "true";
+
+  if (params.slugUrl) {
+    fullBarDisplay = "false";
+  }
+
+  console.log(fullBarDisplay);
 
   return (
     <StyledFooter>
-      <FullBar>
+      <FullBar display={fullBarDisplay}>
         <LeftContent>
           <Heading>FIND US ON SOCIAL MEDIA</Heading>
           <List>
@@ -152,4 +164,4 @@ const Header = () => {
 
 };
 
-export default Header;
+export default Footer;
