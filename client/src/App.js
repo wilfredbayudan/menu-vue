@@ -23,7 +23,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      TEST
+      TEST ROUTES
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="testing" element={<Test />} />
