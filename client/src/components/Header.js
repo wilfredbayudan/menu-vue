@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import MenuVueLogo from '../assets/images/logo.png'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Link } from "react-router-dom";
+import { primaryColor } from "../styles/colorList";
 
 const StyledHeader = styled.header`
   z-index: 2;
@@ -32,7 +33,7 @@ const RightContent = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 10px;
   margin-right: 10px;
 `;
 
@@ -41,6 +42,11 @@ const LoginLink = styled(Link)`
   display: inline-flex;
   align-items: center;
   color: #1e1e1e;
+  transition-property: color;
+  transition-duration: 200ms;
+  &:hover {
+    color: ${primaryColor};
+  }
 `;
 
 const SignupLink = styled(Link)`
@@ -48,7 +54,13 @@ const SignupLink = styled(Link)`
   background-color: #1a1a1a;
   padding: 7px 10px;
   border-radius: 10px;
-  color: #bebebe;
+  color: #dedede;
+  transition-property: background-color, color;
+  transition-duration: 200ms;
+  &:hover {
+    background-color: ${primaryColor};
+    color: #1a1a1a;
+  }
 `;
 
 const Header = () => {
