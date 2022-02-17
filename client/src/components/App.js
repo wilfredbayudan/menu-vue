@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from './Index';
 import Business from '../pages/business/Business';
+import Login from '../pages/login/Login';
+import Signup from '../pages/signup/Signup';
 
 function App() {
 
@@ -17,21 +19,14 @@ function App() {
       </div>
     )
   }
-  
-  const Test = () => {
-    return (
-      <div>
-        <h1>Test Route</h1>
-      </div>
-    )
-  }
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />}>
           <Route index element={<Home />} />
-          <Route path="test" element={<Test />} />
+          <Route path="signup" element={<Signup />} />
+          <Route path="login" element={<Login />} />
           <Route path=":slugUrl" element={<Business />} />
           <Route path="*" element={<h1>Not found</h1>} />
         </Route>
