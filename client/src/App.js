@@ -8,7 +8,7 @@ function App() {
   const Home = () => {
     return (
       <div>
-        <h1>Page Count: {count}</h1>
+        <h1>Home Route</h1>
       </div>
     )
   }
@@ -21,19 +21,15 @@ function App() {
     )
   }
 
-  useEffect(() => {
-    fetch('/hello')
-      .then(res => res.json())
-      .then(json => setCount(json.count));
-  }, [])
-
   return (
     <BrowserRouter>
+      TEST
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="testing" element={<Test />} />
         <Route path="*" element={<h1>Not found</h1>} />
       </Routes>
+      TEST
     </BrowserRouter>
   );
 }
