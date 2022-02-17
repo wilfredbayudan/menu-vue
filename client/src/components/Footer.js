@@ -15,7 +15,10 @@ const StyledFooter = styled.footer`
 const FullBar = styled.div`
   background: rgba(26, 26, 26, 0.9);
   padding: 25px;
-  display: flex;
+  display: none;
+  @media (min-width: 768px) {
+    display: flex;
+  }
 `;
 
 const LeftContent = styled.div`
@@ -72,11 +75,17 @@ const BottomBar = styled.div`
 `
 
 const Copyright = styled.div`
-
+  margin: 0 auto;
+  @media (min-width: 768px) {
+    margin: 0;
+  }
 `;
 
 const PolicyLinks = styled.div`
-  
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
 `;
 
 const Header = () => {
