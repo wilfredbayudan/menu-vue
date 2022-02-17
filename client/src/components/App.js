@@ -30,8 +30,8 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Index />}>
+          <Route index element={<Home />} />
           <Route path="test" element={<Test />} />
-          <Route path="home" element={<Home />} />
           <Route path=":slugUrl" element={<Business />} />
           <Route path="*" element={<h1>Not found</h1>} />
         </Route>
