@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
+  get '/businesses/slug/:slug_url', to: 'businesses#find_by_slug'
   resources :businesses do
     resource :menu, only: [:show] do
       resources :categories do

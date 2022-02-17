@@ -2,8 +2,8 @@ class BusinessesController < ApplicationController
 
   before_action :authorize
   before_action :authorize_permission
-  skip_before_action :authorize, only: [:index, :show]
-  skip_before_action :authorize_permission, only: [:index, :show, :create]
+  skip_before_action :authorize, only: [:index, :show, :find_by_slug]
+  skip_before_action :authorize_permission, only: [:index, :show, :create, :find_by_slug]
 
   # GET '/businesses'
   def index
@@ -20,7 +20,7 @@ class BusinessesController < ApplicationController
   # POST '/businesses'
   def create
     user = User.find(session[:user_id])
-    business = user.businesses.create!(business_params)
+    business = user.businesses.create!(business_params.merge(slug: params[:name].parameterize))
     role = business.user_businesses.last
     role.owner = true
     role.save
@@ -40,6 +40,12 @@ class BusinessesController < ApplicationController
     business = find_business
     business.destroy
     head :no_content
+  end
+
+  # GET '/businesses/slug/:slug_url'
+  def find_by_slug
+    business = Business.find_by!(slug: params[:slug_url])
+    render json: business, include: ['menu', 'menu.categories', 'menu.items']
   end
 
   private
