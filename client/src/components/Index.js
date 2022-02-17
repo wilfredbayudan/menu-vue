@@ -1,13 +1,23 @@
 import { Outlet } from "react-router-dom"
+import styled from 'styled-components'
+import Header from './Header'
+import Footer from './Footer'
+
+const MainContent = styled.main`
+  flex: 1 0 auto;
+  margin-top: 60px;
+`
 
 const Index = () => {
 
   return (
-    <div>
-      <div>Header</div>
-      <div><Outlet /></div>
-      <div>Footer</div>
-    </div>
+    <>
+      <Header />
+      <MainContent>
+        <Outlet />
+      </MainContent>
+      <Footer />
+    </>
   )
 
 }
