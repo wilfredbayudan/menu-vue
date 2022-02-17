@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
 
   # POST '/businesses/:business_id/menus/categories/:category_id/items/:item_id/comments'
   def create
-    comment = find_item.comments.create(comment_params)
+    comment = find_item.comments.create!(comment_params)
     render json: comment
   end
 

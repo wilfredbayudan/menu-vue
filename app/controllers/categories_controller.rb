@@ -26,7 +26,7 @@ class CategoriesController < ApplicationController
   # PATCH '/businesses/:business_id/menu/categories/:id
   def update
     category = find_category
-    category.update(category_params)
+    category.update!(category_params)
     render json: category, status: :accepted
   end
   
