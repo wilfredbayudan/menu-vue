@@ -99,9 +99,7 @@ const Footer = () => {
   if (params.slugUrl) {
     fullBarDisplay = "false";
   }
-
-  console.log(fullBarDisplay);
-
+  
   return (
     <StyledFooter>
       <FullBar display={fullBarDisplay}>

@@ -5,12 +5,15 @@ import TextField from '@mui/material/TextField';
 import { useState } from "react";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import ErrorList from "../../components/ErrorList";
+import { useNavigate } from "react-router-dom";
 
 const FormInput = styled.div`
   margin-bottom: 10px;
 `;
 
-const Signup = () => {
+const Signup = ({ appState }) => {
+
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
@@ -40,18 +43,22 @@ const Signup = () => {
       body: JSON.stringify(formData)
     })
       .then(res => {
+        setLoading(false);
         if (res.ok) {
-
+          res.json().then(json => {
+            appState.setUser(json);
+            navigate('/manage');
+          })
         } else {
           res.json().then(json => setErrors(json.errors))
         }
-        setLoading(false);
       })
   }
 
   return (
     <FloatedContent side="right">
       <PageTitle title="Sign up" />
+      <form>
       <FormInput>
         <TextField
           required
@@ -111,6 +118,7 @@ const Signup = () => {
       </FormInput>
       <ErrorList errors={errors} />
       <StyledLoadingButton type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
+      </form>
     </FloatedContent>
   )
 }

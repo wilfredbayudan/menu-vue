@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import MenuVueLogo from '../assets/images/logo.png'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { primaryColor } from "../styles/colorList";
 
 const StyledHeader = styled.header`
@@ -49,35 +49,67 @@ const LoginLink = styled(Link)`
   }
 `;
 
-const SignupLink = styled(Link)`
+const blackBtn = `
   text-decoration: none;
   background-color: #1a1a1a;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   padding: 7px 10px;
   border-radius: 10px;
   color: #dedede;
   transition-property: background-color, color;
   transition-duration: 200ms;
+  border: none;
+  font-size: 1em;
+  cursor: pointer;
   &:hover {
     background-color: ${primaryColor};
     color: #1a1a1a;
   }
 `;
 
-const Header = () => {
+const SignupLink = styled(Link)`
+  ${blackBtn}
+`;
+
+const LogoutButton = styled.button`
+  ${blackBtn}
+`;
+
+const Header = ({ appState }) => {
+
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    fetch('/logout', { method: "DELETE" })
+      .then(res => {
+        if (res.ok) {
+          appState.setUser(null);
+          navigate("/login");
+        }
+      })
+  }
 
   return (
     <StyledHeader>
       <LeftContent>
         <Logo src={MenuVueLogo} />
-        {/* NAV HERE? */}
       </LeftContent>
       <RightContent>
-        <LoginLink to="/login">
-          <PersonOutlineOutlinedIcon />Log in
-        </LoginLink>
-        <SignupLink to="/signup">
-          Sign up
-        </SignupLink>
+        {
+          appState.user ? 
+          <LogoutButton onClick={handleLogoutClick}><PersonOutlineOutlinedIcon />Log out</LogoutButton>
+          :
+          <>
+            <LoginLink to="/login">
+              <PersonOutlineOutlinedIcon />Log in
+            </LoginLink>
+            <SignupLink to="/signup">
+              Sign up
+            </SignupLink>         
+          </>
+        }
       </RightContent>
     </StyledHeader>
   )

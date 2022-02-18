@@ -8,6 +8,7 @@ const List = styled.ul`
 
 const ListItem = styled.li`
   margin-left: 20px;
+  color: #c94c10;
 `;
 
 

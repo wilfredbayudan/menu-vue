@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom"
 import styled from 'styled-components'
-import Header from './Header'
-import Footer from './Footer'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
 
 const MainContent = styled.main`
   flex: 1 0 auto;
@@ -11,11 +11,11 @@ const MainContent = styled.main`
   padding: 20px;
 `
 
-const Index = () => {
+const Index = ({ appState }) => {
 
   return (
     <>
-      <Header />
+      <Header appState={appState} />
       <MainContent>
         <Outlet />
       </MainContent>
