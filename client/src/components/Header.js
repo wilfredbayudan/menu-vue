@@ -94,7 +94,7 @@ const Header = ({ appState }) => {
   return (
     <StyledHeader>
       <LeftContent>
-        <Logo src={MenuVueLogo} />
+        <Logo src={MenuVueLogo} onClick={() => navigate('/')} />
       </LeftContent>
       <RightContent>
         {
