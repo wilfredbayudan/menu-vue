@@ -3,6 +3,7 @@ import MenuVueLogo from '../assets/images/logo.png'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Link, useNavigate } from "react-router-dom";
 import { primaryColor } from "../styles/colorList";
+import Nav from "./Nav";
 
 const StyledHeader = styled.header`
   z-index: 2;
@@ -79,7 +80,7 @@ const LogoutButton = styled.button`
 
 const Header = ({ appState }) => {
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); 
 
   const handleLogoutClick = () => {
     fetch('/logout', { method: "DELETE" })
@@ -107,9 +108,10 @@ const Header = ({ appState }) => {
             </LoginLink>
             <SignupLink to="/signup">
               Sign up
-            </SignupLink>         
+            </SignupLink>
           </>
         }
+        <Nav />
       </RightContent>
     </StyledHeader>
   )

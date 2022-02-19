@@ -6,6 +6,7 @@ import { useState } from "react";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import ErrorList from "../../components/ErrorList";
 import { useNavigate } from "react-router-dom";
+import PrimaryLink from "../../styles/PrimaryLink"
 
 const FormInput = styled.div`
   margin-bottom: 10px;
@@ -84,8 +85,11 @@ const Login = ({ appState }) => {
           />
         </FormInput>
         <ErrorList errors={errors} />
-        <StyledLoadingButton type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
+        <FormInput>
+          <StyledLoadingButton type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
+        </FormInput>
       </form>
+      Not registered yet? <PrimaryLink to="/signup">Sign up today!</PrimaryLink>
     </FloatedContent>
   )
 }
