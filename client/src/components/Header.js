@@ -3,6 +3,7 @@ import MenuVueLogo from '../assets/images/logo.png'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import { Link, useNavigate } from "react-router-dom";
 import { primaryColor } from "../styles/colorList";
+import LogoutIcon from '@mui/icons-material/Logout';
 import Nav from "./Nav";
 
 const StyledHeader = styled.header`
@@ -78,6 +79,13 @@ const LogoutButton = styled.button`
   ${blackBtn}
 `;
 
+const LogInOutText = styled.span`
+  display: none;
+  @media (min-width: 768px) {
+    display: block;
+  }
+`;
+
 const Header = ({ appState }) => {
 
   const navigate = useNavigate(); 
@@ -100,11 +108,11 @@ const Header = ({ appState }) => {
       <RightContent>
         {
           appState.user ? 
-          <LogoutButton onClick={handleLogoutClick}><PersonOutlineOutlinedIcon />Log out</LogoutButton>
+          <LogoutButton onClick={handleLogoutClick}><LogoutIcon /><LogInOutText>Log out</LogInOutText></LogoutButton>
           :
           <>
             <LoginLink to="/login">
-              <PersonOutlineOutlinedIcon />Log in
+              <PersonOutlineOutlinedIcon /><LogInOutText>Log in</LogInOutText>
             </LoginLink>
             <SignupLink to="/signup">
               Sign up

@@ -11,6 +11,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import styled from "styled-components";
 import { primaryColor } from "../styles/colorList";
+import { useNavigate } from "react-router-dom"
 
 const NavIcon = styled(MenuIcon)`
   cursor: pointer;
@@ -22,6 +23,8 @@ const NavIcon = styled(MenuIcon)`
 export default function SwipeableTemporaryDrawer() {
   
   const [showNav, setShowNav] = useState(false);
+
+  const navigate = useNavigate();
 
   const toggleDrawer = (open) => (event) => {
     if (
@@ -43,20 +46,20 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        <ListItem button>
+        <ListItem button onClick={() => navigate("/manage")}>
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
-          <ListItemText primary={"Inbox"} />
+          <ListItemText primary={"Manage Panel"} />
         </ListItem>
       </List>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem button onClick={() => navigate("/manage/businesses")}>
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
-          <ListItemText primary={"Mail"} />
+          <ListItemText primary={"Businesses"} />
         </ListItem>
       </List>
     </Box>

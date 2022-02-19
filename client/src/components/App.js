@@ -4,6 +4,7 @@ import Index from '../pages/Index';
 import Business from '../pages/business/Business';
 import Login from '../pages/login/Login';
 import Signup from '../pages/signup/Signup';
+import ManageIndex from '../pages/manage/ManageIndex';
 
 function App() {
 
@@ -39,7 +40,12 @@ function App() {
           <Route path="signup" element={<Signup appState={appState} />} />
           <Route path="login" element={<Login appState={appState} />} />
           <Route path=":slugUrl" element={<Business appState={appState} />} />
-          <Route path="manage" element={<h1>Manage Portal</h1>} />
+          <Route path="manage" element={<ManageIndex appState={appState} />}>
+            <Route index element={<>Manage Home</>} />
+            <Route path="businesses" element={<>Business Management</>} />
+            <Route path="test" element={<>Test Route</>} />
+          </Route>
+          <Route path="*" element={<>404 Not Found!</>} />
         </Route>
       </Routes>
     </BrowserRouter>

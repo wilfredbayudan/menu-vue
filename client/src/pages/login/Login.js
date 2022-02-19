@@ -14,6 +14,8 @@ const FormInput = styled.div`
 
 const Login = ({ appState }) => {
 
+  const { user, setUser } = appState;
+
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
@@ -44,7 +46,7 @@ const Login = ({ appState }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then(json => {
-            appState.setUser(json);
+            setUser(json);
             navigate('/manage');
           })
         } else {
@@ -57,8 +59,19 @@ const Login = ({ appState }) => {
       })
   }
 
+  const checkIfLoggedIn = () => {
+    console.log(appState)
+  }
+
+  if (user) {
+    setTimeout(() => {
+      navigate("/manage");
+    }, 500)
+    return <>I think you're logged in already...</>
+  }
+
   return (
-    <FloatedContent side="right">
+    <FloatedContent side="right" onLoad={checkIfLoggedIn}>
       <PageTitle title="Log in" />
       <form>
         <FormInput>
