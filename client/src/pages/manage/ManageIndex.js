@@ -17,7 +17,6 @@ const ManageIndex = ({ appState }) => {
 
   return (
     <>
-      <div>Manage Portal</div>
       <Outlet />
     </>
   )

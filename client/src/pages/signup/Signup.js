@@ -47,7 +47,7 @@ const Signup = ({ appState }) => {
         if (res.ok) {
           res.json().then(json => {
             appState.setUser(json);
-            navigate('/manage');
+            navigate('/manage/businesses/new?newUser=true');
           })
         } else {
           res.json().then(json => setErrors(json.errors))
