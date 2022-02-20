@@ -119,7 +119,7 @@ const Header = ({ appState }) => {
             </SignupLink>
           </>
         }
-        <Nav />
+        <Nav appState={appState} handleLogoutClick={handleLogoutClick} />
       </RightContent>
     </StyledHeader>
   )
