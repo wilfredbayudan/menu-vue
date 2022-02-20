@@ -96,7 +96,7 @@ const Login = ({ appState }) => {
         </FormInput>
         <ErrorList errors={errors} />
         <FormInput>
-          <StyledLoadingButton type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
+          <StyledLoadingButton fullWidth type="submit" loading={loading} onClick={handleSubmit}>Log in</ StyledLoadingButton>
         </FormInput>
       </form>
       Not registered yet? <PrimaryLink to="/signup">Sign up today!</PrimaryLink>

@@ -5,9 +5,13 @@ import { primaryColor } from "./colorList";
 const StyledLoadingButton = styled(LoadingButton)`
   color: #000000;
   width: 100%;
+  padding: 10px;
   background-color: ${primaryColor};
   &:hover {
     background-color: #ff7d3d;
+  }
+  @media (min-width: 768px) {
+    width: ${props => props.fullWidth ? "100%" : "auto"};
   }
 `;
 

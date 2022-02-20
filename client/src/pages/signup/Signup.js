@@ -114,7 +114,7 @@ const Signup = ({ appState }) => {
         />
       </FormInput>
       <ErrorList errors={errors} />
-      <StyledLoadingButton type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
+      <StyledLoadingButton fullWidth type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
       </form>
     </FloatedContent>
   )
