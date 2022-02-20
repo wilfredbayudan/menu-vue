@@ -7,10 +7,7 @@ import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import ErrorList from "../../components/ErrorList";
 import { useNavigate } from "react-router-dom";
 import PrimaryLink from "../../styles/PrimaryLink"
-
-const FormInput = styled.div`
-  margin-bottom: 10px;
-`;
+import FormInput from "../../styles/FormInput";
 
 const Login = ({ appState }) => {
 

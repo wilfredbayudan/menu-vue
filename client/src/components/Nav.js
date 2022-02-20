@@ -62,19 +62,19 @@ const Nav = ({ appState, handleLogoutClick }) => {
           </ListItemIcon>
           <ListItemText primary={"Home"} />
         </ListItem>
-        <ListItem button onClick={() => navigate("/")}>
+        <ListItem button onClick={() => navigate("/browse")}>
           <ListItemIcon>
             <MenuBookIcon />
           </ListItemIcon>
           <ListItemText primary={"Browse Businesses"} />
         </ListItem>
-        <ListItem button onClick={() => navigate("/about")}>
+        <ListItem button onClick={() => navigate("/how")}>
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
           <ListItemText primary={"How It Works"} />
         </ListItem>
-        <ListItem button onClick={() => navigate("/how")}>
+        <ListItem button onClick={() => navigate("/about")}>
           <ListItemIcon>
             <InfoIcon />
           </ListItemIcon>

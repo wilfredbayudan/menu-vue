@@ -6,10 +6,7 @@ import { useState } from "react";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import ErrorList from "../../components/ErrorList";
 import { useNavigate } from "react-router-dom";
-
-const FormInput = styled.div`
-  margin-bottom: 10px;
-`;
+import FormInput from "../../styles/FormInput";
 
 const Signup = ({ appState }) => {
 

@@ -41,6 +41,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Index appState={appState} />}>
           <Route index element={<Home />} />
+          <Route path="browse" element={<>Browse</>} />
+          <Route path="how" element={<>How it works</>} />
+          <Route path="about" element={<>About Us</>} />
           <Route path="signup" element={<Signup appState={appState} />} />
           <Route path="login" element={<Login appState={appState} />} />
           <Route path=":slugUrl" element={<Business appState={appState} />} />
