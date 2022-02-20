@@ -7,6 +7,7 @@ import { useState } from "react";
 import FormLabel from "../../../styles/FormLabel"
 import ResponsiveTextInput from "../../../styles/ResponsiveTextInput";
 import StyledLoadingButton from "../../../styles/StyledLoadingButton";
+import ErrorList from "../../../components/ErrorList";
 
 const ManageBusinessesNew = ({ appState }) => {
   
@@ -20,6 +21,8 @@ const ManageBusinessesNew = ({ appState }) => {
 
   const [loading, setLoading] = useState(false);
 
+  const [errors, setErrors] = useState([]);
+
   const handleChange = e => {
     setFormData({
       ...formData,
@@ -30,6 +33,23 @@ const ManageBusinessesNew = ({ appState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
+    fetch("/businesses", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      }, 
+      body: JSON.stringify(formData)
+    })
+      .then(res => {
+        setLoading(false);
+        if (res.ok) {
+          res.json().then(json => console.log(json));
+        } else {
+          res.json().then(json => setErrors(json.errors));
+        }
+      })
+      .catch(console.error)
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -76,7 +96,6 @@ const ManageBusinessesNew = ({ appState }) => {
         <FormInput>
             <FormLabel htmlFor="business_image">Image URL</FormLabel>
             <ResponsiveTextInput
-              required
               name="image"
               id="business_image"
               variant="filled"
@@ -84,9 +103,9 @@ const ManageBusinessesNew = ({ appState }) => {
               onChange={handleChange}
             />
         </FormInput>
-        <FormInput>
-          <StyledLoadingButton type="submit" loading={loading}>Save</ StyledLoadingButton>
-        </FormInput>
+        <ErrorList errors={errors} />
+        <StyledLoadingButton type="submit" loading={loading}>Save</ StyledLoadingButton>
+
       </form>
     </FloatedContent>
   );
