@@ -2,25 +2,11 @@ import FloatedContent from "../../../styles/FloatedContent";
 import PageTitle from "../../../styles/PageTitle";
 import ContentNotice from "../../../styles/ContentNotice";
 import { useSearchParams } from "react-router-dom";
-import TextField from '@mui/material/TextField';
 import FormInput from "../../../styles/FormInput";
 import { useState } from "react";
-import styled from "styled-components";
-
-const FormLabel = styled.label`
-  width: 150px;
-  display: none;
-  @media (min-width: 768px) {
-    display: block;
-  }
-`;
-
-const ResponsiveTextInput = styled(TextField)`
-  width: 100%;
-  @media (min-width: 768px) {
-    width: 500px;
-  }
-`;
+import FormLabel from "../../../styles/FormLabel"
+import ResponsiveTextInput from "../../../styles/ResponsiveTextInput";
+import StyledLoadingButton from "../../../styles/StyledLoadingButton";
 
 const ManageBusinessesNew = ({ appState }) => {
   
@@ -32,11 +18,18 @@ const ManageBusinessesNew = ({ appState }) => {
     image: ""
   });
 
+  const [loading, setLoading] = useState(false);
+
   const handleChange = e => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     })
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -56,18 +49,43 @@ const ManageBusinessesNew = ({ appState }) => {
     <FloatedContent fullWidth>
       {renderNewUserNotice()}
       <PageTitle title="Create a Business" />
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInput>
             <FormLabel htmlFor="business_name">Business Name</FormLabel>
             <ResponsiveTextInput
               required
-              label="Business Name"
               name="name"
               id="business_name"
               variant="filled"
               value={formData.name}
               onChange={handleChange}
             />
+        </FormInput>
+        <FormInput>
+            <FormLabel htmlFor="business_description">Description</FormLabel>
+            <ResponsiveTextInput
+              name="description"
+              multiline
+              rows="4"
+              id="business_description"
+              variant="filled"
+              value={formData.description}
+              onChange={handleChange}
+            />
+        </FormInput>
+        <FormInput>
+            <FormLabel htmlFor="business_image">Image URL</FormLabel>
+            <ResponsiveTextInput
+              required
+              name="image"
+              id="business_image"
+              variant="filled"
+              value={formData.image}
+              onChange={handleChange}
+            />
+        </FormInput>
+        <FormInput>
+          <StyledLoadingButton type="submit" loading={loading}>Save</ StyledLoadingButton>
         </FormInput>
       </form>
     </FloatedContent>

@@ -29,7 +29,8 @@ const Login = ({ appState }) => {
     })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
     fetch('/login', {
       method: "POST",
@@ -70,7 +71,7 @@ const Login = ({ appState }) => {
   return (
     <FloatedContent side="right" onLoad={checkIfLoggedIn}>
       <PageTitle title="Log in" />
-      <form>
+      <form onSubmit={handleSubmit}>
         <FormInput>
           <TextField
             required
@@ -96,7 +97,7 @@ const Login = ({ appState }) => {
         </FormInput>
         <ErrorList errors={errors} />
         <FormInput>
-          <StyledLoadingButton fullWidth type="submit" loading={loading} onClick={handleSubmit}>Log in</ StyledLoadingButton>
+          <StyledLoadingButton fullWidth type="submit" loading={loading}>Log in</ StyledLoadingButton>
         </FormInput>
       </form>
       Not registered yet? <PrimaryLink to="/signup">Sign up today!</PrimaryLink>

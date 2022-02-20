@@ -29,7 +29,8 @@ const Signup = ({ appState }) => {
     })
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     setLoading(true);
     fetch('/signup', {
       method: "POST",
@@ -55,7 +56,7 @@ const Signup = ({ appState }) => {
   return (
     <FloatedContent side="right">
       <PageTitle title="Sign up" />
-      <form>
+      <form onSubmit={handleSubmit}>
       <FormInput>
         <TextField
           required
@@ -114,7 +115,7 @@ const Signup = ({ appState }) => {
         />
       </FormInput>
       <ErrorList errors={errors} />
-      <StyledLoadingButton fullWidth type="submit" loading={loading} onClick={handleSubmit}>Register</ StyledLoadingButton>
+      <StyledLoadingButton fullWidth type="submit" loading={loading}>Register</ StyledLoadingButton>
       </form>
     </FloatedContent>
   )
