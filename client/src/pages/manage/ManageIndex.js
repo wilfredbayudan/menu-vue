@@ -1,4 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom";
+import AlertPage from "../../components/AlertPage";
 
 const ManageIndex = ({ appState }) => {
 
@@ -6,11 +7,12 @@ const ManageIndex = ({ appState }) => {
 
   const navigate = useNavigate();
 
+  const handleAlertClose = () => {
+    navigate("/login");
+  }
+
   if (!user) {
-    setTimeout(() => {
-      navigate("/login");
-    }, 5000)
-    return <>Hmm, doesn't look like you have permission to do that!</>
+    return <AlertPage alertTitle="Oops!" alertText="You need to be logged in to do that!" onClose={handleAlertClose} />;
   }
 
   return (

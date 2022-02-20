@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
+import AlertPage from "../../components/AlertPage";
 
 const Business = () => {
 
@@ -21,9 +22,7 @@ const Business = () => {
 
   if (notFound) {
     return (
-      <div>
-        Business not found
-      </div>
+      <AlertPage alertTitle="Oops!" alertText="That business could not be found." />
     )
   }
 

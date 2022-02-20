@@ -5,6 +5,10 @@ import Business from '../pages/business/Business';
 import Login from '../pages/login/Login';
 import Signup from '../pages/signup/Signup';
 import ManageIndex from '../pages/manage/ManageIndex';
+import ManageBusinessesOutlet from '../pages/manage/businesses/ManageBusinessesOutlet';
+import ManageBusinessesIndex from '../pages/manage/businesses/ManageBusinessesIndex';
+import ManageBusinessesNew from '../pages/manage/businesses/ManageBusinessesNew';
+import AlertPage from '../components/AlertPage';
 
 function App() {
 
@@ -41,11 +45,14 @@ function App() {
           <Route path="login" element={<Login appState={appState} />} />
           <Route path=":slugUrl" element={<Business appState={appState} />} />
           <Route path="manage" element={<ManageIndex appState={appState} />}>
-            <Route index element={<>Manage Home</>} />
-            <Route path="businesses" element={<>Business Management</>} />
+            <Route index element={<>Dashboard</>} />
+            <Route path="businesses" element={<ManageBusinessesOutlet />}>
+              <Route index element={<ManageBusinessesIndex appState={appState} />} />
+              <Route path="new" element={<ManageBusinessesNew appState={appState} />} />
+            </Route>
             <Route path="test" element={<>Test Route</>} />
           </Route>
-          <Route path="*" element={<>404 Not Found!</>} />
+          <Route path="*" element={<AlertPage alertTitle="Oops!" alertText="That page could not be found." />} />
         </Route>
       </Routes>
     </BrowserRouter>

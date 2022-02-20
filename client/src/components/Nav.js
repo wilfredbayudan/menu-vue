@@ -6,9 +6,12 @@ import Divider from '@mui/material/Divider';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import HomeIcon from '@mui/icons-material/Home';
 import MailIcon from '@mui/icons-material/Mail';
+import InfoIcon from '@mui/icons-material/Info';
 import MenuIcon from '@mui/icons-material/Menu';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import HelpIcon from '@mui/icons-material/Help';
 import styled from "styled-components";
 import { primaryColor } from "../styles/colorList";
 import { useNavigate } from "react-router-dom"
@@ -46,11 +49,29 @@ export default function SwipeableTemporaryDrawer() {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        <ListItem button onClick={() => navigate("/manage")}>
+        <ListItem button onClick={() => navigate("/")}>
           <ListItemIcon>
-            <InboxIcon />
+            <HomeIcon />
           </ListItemIcon>
-          <ListItemText primary={"Manage Panel"} />
+          <ListItemText primary={"Home"} />
+        </ListItem>
+        <ListItem button onClick={() => navigate("/")}>
+          <ListItemIcon>
+            <MenuBookIcon />
+          </ListItemIcon>
+          <ListItemText primary={"Browse Businesses"} />
+        </ListItem>
+        <ListItem button onClick={() => navigate("/about")}>
+          <ListItemIcon>
+            <HelpIcon />
+          </ListItemIcon>
+          <ListItemText primary={"How It Works"} />
+        </ListItem>
+        <ListItem button onClick={() => navigate("/about")}>
+          <ListItemIcon>
+            <InfoIcon />
+          </ListItemIcon>
+          <ListItemText primary={"About Us"} />
         </ListItem>
       </List>
       <Divider />
