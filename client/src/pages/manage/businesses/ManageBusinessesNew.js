@@ -1,7 +1,7 @@
 import FloatedContent from "../../../styles/FloatedContent";
 import PageTitle from "../../../styles/PageTitle";
 import ContentNotice from "../../../styles/ContentNotice";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import FormInput from "../../../styles/FormInput";
 import { useState } from "react";
 import FormLabel from "../../../styles/FormLabel"
@@ -11,7 +11,13 @@ import ErrorList from "../../../components/ErrorList";
 
 const ManageBusinessesNew = ({ appState }) => {
   
-  const { user } = appState;
+  const navigate = useNavigate();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const newUser = searchParams.get("newUser");
+
+  const { user, setUser } = appState;
 
   const [formData, setFormData] = useState({
     name: "",
@@ -44,17 +50,29 @@ const ManageBusinessesNew = ({ appState }) => {
       .then(res => {
         setLoading(false);
         if (res.ok) {
-          res.json().then(json => console.log(json));
+          res.json().then(json => {
+            console.log(json);
+            console.log(user);
+            setUser({
+              ...user,
+              businesses: [
+                ...user.businesses,
+                {
+                  business_id: json.id,
+                  name: json.name,
+                  owner: true,
+                  slug: json.slug
+                }
+              ]
+            });
+            navigate(`/manage/businesses/${json.id}/menu${ newUser ? "?newUser=true" : "" }`);
+          });
         } else {
           res.json().then(json => setErrors(json.errors));
         }
       })
       .catch(console.error)
   };
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const newUser = searchParams.get("newUser");
 
   const renderNewUserNotice = () => {
     if (!newUser) return null;
