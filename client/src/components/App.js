@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Index from '../pages/Index';
 import Business from '../pages/business/Business';
 import Login from '../pages/login/Login';
@@ -9,6 +9,7 @@ import ManageBusinessesOutlet from '../pages/manage/businesses/ManageBusinessesO
 import ManageBusinessesIndex from '../pages/manage/businesses/ManageBusinessesIndex';
 import ManageBusinessesNew from '../pages/manage/businesses/ManageBusinessesNew';
 import AlertPage from '../components/AlertPage';
+import MenuManager from '../pages/manage/businesses/menu/MenuManager';
 
 function App() {
 
@@ -47,11 +48,17 @@ function App() {
           <Route path="signup" element={<Signup appState={appState} />} />
           <Route path="login" element={<Login appState={appState} />} />
           <Route path=":slugUrl" element={<Business appState={appState} />} />
+          {/* Manage Routes */}
           <Route path="manage" element={<ManageIndex appState={appState} />}>
             <Route index element={<>Dashboard</>} />
+            {/* Manage Businesses Routes */}
             <Route path="businesses" element={<ManageBusinessesOutlet />}>
               <Route index element={<ManageBusinessesIndex appState={appState} />} />
               <Route path="new" element={<ManageBusinessesNew appState={appState} />} />
+              {/* Manage Individual Business Routes */}
+              <Route path=":businessId" element={<Outlet />}>
+                <Route path="menu" element={<MenuManager appState={appState} />} />
+              </Route>
             </Route>
             <Route path="test" element={<>Test Route</>} />
           </Route>

@@ -1,0 +1,66 @@
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import FloatedContent from "../../../../styles/FloatedContent";
+import PageTitle from "../../../../styles/PageTitle";
+import styled from "styled-components";
+import SecondaryTitle from "../../../../styles/SecondaryTitle";
+import ContentNotice from "../../../../styles/ContentNotice";
+import Categories from "../../businesses/menu/Categories";
+import Items from "../../businesses/menu/Items";
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const MenuManager = ({ appState }) => {
+
+  const { businessId } = useParams();
+  const [business,setBusiness] = useState({});
+
+  const navigate = useNavigate();
+
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const newUser = searchParams.get("newUser");
+
+  useEffect(() => {
+    fetch(`/businesses/${businessId}`)
+      .then(res => {
+        if (res.ok) {
+          res.json().then(setBusiness);
+        } else {
+          navigate("/404");
+        }
+      })
+      .catch(console.error)
+  }, [])
+
+  console.log(businessId);
+
+  const renderNewUserNotice = () => {
+    if (!newUser) return null;
+    return (
+      <ContentNotice>
+        Now that you've created your first business, we need to build your menu! Create a new category to begin adding items to your menu.
+      </ContentNotice>
+    )
+  }
+
+  return (
+    <FloatedContent fullWidth>
+      {renderNewUserNotice()}
+      <PageTitle title={`${business.name}`} secondaryTitle="Menu Manager" />
+      <Container>
+        <Categories />
+        <Items><SecondaryTitle title="Items" /></Items>
+      </Container>
+    </FloatedContent>
+  )
+}
+
+export default MenuManager;

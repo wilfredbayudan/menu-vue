@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { primaryColor } from "./colorList";
 
 const H2 = styled.h2`
   text-transform: uppercase;
@@ -9,10 +10,14 @@ const LineBreak = styled.hr`
   margin-bottom: 20px;
 `;
 
-const PageTitle = ({ title }) => {
+const SecondaryTitle = styled.span`
+  color: ${primaryColor};
+`;
+
+const PageTitle = ({ title, secondaryTitle }) => {
   return (
     <>
-      <H2>{title}</H2>
+      <H2>{title} { secondaryTitle ? <>⇢ <SecondaryTitle>{secondaryTitle}</SecondaryTitle></> : '' }</H2>
       <LineBreak />
     </>
   )
