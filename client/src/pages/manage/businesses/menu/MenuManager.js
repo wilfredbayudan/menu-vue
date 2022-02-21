@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import FloatedContent from "../../../../styles/FloatedContent";
 import PageTitle from "../../../../styles/PageTitle";
 import styled from "styled-components";
-import SecondaryTitle from "../../../../styles/SecondaryTitle";
 import ContentNotice from "../../../../styles/ContentNotice";
 import Categories from "../../businesses/menu/Categories";
 import Items from "../../businesses/menu/Items";
@@ -21,6 +20,13 @@ const MenuManager = ({ appState }) => {
 
   const { businessId } = useParams();
   const [business,setBusiness] = useState({});
+
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const menuManagerState = {
+    business, setBusiness,
+    selectedCategory, setSelectedCategory
+  };
 
   const navigate = useNavigate();
 
@@ -40,7 +46,7 @@ const MenuManager = ({ appState }) => {
       .catch(console.error)
   }, [])
 
-  console.log(businessId);
+  console.log(selectedCategory);
 
   const renderNewUserNotice = () => {
     if (!newUser) return null;
@@ -56,8 +62,8 @@ const MenuManager = ({ appState }) => {
       {renderNewUserNotice()}
       <PageTitle title={`${business.name}`} secondaryTitle="Menu Manager" />
       <Container>
-        <Categories />
-        <Items><SecondaryTitle title="Items" /></Items>
+        <Categories menuManagerState={menuManagerState} />
+        <Items menuManagerState={menuManagerState} />
       </Container>
     </FloatedContent>
   )

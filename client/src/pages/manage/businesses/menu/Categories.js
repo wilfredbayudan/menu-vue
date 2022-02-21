@@ -11,10 +11,22 @@ const Container = styled.div`
   }
 `;
 
-const Categories = () => {
+const Categories = ({ menuManagerState }) => {
+
+  const { setSelectedCategory, business, setBusiness } = menuManagerState;
+
+
+  const renderCategories = () => {
+    if (!business.menu) return null;
+    return business.menu.categories.map((category, categoryIdx) => {
+      return <div key={categoryIdx} onClick={() => setSelectedCategory(category.id)}>{category.category}</div>
+    })
+  }
+
   return (
     <Container>
       <SecondaryTitle title="Categories" />
+      { renderCategories() }
     </Container>
   )
 }
