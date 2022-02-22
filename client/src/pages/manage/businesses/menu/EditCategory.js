@@ -23,7 +23,7 @@ const EditCategory = ({ menuManagerState, category }) => {
 
   const handleCloseWithoutSave = () => {
     setFormData({
-      item: category.category,
+      category: category.category,
       description: category.description,
     });
     setOpen(false);

@@ -19,11 +19,9 @@ const ItemsContainer = styled.div`
 
 const DisplayItems = ({ displayItems, menuManagerState }) => {
 
-  console.log(displayItems);
-
   const renderItems = displayItems.map((displayItem, idx) => <Item key={idx} menuManagerState={menuManagerState} item={displayItem} />)
 
-  if (displayItems.length === 0) return "No items here yet!"
+  if (displayItems.length === 0) return "No items found!"
 
   return (
     <ItemsContainer>
