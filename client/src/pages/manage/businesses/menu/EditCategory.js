@@ -21,6 +21,15 @@ const EditCategory = ({ menuManagerState, category }) => {
     setOpen(false);
   };
 
+  const handleCloseWithoutSave = () => {
+    setFormData({
+      item: category.category,
+      description: category.description,
+    });
+    setOpen(false);
+    setErrors([]);
+  }
+
   const handleChange = e => {
     setFormData({
       ...formData,
@@ -71,7 +80,7 @@ const EditCategory = ({ menuManagerState, category }) => {
         fullWidth
         maxWidth="sm"
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseWithoutSave}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
