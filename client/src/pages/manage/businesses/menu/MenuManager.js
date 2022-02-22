@@ -57,6 +57,8 @@ const MenuManager = ({ appState }) => {
     )
   }
 
+  if (!business.name) return null;
+
   return (
     <FloatedContent fullWidth>
       {renderNewUserNotice()}

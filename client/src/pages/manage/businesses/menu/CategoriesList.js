@@ -2,6 +2,7 @@ import styled from "styled-components";
 import SecondaryTitle from "../../../../styles/SecondaryTitle";
 import List from '@mui/material/List';
 import Category from "../menu/Category";
+import AddEditCategory from "./AddEditCategory";
 
 const Container = styled.div`
   width: 100%;
@@ -16,7 +17,6 @@ const CategoriesList = ({ menuManagerState }) => {
 
   const { business } = menuManagerState;
 
-
   const renderCategories = () => {
     if (!business.menu) return null;
     return business.menu.categories.map((category, categoryIdx) => {
@@ -29,7 +29,15 @@ const CategoriesList = ({ menuManagerState }) => {
       <SecondaryTitle title="Categories" />
       <List dense>
         {renderCategories()}
+        {
+          business.menu && business.menu.categories.length === 0 &&
+          <>
+            No categories found
+          </>
+        }
+        
       </List>
+      <AddEditCategory menuManagerState={menuManagerState} />
     </Container>
   )
 }
