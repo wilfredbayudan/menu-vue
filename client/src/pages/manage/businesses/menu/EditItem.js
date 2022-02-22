@@ -31,6 +31,7 @@ const EditItem = ({ menuManagerState, item }) => {
       price: item.price
     });
     setOpen(false);
+    setErrors([]);
   }
 
   const handleChange = e => {

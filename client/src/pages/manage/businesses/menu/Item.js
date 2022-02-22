@@ -32,16 +32,19 @@ const ItemImage = styled.img`
 `;
 
 const ItemName = styled.span`
-  font-weight: bold;
+  font-weight: 400;
   height: 15%;
   display: flex;
   align-items: center;
+  text-align: center;
 `;
 
 const ItemPrice = styled.div`
   flex-shrink: 0;
   height: 15%;
   display: flex;
+  font-size: 0.9em;
+  color: #1a1a1a;
   align-items: center;
 `;
 

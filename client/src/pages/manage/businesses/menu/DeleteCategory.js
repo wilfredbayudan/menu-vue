@@ -54,7 +54,7 @@ const DeleteCategory = ({ menuManagerState, category }) => {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Delete <b>{category.category}</b> from {business.name}?
+            Delete <b>{category.category}</b> and its items from {business.name}?
           </DialogContentText>
           <ErrorList errors={errors} />
         </DialogContent>
