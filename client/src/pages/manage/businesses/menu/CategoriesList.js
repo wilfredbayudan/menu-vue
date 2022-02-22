@@ -27,16 +27,14 @@ const CategoriesList = ({ menuManagerState }) => {
   return (
     <Container>
       <SecondaryTitle title="Categories" />
-      <List dense>
-        {renderCategories()}
-        {
-          business.menu && business.menu.categories.length === 0 &&
-          <>
-            No categories found
-          </>
-        }
-        
-      </List>
+      {
+        business.menu && business.menu.categories.length > 0 ?
+        <List dense>
+          {renderCategories()}
+        </List>
+        :
+        "No categories found"
+      }
       <AddCategory menuManagerState={menuManagerState} />
     </Container>
   )

@@ -1,9 +1,8 @@
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import IconButton from '@mui/material/IconButton';
 import ListItemButton from '@mui/material/ListItemButton';
 import EditCategory from "./EditCategory";
-import StyledDeleteIcon from "../../../../styles/StyledDeleteIcon";
+import DeleteCategory from "./DeleteCategory";
 
 const Category = ({ category, menuManagerState }) => {
 
@@ -19,9 +18,7 @@ const Category = ({ category, menuManagerState }) => {
         secondaryAction={
           <>
             <EditCategory menuManagerState={menuManagerState} category={category} />
-            <IconButton edge="end" aria-label="delete">
-              <StyledDeleteIcon />
-            </IconButton>          
+            <DeleteCategory menuManagerState={menuManagerState} category={category} />
           </>
 
         }

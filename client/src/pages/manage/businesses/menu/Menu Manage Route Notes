@@ -2,6 +2,8 @@
 
 /menu/category/new - Create a new category
 
-/menu/category/:id - Show items from category :id
+/menu/category/:id/items - Show items from category :id
 
-/menu/category/:id/new - Create a new item in category :id
+/menu/category/:id/items/new - Create a new item in category :id
+
+/menu/category/:id/items/:id/edit - Edit item
