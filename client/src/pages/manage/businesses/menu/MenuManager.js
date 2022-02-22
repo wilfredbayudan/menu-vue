@@ -30,7 +30,7 @@ const MenuManager = ({ appState }) => {
 
   const navigate = useNavigate();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const newUser = searchParams.get("newUser");
 
@@ -44,7 +44,7 @@ const MenuManager = ({ appState }) => {
         }
       })
       .catch(console.error)
-  }, [])
+  }, [businessId, navigate])
 
   console.log(selectedCategory);
 

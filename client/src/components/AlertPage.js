@@ -1,13 +1,13 @@
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import DialogTitle from '@mui/material/DialogTitle';
 
 const AlertPage = ({ alertTitle, alertText, onClose }) => {
 
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -22,6 +22,15 @@ const AlertPage = ({ alertTitle, alertText, onClose }) => {
     }
 
   }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOpen(true);
+    }, 500)
+    return(() => {
+      clearTimeout(timer);
+    })
+  }, [setOpen])
 
   return (
     <Dialog

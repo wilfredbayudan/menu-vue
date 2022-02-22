@@ -13,7 +13,7 @@ const Container = styled.div`
 
 const Categories = ({ menuManagerState }) => {
 
-  const { setSelectedCategory, business, setBusiness } = menuManagerState;
+  const { setSelectedCategory, business } = menuManagerState;
 
 
   const renderCategories = () => {
