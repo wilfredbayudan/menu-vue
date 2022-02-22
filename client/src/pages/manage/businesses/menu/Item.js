@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ItemImagePlaceholder from "../../../../assets/images/item_placeholder.png";
+import Placeholder from "../../../../assets/images/placeholder.png";
 import EditItem from "./EditItem";
 import DeleteItem from "./DeleteItem";
 import Delete from "@mui/icons-material/Delete";
@@ -66,7 +66,7 @@ const Item = ({ item, menuManagerState }) => {
     <ItemSquare>
       <ItemContent>
         <ItemName>{item.item}</ItemName>
-        <ItemImage src={item.image ? item.image : ItemImagePlaceholder} />
+        <ItemImage src={item.image ? item.image : Placeholder} />
         <ItemPrice>
           <LeftAction>
             <EditItem menuManagerState={menuManagerState} item={item} />
