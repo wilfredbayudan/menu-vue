@@ -48,9 +48,21 @@ const AddEditCategory = ({ menuManagerState }) => {
         if (res.ok) {
           res.json().then(json => {
             console.log(json);
+            setBusiness({
+              ...business,
+              menu: {
+                ...business.menu,
+                categories: [
+                  ...business.menu.categories,
+                  json
+                ]
+              }
+            });
+            setSelectedCategory(json.id);
+            handleClose();
           })
         } else {
-          res.json().then(setErrors);
+          res.json().then(json => setErrors(json.errors));
         }
       })
   }
