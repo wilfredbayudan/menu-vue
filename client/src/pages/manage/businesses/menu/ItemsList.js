@@ -6,7 +6,7 @@ const Container = styled.div`
   padding: 15px;
 `;
 
-const Items = () => {
+const ItemsList = () => {
   return (
     <Container>
       <SecondaryTitle title="Items" />
@@ -14,4 +14,4 @@ const Items = () => {
   )
 }
 
-export default Items;
+export default ItemsList;

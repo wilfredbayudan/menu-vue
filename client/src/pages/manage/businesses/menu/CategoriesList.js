@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SecondaryTitle from "../../../../styles/SecondaryTitle";
-
+import List from '@mui/material/List';
+import Category from "../menu/Category";
 
 const Container = styled.div`
   width: 100%;
@@ -11,24 +12,26 @@ const Container = styled.div`
   }
 `;
 
-const Categories = ({ menuManagerState }) => {
+const CategoriesList = ({ menuManagerState }) => {
 
-  const { setSelectedCategory, business } = menuManagerState;
+  const { business } = menuManagerState;
 
 
   const renderCategories = () => {
     if (!business.menu) return null;
     return business.menu.categories.map((category, categoryIdx) => {
-      return <div key={categoryIdx} onClick={() => setSelectedCategory(category.id)}>{category.category}</div>
+      return <Category key={categoryIdx} category={category} menuManagerState={menuManagerState} />
     })
   }
 
   return (
     <Container>
       <SecondaryTitle title="Categories" />
-      { renderCategories() }
+      <List dense>
+        {renderCategories()}
+      </List>
     </Container>
   )
 }
 
-export default Categories;
+export default CategoriesList;

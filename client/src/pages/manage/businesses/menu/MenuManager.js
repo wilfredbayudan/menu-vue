@@ -4,8 +4,8 @@ import FloatedContent from "../../../../styles/FloatedContent";
 import PageTitle from "../../../../styles/PageTitle";
 import styled from "styled-components";
 import ContentNotice from "../../../../styles/ContentNotice";
-import Categories from "../../businesses/menu/Categories";
-import Items from "../../businesses/menu/Items";
+import CategoriesList from "./CategoriesList";
+import ItemsList from "./ItemsList";
 
 const Container = styled.div`
   display: flex;
@@ -62,8 +62,8 @@ const MenuManager = ({ appState }) => {
       {renderNewUserNotice()}
       <PageTitle title={`${business.name}`} secondaryTitle="Menu Manager" />
       <Container>
-        <Categories menuManagerState={menuManagerState} />
-        <Items menuManagerState={menuManagerState} />
+        <CategoriesList menuManagerState={menuManagerState} />
+        <ItemsList menuManagerState={menuManagerState} />
       </Container>
     </FloatedContent>
   )
