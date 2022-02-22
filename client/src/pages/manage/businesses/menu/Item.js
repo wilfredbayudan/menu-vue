@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import ItemImagePlaceholder from "../../../../assets/images/item_placeholder.png";
 import EditItem from "./EditItem";
+import DeleteItem from "./DeleteItem";
+import Delete from "@mui/icons-material/Delete";
 
 const ItemSquare = styled.div`
   position: relative;
@@ -50,7 +52,12 @@ const ItemPrice = styled.div`
 
 const RightAction = styled.div`
   position: absolute;
-  right: 0;
+  right: 2px;
+`;
+
+const LeftAction = styled.div`
+  position: absolute;
+  left: 2px;
 `;
 
 const Item = ({ item, menuManagerState }) => {
@@ -61,9 +68,12 @@ const Item = ({ item, menuManagerState }) => {
         <ItemName>{item.item}</ItemName>
         <ItemImage src={item.image ? item.image : ItemImagePlaceholder} />
         <ItemPrice>
+          <LeftAction>
+            <EditItem menuManagerState={menuManagerState} item={item} />
+          </LeftAction>
           <span>${item.price}</span>
           <RightAction>
-            <EditItem menuManagerState={menuManagerState} item={item} />
+            <DeleteItem menuManagerState={menuManagerState} item={item} />
           </RightAction>
         </ItemPrice>
       </ItemContent>

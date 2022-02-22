@@ -76,7 +76,7 @@ const EditItem = ({ menuManagerState, item }) => {
 
   return (
     <>
-      <IconButton onClick={() => setOpen(true)}>
+      <IconButton edge="end" onClick={() => setOpen(true)}>
         <StyledEditIcon />
       </IconButton>
       <Dialog
