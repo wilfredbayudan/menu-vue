@@ -10,6 +10,7 @@ class UserSerializer < ActiveModel::Serializer
       { 
         business_id: user_business.id,
         name: business.name,
+        description: business.description,
         slug: business.slug,
         owner: user_business.owner
       }
