@@ -11,10 +11,14 @@ const LineBreak = styled.hr`
   margin-bottom: 20px;
 `;
 
-const PageTitle = ({ title }) => {
+const SecondaryTitle = styled.span`
+  color: #000000;
+`;
+
+const PageTitle = ({ title, secondaryTitle }) => {
   return (
     <>
-      <H3>{title}</H3>
+      <H3>{title} { secondaryTitle ? <>⇢ <SecondaryTitle>{secondaryTitle}</SecondaryTitle></> : '' }</H3>
       <LineBreak />
     </>
   )

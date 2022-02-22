@@ -43,8 +43,6 @@ const EditCategory = ({ menuManagerState, category }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then(json => {
-            console.log(business);
-            console.log(json);
             setBusiness({
               ...business,
               menu: {

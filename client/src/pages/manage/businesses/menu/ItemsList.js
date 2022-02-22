@@ -6,10 +6,26 @@ const Container = styled.div`
   padding: 15px;
 `;
 
-const ItemsList = () => {
+const ItemsList = ({ menuManagerState }) => {
+
+  const { business, selectedCategory } = menuManagerState;
+
+  const categoryTitle = () => {
+    if (selectedCategory) {
+      return `${business.menu.categories.find(category => category.id === selectedCategory).category} `;
+    }
+    return null;
+  }
+
   return (
     <Container>
-      <SecondaryTitle title="Items" />
+      <SecondaryTitle title={categoryTitle()} secondaryTitle="Items" />
+      {
+        selectedCategory ?
+        "Show Items Here"
+        :
+        "Create or select a category to manage menu items."
+      }
     </Container>
   )
 }
