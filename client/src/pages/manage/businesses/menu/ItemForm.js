@@ -16,10 +16,10 @@ const ItemForm = ({ formData, handleSubmit, handleChange, errors, loading, edit 
                 autoFocus
                 required
                 fullWidth
-                label="Category Name"
-                name="category"
+                label="Item Name"
+                name="item"
                 variant="filled"
-                value={formData.category}
+                value={formData.item}
                 onChange={handleChange}
               />
             </FormInput>
@@ -33,6 +33,27 @@ const ItemForm = ({ formData, handleSubmit, handleChange, errors, loading, edit 
                 value={formData.description}
                 onChange={handleChange}
                 variant="filled"
+              />
+            </FormInput>
+            <FormInput>
+              <ResponsiveTextInput
+                fullWidth
+                label="Image URL"
+                name="image"
+                variant="filled"
+                value={formData.image}
+                onChange={handleChange}
+              />
+            </FormInput>
+            <FormInput>
+              <ResponsiveTextInput
+                required
+                fullWidth
+                label="Price"
+                name="price"
+                variant="filled"
+                value={formData.price}
+                onChange={handleChange}
               />
             </FormInput>
           <ErrorList errors={errors} />
