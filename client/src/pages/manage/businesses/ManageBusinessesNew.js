@@ -91,6 +91,7 @@ const ManageBusinessesNew = ({ appState }) => {
         <FormInput>
             <FormLabel htmlFor="business_name">Business Name</FormLabel>
             <ResponsiveTextInput
+              autoFocus
               required
               name="name"
               id="business_name"
