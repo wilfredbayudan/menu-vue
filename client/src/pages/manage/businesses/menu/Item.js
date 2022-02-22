@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ItemImagePlaceholder from "../../../../assets/images/item_placeholder.png";
+import EditItem from "./EditItem";
 
 const ItemSquare = styled.div`
   position: relative;
@@ -44,13 +45,24 @@ const ItemPrice = styled.div`
   align-items: center;
 `;
 
+const RightAction = styled.div`
+  position: absolute;
+  right: 0;
+`;
+
 const Item = ({ item, menuManagerState }) => {
+
   return (
     <ItemSquare>
       <ItemContent>
         <ItemName>{item.item}</ItemName>
         <ItemImage src={item.image ? item.image : ItemImagePlaceholder} />
-        <ItemPrice>${item.price}</ItemPrice>
+        <ItemPrice>
+          <span>${item.price}</span>
+          <RightAction>
+            <EditItem menuManagerState={menuManagerState} item={item} />
+          </RightAction>
+        </ItemPrice>
       </ItemContent>
     </ItemSquare>
   )
