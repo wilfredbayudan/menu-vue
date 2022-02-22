@@ -24,6 +24,8 @@ const MenuManager = ({ appState }) => {
 
   const [selectedCategory, setSelectedCategory] = useState(null);
 
+  const { user } = appState;
+
   const menuManagerState = {
     business, setBusiness,
     selectedCategory, setSelectedCategory
@@ -36,7 +38,12 @@ const MenuManager = ({ appState }) => {
   const newUser = searchParams.get("newUser");
 
   useEffect(() => {
-    fetch(`/businesses/${businessId}`)
+    // Only run if businessId found it user.businesses
+    console.log(businessId)
+    const permission = user.businesses.find(userBusiness => userBusiness.business_id === parseInt(businessId));
+    console.log(permission)
+    if (permission) {
+      fetch(`/businesses/${businessId}`)
       .then(res => {
         if (res.ok) {
           res.json().then(setBusiness);
@@ -45,7 +52,11 @@ const MenuManager = ({ appState }) => {
         }
       })
       .catch(console.error)
-  }, [businessId, navigate])
+    } else {
+      console.log("No permission")
+      navigate("/401");
+    }
+  }, [businessId, navigate, user.businesses, business.id])
 
   const renderNewUserNotice = () => {
     if (!newUser) return null;
