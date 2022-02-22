@@ -1,15 +1,11 @@
 import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
 import { useState } from "react";
 import DialogTitle from '@mui/material/DialogTitle';
 import StyledLoadingButton from "../../../../styles/StyledLoadingButton";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import FormInput from "../../../../styles/FormInput"
-import DialogActions from '@mui/material/DialogActions';
-import ResponsiveTextInput from "../../../../styles/ResponsiveTextInput";
-import ErrorList from "../../../../components/ErrorList";
+import CategoryForm from "./CategoryForm";
 
-const AddEditCategory = ({ menuManagerState }) => {
+const AddCategory = ({ menuManagerState }) => {
 
   const { business, setBusiness, setSelectedCategory } = menuManagerState;
 
@@ -59,6 +55,10 @@ const AddEditCategory = ({ menuManagerState }) => {
               }
             });
             setSelectedCategory(json.id);
+            setFormData({
+              category: "",
+              description: ""
+            })
             handleClose();
           })
         } else {
@@ -79,48 +79,10 @@ const AddEditCategory = ({ menuManagerState }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">New Category</DialogTitle>
-        <form onSubmit={handleSubmit}>
-          <DialogContent>
-                <FormInput>
-                  <ResponsiveTextInput
-                    autoFocus
-                    required
-                    fullWidth
-                    label="Category Name"
-                    name="category"
-                    variant="filled"
-                    value={formData.category}
-                    onChange={handleChange}
-                  />
-                </FormInput>
-                <FormInput>
-                  <ResponsiveTextInput
-                    label="Description"
-                    multiline
-                    fullWidth
-                    rows="4"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    variant="filled"
-                  />
-                </FormInput>
-              <ErrorList errors={errors} />
-          </DialogContent>
-          <DialogActions>
-            <StyledLoadingButton
-              loading={loading}
-              type="submit"
-              sx={{ margin: "10px" }} 
-              startIcon={<AddCircleIcon 
-            />}>
-              Add Category
-            </StyledLoadingButton>
-          </DialogActions>
-        </form>
+        <CategoryForm handleSubmit={handleSubmit} handleChange={handleChange} formData={formData} errors={errors} loading={loading} />
       </Dialog>
     </>
   )
 }
 
-export default AddEditCategory;
+export default AddCategory;

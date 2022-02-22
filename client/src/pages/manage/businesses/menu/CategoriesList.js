@@ -2,7 +2,7 @@ import styled from "styled-components";
 import SecondaryTitle from "../../../../styles/SecondaryTitle";
 import List from '@mui/material/List';
 import Category from "../menu/Category";
-import AddEditCategory from "./AddEditCategory";
+import AddCategory from "./AddCategory";
 
 const Container = styled.div`
   width: 100%;
@@ -37,7 +37,7 @@ const CategoriesList = ({ menuManagerState }) => {
         }
         
       </List>
-      <AddEditCategory menuManagerState={menuManagerState} />
+      <AddCategory menuManagerState={menuManagerState} />
     </Container>
   )
 }

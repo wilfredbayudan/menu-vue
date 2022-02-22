@@ -46,8 +46,6 @@ const MenuManager = ({ appState }) => {
       .catch(console.error)
   }, [businessId, navigate])
 
-  console.log(selectedCategory);
-
   const renderNewUserNotice = () => {
     if (!newUser) return null;
     return (

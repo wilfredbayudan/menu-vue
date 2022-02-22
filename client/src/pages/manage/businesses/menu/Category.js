@@ -2,9 +2,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import IconButton from '@mui/material/IconButton';
 import ListItemButton from '@mui/material/ListItemButton';
-import StyledEditIcon from "../../../../styles/StyledEditIcon";
+import EditCategory from "./EditCategory";
 import StyledDeleteIcon from "../../../../styles/StyledDeleteIcon";
-
 
 const Category = ({ category, menuManagerState }) => {
 
@@ -19,9 +18,7 @@ const Category = ({ category, menuManagerState }) => {
         sx={{ margin: 0, padding: 0 }}
         secondaryAction={
           <>
-            <IconButton edge="end" aria-label="edit">
-              <StyledEditIcon />
-            </IconButton>
+            <EditCategory menuManagerState={menuManagerState} category={category} />
             <IconButton edge="end" aria-label="delete">
               <StyledDeleteIcon />
             </IconButton>          
