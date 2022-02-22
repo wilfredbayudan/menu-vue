@@ -11,12 +11,48 @@ import ErrorList from "../../../../components/ErrorList";
 
 const AddEditCategory = ({ menuManagerState }) => {
 
+  const { business, setBusiness, setSelectedCategory } = menuManagerState;
+
   const [open, setOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    category: "",
+    description: ""
+  })
+  const [errors, setErrors] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
-
     setOpen(false);
+  };
 
+  const handleChange = e => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setLoading(true);
+    fetch(`/businesses/${business.id}/menu/categories`, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        "accept": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(res => {
+        setLoading(false);
+        if (res.ok) {
+          res.json().then(json => {
+            console.log(json);
+          })
+        } else {
+          res.json().then(setErrors);
+        }
+      })
   }
 
   return (
@@ -30,41 +66,46 @@ const AddEditCategory = ({ menuManagerState }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-          <DialogTitle id="alert-dialog-title">New Category</DialogTitle>
-        <DialogContent>
-            <form>
-              <FormInput>
-                <ResponsiveTextInput
-                  required
-                  fullWidth
-                  label="Category Name"
-                  name="image"
-                  id="business_image"
-                  variant="filled"
-                />
-              </FormInput>
-              <FormInput>
-                <ResponsiveTextInput
-                  label="Description"
-                  multiline
-                  fullWidth
-                  rows="4"
-                  name="image"
-                  id="business_image"
-                  variant="filled"
-                />
-              </FormInput>
-            </form>
-        </DialogContent>
-        <DialogActions>
-          <StyledLoadingButton 
-            onClick={() => setOpen(true)}  
-            sx={{ margin: "10px" }} 
-            startIcon={<AddCircleIcon 
-          />}>
-            Add Category
-          </StyledLoadingButton>
-        </DialogActions>
+        <DialogTitle id="alert-dialog-title">New Category</DialogTitle>
+        <form onSubmit={handleSubmit}>
+          <DialogContent>
+                <FormInput>
+                  <ResponsiveTextInput
+                    autoFocus
+                    required
+                    fullWidth
+                    label="Category Name"
+                    name="category"
+                    variant="filled"
+                    value={formData.category}
+                    onChange={handleChange}
+                  />
+                </FormInput>
+                <FormInput>
+                  <ResponsiveTextInput
+                    label="Description"
+                    multiline
+                    fullWidth
+                    rows="4"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    variant="filled"
+                  />
+                </FormInput>
+              <ErrorList errors={errors} />
+          </DialogContent>
+          <DialogActions>
+            <StyledLoadingButton
+              loading={loading}
+              type="submit"
+              sx={{ margin: "10px" }} 
+              startIcon={<AddCircleIcon 
+            />}>
+              Add Category
+            </StyledLoadingButton>
+          </DialogActions>
+        </form>
       </Dialog>
     </>
   )
