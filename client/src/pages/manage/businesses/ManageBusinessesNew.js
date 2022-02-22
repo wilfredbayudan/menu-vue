@@ -13,7 +13,7 @@ const ManageBusinessesNew = ({ appState }) => {
   
   const navigate = useNavigate();
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams] = useSearchParams();
 
   const newUser = searchParams.get("newUser");
 

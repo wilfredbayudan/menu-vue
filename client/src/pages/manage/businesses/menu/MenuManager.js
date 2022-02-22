@@ -6,6 +6,7 @@ import styled from "styled-components";
 import ContentNotice from "../../../../styles/ContentNotice";
 import CategoriesList from "./CategoriesList";
 import ItemsList from "./ItemsList";
+import LoaderOverlay from "../../../../components/LoaderOverlay";
 
 const Container = styled.div`
   display: flex;
@@ -55,7 +56,7 @@ const MenuManager = ({ appState }) => {
     )
   }
 
-  if (!business.name) return null;
+  if (!business.name) return <LoaderOverlay loaderStatus />;
 
   return (
     <FloatedContent fullWidth>
