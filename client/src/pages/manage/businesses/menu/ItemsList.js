@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SecondaryTitle from "../../../../styles/SecondaryTitle";
+import AddItem from "./AddItem";
 
 const Container = styled.div`
   width: 100%;
@@ -23,7 +24,8 @@ const ItemsContainer = styled.div`
 
 const ItemSquare = styled.div`
   position: relative;
-  border: 1px solid;
+  background-color: #f4f4f4;
+  border: 3px solid #e3e3e3;
   box-sizing: border-box;
   &:before {
     content: '';
@@ -38,6 +40,7 @@ const ItemContent = styled.div`
   left: 0;
   height: 100%;
   width: 100%;
+  margin: 5px;
 `;
 
 const ItemsList = ({ menuManagerState }) => {
@@ -140,7 +143,7 @@ const ItemsList = ({ menuManagerState }) => {
 
   return (
     <Container>
-      <SecondaryTitle title={categoryTitle()} secondaryTitle="Items" />
+      <SecondaryTitle title={categoryTitle()} secondaryTitle="Items" sideAction={selectedCategory && <AddItem menuManagerState={menuManagerState} />} />
       {
         selectedCategory ?
         renderItems()
