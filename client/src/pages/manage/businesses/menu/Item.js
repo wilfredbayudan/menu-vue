@@ -22,21 +22,26 @@ const ItemContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
 `;
 
 const ItemImage = styled.img`
-  max-height: 65%;
+  max-height: 70%;
   max-width: 100%;
 `;
 
 const ItemName = styled.span`
   font-weight: bold;
+  height: 15%;
+  display: flex;
+  align-items: center;
 `;
 
 const ItemPrice = styled.div`
   flex-shrink: 0;
-  height: 20px;
+  height: 15%;
+  display: flex;
+  align-items: center;
 `;
 
 const Item = ({ item, menuManagerState }) => {
