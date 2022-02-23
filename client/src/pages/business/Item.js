@@ -46,7 +46,7 @@ const ItemPrice = styled.div`
   font-weight: 350;
   height: 15%;
   display: flex;
-  font-size: 0.9em;
+  font-size: 0.85em;
   color: #1a1a1a;
   align-items: center;
 `;
@@ -61,6 +61,13 @@ const LeftAction = styled.div`
   left: 2px;
 `;
 
+const Price = styled.span`
+  background-color: #ffd452;
+  padding: 4px 10px;
+  margin-left: 5px;
+  border-radius: 4px;
+`;
+
 const Item = ({ item, businessState }) => {
 
   return (
@@ -70,9 +77,8 @@ const Item = ({ item, businessState }) => {
         <ItemImage src={item.image ? item.image : Placeholder} />
         <ItemPrice>
           <LeftAction>
-            Like
+            <Price>${item.price}</Price>
           </LeftAction>
-          <span>${item.price}</span>
           <RightAction>
             Comment
           </RightAction>
