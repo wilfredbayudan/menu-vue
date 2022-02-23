@@ -12,6 +12,7 @@ Menu.destroy_all
 Category.destroy_all
 Item.destroy_all
 Comment.destroy_all
+UserBusiness.destroy_all
 
 
 first_user = User.create(
@@ -205,4 +206,116 @@ ikura = gunkan.items.create(
   likes: 72,
   price: 6.35,
   item: "Ikura"
+)
+
+oshinko = maki.items.create(
+  description: "Daikon or radish.",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/oshinko.jpg",
+  likes: 12,
+  price: 1.85,
+  item: "Oshinko Maki"
+)
+
+ume = maki.items.create(
+  description: "Sour plum",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/ume.jpg",
+  likes: 13,
+  price: 1.85,
+  item: "Ume Maki"
+)
+
+kanpyo = maki.items.create(
+  description: "Gourd",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/kanpyo.jpg",
+  likes: 13,
+  price: 1.85,
+  item: "Kanpyo Maki"
+)
+
+avocado = maki.items.create(
+  description: "Avocado",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/avocado.jpg",
+  likes: 23,
+  price: 2.75,
+  item: "Avocado Maki"
+)
+
+california = maki.items.create(
+  description: "Avocado, cucumber, imitation crab and mayo.",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/cali4pc.jpg",
+  likes: 44,
+  price: 3.65,
+  item: "California Roll"
+)
+
+california_tempura = maki.items.create(
+  description: "Avocado, cucumber, imitation crab and mayo then deep fried.",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/calitemp.jpg",
+  likes: 71,
+  price: 4.55,
+  item: "California Tempura Roll"
+)
+
+ebi_fry_roll = maki.items.create(
+  description: "Deep fried shrimp, sprous, cucumber and avocados.",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/ebifry.jpg",
+  likes: 61,
+  price: 4.55,
+  item: "Ebi Fry Roll"
+)
+
+dynamite_seafood = maki.items.create(
+  description: "Deep fried shrimp topped with seafood mix.",
+  image: "https://genkisushihawaii.com/images2/menu/rolls/seafooddyna.jpg",
+  likes: 77,
+  price: 6.35,
+  item: "Dynamite Seafood"
+)
+
+kabocha = deep_fried.items.create(
+  description: "Deep fried pumpkin.",
+  image: "https://genkisushihawaii.com/images2/menu/other/kabocha.jpg",
+  likes: 177,
+  price: 3.65,
+  item: "Kabocha Tempura"
+)
+
+croquette = deep_fried.items.create(
+  description: "Deep fried veggie croquette.",
+  image: "https://genkisushihawaii.com/images2/menu/other/vegcroq.jpg",
+  likes: 112,
+  price: 3.65,
+  item: "Vegetable Croquette"
+)
+
+fries = deep_fried.items.create(
+  description: "Deep fried pumpkin.",
+  image: "https://genkisushihawaii.com/images2/menu/other/potatofries.jpg",
+  likes: 101,
+  price: 3.65,
+  item: "Potato Fries"
+)
+
+gyoza = deep_fried.items.create(
+  description: "Deep fried vegetable dumplings.",
+  image: "https://genkisushihawaii.com/images2/menu/other/gyoza.jpg",
+  likes: 89,
+  price: 3.65,
+  item: "Gyoza"
+)
+
+fried_squid = deep_fried.items.create(
+  description: "Deep fried vegetable dumplings.",
+  image: "https://genkisushihawaii.com/images2/menu/other/friedsquid.jpg",
+  likes: 314,
+  price: 4.55,
+  item: "Fried Squid Combo"
+)
+
+chicken_wings = deep_fried.items.create(
+  description: "Deep fried vegetable dumplings.",
+  image: "https://genkisushihawaii.com/images2/menu/other/chickenwings.jpg",
+  likes: 223,
+  price: 6.35,
+  item: "Chicken Wings"
 )
