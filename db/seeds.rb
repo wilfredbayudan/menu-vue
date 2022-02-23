@@ -305,7 +305,7 @@ gyoza = deep_fried.items.create(
 )
 
 fried_squid = deep_fried.items.create(
-  description: "Deep fried vegetable dumplings.",
+  description: "Deep fried squid.",
   image: "https://genkisushihawaii.com/images2/menu/other/friedsquid.jpg",
   likes: 314,
   price: 4.55,
@@ -313,9 +313,40 @@ fried_squid = deep_fried.items.create(
 )
 
 chicken_wings = deep_fried.items.create(
-  description: "Deep fried vegetable dumplings.",
+  description: "Deep fried chicken wings.",
   image: "https://genkisushihawaii.com/images2/menu/other/chickenwings.jpg",
   likes: 223,
   price: 6.35,
   item: "Chicken Wings"
+)
+
+salmon_sashimi = sashimi.items.create(
+  description: "4 pieces of salmon.",
+  image: "https://genkisushihawaii.com/images2/menu/nigiri/salmonsash.jpg",
+  likes: 124,
+  price: 6.35,
+  item: "Salmon Sashimi"
+)
+
+ahi_sashimi = sashimi.items.create(
+  description: "3 pieces of yellow-fin tuna.",
+  image: "https://genkisushihawaii.com/images2/menu/nigiri/ahisash.jpg",
+  likes: 135,
+  price: 6.35,
+  item: "Ahi Sashimi"
+)
+
+hamachi_sashimi = sashimi.items.create(
+  description: "3 pieces of yellow-fin tuna.",
+  image: "https://genkisushihawaii.com/images2/menu/nigiri/hamachisash.jpg",
+  likes: 162,
+  price: 6.35,
+  item: "Hamachi Sashimi"
+)
+sashimi_combo = sashimi.items.create(
+  description: "1 salmon, 1 ahi, 1 hamachi.",
+  image: "https://genkisushihawaii.com/images2/menu/nigiri/combosash.jpg",
+  likes: 129,
+  price: 6.35,
+  item: "Sashimi Combo"
 )
