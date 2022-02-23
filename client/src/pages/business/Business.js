@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import AlertPage from "../../components/AlertPage";
 import FloatedContent from "../../styles/FloatedContent";
 import PageTitle from "../../styles/PageTitle";
@@ -33,6 +33,8 @@ const CategoryDescription = styled.p`
 `;
 
 const Business = ({ appState }) => {
+
+  const navigate = useNavigate();
 
   const [business, setBusiness] = useState(null);
   const [notFound, setNotFound] = useState(false);
@@ -90,14 +92,24 @@ const Business = ({ appState }) => {
     return business.menu.categories.find(category => category.id === selectedCategory);
   }
 
-  const renderManageButton = () => {
+  const renderAuthorizedElement = jsx => {
+    if (business && user) {
+      if (user.businesses.find(userBusiness => userBusiness.business_id === business.id)) {
+        return jsx;
+      }
+    }
+    return null
+  }
 
+  const handleManageClick = () => {
+    navigate(`/manage/businesses/${business.id}/menu`);
   }
 
   if (business) {
     return (
       <FloatedContent fullWidth>
-        <PageTitle title={business.name} sideAction={renderManageButton()} />
+
+        <PageTitle title={business.name} sideAction={renderAuthorizedElement(<StyledLoadingButton onClick={handleManageClick}>Manage Menu</StyledLoadingButton>)} />
         <Info>
           <Image src={business.image ? business.image : Placeholder} />
           <Description>
