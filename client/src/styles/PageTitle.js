@@ -1,6 +1,17 @@
 import styled from "styled-components";
 import { primaryColor } from "./colorList";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: space-between;
+  @media (min-width: 768px) {
+    flex-direction: row;
+    align-items: center;
+  }
+`;
+
 const H2 = styled.h2`
   text-transform: uppercase;
 `;
@@ -14,10 +25,13 @@ const SecondaryTitle = styled.span`
   color: ${primaryColor};
 `;
 
-const PageTitle = ({ title, secondaryTitle }) => {
+const PageTitle = ({ title, secondaryTitle, sideAction }) => {
   return (
     <>
-      <H2>{title} { secondaryTitle ? <>⇢ <SecondaryTitle>{secondaryTitle}</SecondaryTitle></> : '' }</H2>
+      <Container>
+        <H2>{title} { secondaryTitle ? <>⇢ <SecondaryTitle>{secondaryTitle}</SecondaryTitle></> : '' }</H2>
+        { sideAction && sideAction }
+      </Container>
       <LineBreak />
     </>
   )

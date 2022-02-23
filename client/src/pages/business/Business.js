@@ -7,6 +7,7 @@ import styled from "styled-components";
 import Placeholder from "../../assets/images/placeholder.png"
 import Categories from "./Categories";
 import DisplayItems from "./DisplayItems";
+import StyledLoadingButton from "../../styles/StyledLoadingButton";
 
 const Info = styled.div`
   display: flex;
@@ -28,11 +29,16 @@ const Image = styled.img`
   }
 `;
 
+const CategoryDescription = styled.p`
+`;
+
 const Business = ({ appState }) => {
 
-  const [business, setBusiness] = useState(null)
-  const [notFound, setNotFound] = useState(false)
-  const [selectedCategory, setSelectedCategory] = useState(null)
+  const [business, setBusiness] = useState(null);
+  const [notFound, setNotFound] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  const { user } = appState;
 
   const businessState = {
     business, setBusiness,
@@ -79,10 +85,19 @@ const Business = ({ appState }) => {
     return business.menu.categories.find(category => category.id === selectedCategory).category;
   }
 
+  const getCategoryObject = () => {
+    if (!selectedCategory) return null;
+    return business.menu.categories.find(category => category.id === selectedCategory);
+  }
+
+  const renderManageButton = () => {
+
+  }
+
   if (business) {
     return (
       <FloatedContent fullWidth>
-        <PageTitle title={business.name} />
+        <PageTitle title={business.name} sideAction={renderManageButton()} />
         <Info>
           <Image src={business.image ? business.image : Placeholder} />
           <Description>
@@ -90,6 +105,7 @@ const Business = ({ appState }) => {
           </Description>
         </Info>
         <Categories categories={business.menu.categories} />
+        <CategoryDescription>{selectedCategory && getCategoryObject().description}</CategoryDescription>
         <DisplayItems items={filteredItems()} categoryName={categoryName()} businessState={businessState} />
       </FloatedContent>
     )
