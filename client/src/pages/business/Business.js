@@ -129,7 +129,7 @@ const Business = ({ appState }) => {
     )
   }
 
-  return <LoaderOverlay overlayStatus="Finding business..." />;
+  return <LoaderOverlay loaderStatus />;
 
 }
 
