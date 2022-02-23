@@ -37,7 +37,7 @@ const ItemsList = ({ menuManagerState }) => {
 
   return (
     <Container>
-      <SecondaryTitle title={categoryTitle()} secondaryTitle="Items" sideAction={selectedCategory && <AddItem menuManagerState={menuManagerState} />} />
+      <SecondaryTitle secondaryTitle={categoryTitle()} title="Items" sideAction={selectedCategory && <AddItem menuManagerState={menuManagerState} />} />
       {
         selectedCategory ?
         <>

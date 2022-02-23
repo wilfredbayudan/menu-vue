@@ -48,7 +48,10 @@ function App() {
           <Route path="signup" element={<Signup appState={appState} />} />
           <Route path="login" element={<Login appState={appState} />} />
           <Route path="401" element={<AlertPage alertTitle="Oops!" alertText="You shouldn't be allowed to access this." />} />
-          <Route path=":slugUrl" element={<Business appState={appState} />} />
+          <Route path=":slugUrl" element={<Outlet />}>
+            <Route index element={<Business appState={appState} />} />
+            <Route path=":categorySlug" element={<Business appState={appState} />} />
+          </ Route>
           {/* Manage Routes */}
           <Route path="manage" element={<ManageIndex appState={appState} />}>
             <Route index element={<>Dashboard</>} />

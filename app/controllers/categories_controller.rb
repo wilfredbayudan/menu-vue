@@ -19,14 +19,14 @@ class CategoriesController < ApplicationController
   # POST '/businesses/:business_id/menu/categories'
   def create
     menu = find_menu
-    category = menu.categories.create!(category_params)
+    category = menu.categories.create!(category_params.merge(slug: params[:category].parameterize))
     render json: category
   end
 
   # PATCH '/businesses/:business_id/menu/categories/:id
   def update
     category = find_category
-    category.update!(category_params)
+    category.update!(category_params.merge(slug: params[:category].parameterize))
     render json: category, status: :accepted
   end
   

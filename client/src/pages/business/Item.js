@@ -1,7 +1,5 @@
 import styled from "styled-components";
-import Placeholder from "../../../../assets/images/placeholder.png";
-import EditItem from "./EditItem";
-import DeleteItem from "./DeleteItem";
+import Placeholder from "../../assets/images/placeholder.png";
 
 const ItemSquare = styled.div`
   position: relative;
@@ -63,7 +61,7 @@ const LeftAction = styled.div`
   left: 2px;
 `;
 
-const Item = ({ item, menuManagerState }) => {
+const Item = ({ item, businessState }) => {
 
   return (
     <ItemSquare>
@@ -72,11 +70,11 @@ const Item = ({ item, menuManagerState }) => {
         <ItemImage src={item.image ? item.image : Placeholder} />
         <ItemPrice>
           <LeftAction>
-            <EditItem menuManagerState={menuManagerState} item={item} />
+            Like
           </LeftAction>
           <span>${item.price}</span>
           <RightAction>
-            <DeleteItem menuManagerState={menuManagerState} item={item} />
+            Comment
           </RightAction>
         </ItemPrice>
       </ItemContent>

@@ -1,11 +1,43 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import AlertPage from "../../components/AlertPage";
+import FloatedContent from "../../styles/FloatedContent";
+import PageTitle from "../../styles/PageTitle";
+import styled from "styled-components";
+import Placeholder from "../../assets/images/placeholder.png"
+import Categories from "./Categories";
+import DisplayItems from "./DisplayItems";
 
-const Business = () => {
+const Info = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const Description = styled.p`
+
+`;
+
+const Image = styled.img`
+  max-width: 100%;
+  @media (min-width: 768px) {
+    max-height: 150px;
+  }
+`;
+
+const Business = ({ appState }) => {
 
   const [business, setBusiness] = useState(null)
   const [notFound, setNotFound] = useState(false)
+  const [selectedCategory, setSelectedCategory] = useState(null)
+
+  const businessState = {
+    business, setBusiness,
+    selectedCategory, setSelectedCategory
+  }
 
   let params = useParams();
 
@@ -20,18 +52,46 @@ const Business = () => {
       })
   }, [params.slugUrl]);
 
+  useEffect(() => {
+    if (business && params.categorySlug) {
+      const category = business.menu.categories.find(category => category.slug === params.categorySlug);
+      if (category) {
+        setSelectedCategory(category.id)
+      }
+    } else {
+      setSelectedCategory(null);
+    }
+  }, [business, params.categorySlug]);	
+
   if (notFound) {
     return (
       <AlertPage alertTitle="Oops!" alertText="That business could not be found." />
     )
   }
 
+  const filteredItems = () => {
+    if (!selectedCategory) return business.menu.items;
+    return business.menu.items.filter(item => item.category_id === selectedCategory);
+  }
+
+  const categoryName = () => {
+    if (!selectedCategory) return "All";
+    return business.menu.categories.find(category => category.id === selectedCategory).category;
+  }
+
   if (business) {
     return (
-      <div>
-        <h1>{business.name}</h1>
-        <p>{business.description}</p>
-      </div>
+      <FloatedContent fullWidth>
+        <PageTitle title={business.name} />
+        <Info>
+          <Image src={business.image ? business.image : Placeholder} />
+          <Description>
+            {business.description}
+          </Description>
+        </Info>
+        <Categories categories={business.menu.categories} />
+        <DisplayItems items={filteredItems()} categoryName={categoryName()} businessState={businessState} />
+      </FloatedContent>
     )
   }
 
