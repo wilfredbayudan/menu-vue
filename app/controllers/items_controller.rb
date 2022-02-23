@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
 
   before_action :authorize_permission
-  skip_before_action :authorize_permission, only: [:index, :show]
+  skip_before_action :authorize_permission, only: [:index, :show, :like]
 
   # GET '/businesses/:business_id/menus/categories/:category_id/items
   def index
@@ -25,6 +25,18 @@ class ItemsController < ApplicationController
   def update
     item = find_item
     item.update!(item_params)
+    render json: item, status: :accepted
+  end
+
+  # PATCH '/businesses/:business_id/menus/categories/:category_id/items/:id/likes?action=
+  def like
+    item = item_find
+    case params[:action]
+    when "like"
+      item.like
+    when "dislike"
+      item.dislike
+    end
     render json: item, status: :accepted
   end
 
