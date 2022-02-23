@@ -60,7 +60,7 @@ const Categories = ({ categories }) => {
   return (
     <Container>
       <CategoriesList>
-        {renderCategories}
+        {categories.length > 0 ? renderCategories : "Nothing to see here, yet."}
         {/* <NavLink end to={`/${params.slugUrl}`} className={({ isActive }) => isActive ? "current" : ""}><li>All</li></NavLink> */}
       </CategoriesList>
     </Container>

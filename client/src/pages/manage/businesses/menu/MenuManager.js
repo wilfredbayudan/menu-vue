@@ -7,6 +7,8 @@ import ContentNotice from "../../../../styles/ContentNotice";
 import CategoriesList from "./CategoriesList";
 import ItemsList from "./ItemsList";
 import LoaderOverlay from "../../../../components/LoaderOverlay";
+import FindInPageIcon from '@mui/icons-material/FindInPage';
+import TransparentLoadingButton from "../../../../styles/TransparentLoadingButton";
 
 const Container = styled.div`
   display: flex;
@@ -65,12 +67,19 @@ const MenuManager = ({ appState }) => {
     )
   }
 
+  const handleViewClick = () => {
+    navigate(`/${business.slug}`);
+  }
+
   if (!business.name) return <LoaderOverlay loaderStatus />;
 
   return (
     <FloatedContent fullWidth>
       {renderNewUserNotice()}
-      <PageTitle title={`${business.name}`} secondaryTitle="Menu Manager" />
+      <PageTitle 
+        title={`${business.name}`} 
+        secondaryTitle="Menu Manager" 
+        sideAction={<TransparentLoadingButton onClick={handleViewClick} startIcon={<FindInPageIcon />}>View Business</TransparentLoadingButton>} />
       <Container>
         <CategoriesList menuManagerState={menuManagerState} />
         <ItemsList menuManagerState={menuManagerState} />
