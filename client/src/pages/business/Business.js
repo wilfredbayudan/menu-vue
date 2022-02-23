@@ -9,6 +9,7 @@ import Categories from "./Categories";
 import DisplayItems from "./DisplayItems";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import ContentNotice from "../../styles/ContentNotice";
+import LoaderOverlay from "../../components/LoaderOverlay";
 
 const Info = styled.div`
   display: flex;
@@ -128,7 +129,7 @@ const Business = ({ appState }) => {
     )
   }
 
-  return null;
+  return <LoaderOverlay overlayStatus="Finding business..." />;
 
 }
 
