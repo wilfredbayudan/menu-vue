@@ -50,6 +50,8 @@ const Business = ({ appState }) => {
 
   let params = useParams();
 
+  console.log(user);
+
   useEffect(() => {
     fetch(`/businesses/slug/${params.slugUrl}`)
       .then(res => {

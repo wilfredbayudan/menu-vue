@@ -49,7 +49,7 @@ const AddBusiness = ({ appState }) => {
               businesses: [
                 ...user.businesses,
                 {
-                  businesses_id: json.id,
+                  business_id: json.id,
                   name: json.name,
                   description: json.description,
                   slug: json.slug,
