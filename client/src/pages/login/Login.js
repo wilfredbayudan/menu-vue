@@ -44,7 +44,7 @@ const Login = ({ appState }) => {
         if (res.ok) {
           res.json().then(json => {
             setUser(json);
-            navigate('/manage');
+            navigate('/manage/businesses');
           })
         } else {
           setFormData({
