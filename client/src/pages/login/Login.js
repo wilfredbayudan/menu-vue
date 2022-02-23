@@ -62,7 +62,7 @@ const Login = ({ appState }) => {
 
   if (user) {
     setTimeout(() => {
-      navigate("/manage");
+      navigate("/manage/businesses");
     }, 500)
     return <>I think you're logged in already...</>
   }
