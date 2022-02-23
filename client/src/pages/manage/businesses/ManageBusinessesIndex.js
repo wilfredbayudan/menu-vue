@@ -1,10 +1,28 @@
 import FloatedContent from "../../../styles/FloatedContent";
 import PageTitle from "../../../styles/PageTitle";
+import List from '@mui/material/List';
+import Business from "./Business";
+import AddBusiness from "./AddBusiness";
 
-const ManageBusinessesIndex = () => {
+const ManageBusinessesIndex = ({ appState }) => {
+
+  const { user } = appState;
+
+  const businesses = user.businesses;
+
+  console.log(businesses);
+
+  const renderBusinesses = businesses.map((businessItem, businessIdx) => {
+    return <Business key={businessIdx} business={businessItem} />
+  });
+
   return (
     <FloatedContent>
       <PageTitle title="Manage Businesses" />
+      <List>
+        {renderBusinesses}
+      </List>
+      <AddBusiness appState={appState} />
     </FloatedContent>
   );
 };
