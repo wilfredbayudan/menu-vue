@@ -2,39 +2,34 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import { useState } from "react";
-import StyledDeleteIcon from "../../../../styles/StyledDeleteIcon";
+import StyledDeleteIcon from "../../../styles/StyledDeleteIcon";
 import IconButton from '@mui/material/IconButton';
-import StyledLoadingButton from "../../../../styles/StyledLoadingButton";
+import StyledLoadingButton from "../../../styles/StyledLoadingButton";
 import DialogActions from '@mui/material/DialogActions';
 import DeleteIcon from '@mui/icons-material/Delete';
-import ErrorList from "../../../../components/ErrorList";
+import ErrorList from "../../../components/ErrorList";
 
-const DeleteItem = ({ menuManagerState, item }) => {
+const DeleteBusiness = ({ appState, business }) => {
 
-  const { business, setBusiness } = menuManagerState;
+  const { user, setUser } = appState;
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const handleClose = (e) => {
-    e.stopPropagation();
+  const handleClose = () => {
     setOpen(false);
   };
 
-  const handleDeleteClick = (e) => {
-    e.stopPropagation();
-    fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}`, { method: "DELETE" })
+  const handleDeleteClick = () => {
+    fetch(`/businesses/${business.business_id}`, { method: "DELETE" })
       .then(res => {
         setLoading(false);
         if (res.ok) {
           handleClose();
-          setBusiness({
-            ...business,
-            menu: {
-              ...business.menu,
-              items: business.menu.items.filter(filterItem => filterItem.id !== item.id)
-            }
+          setUser({
+            ...user,
+            businesses: user.businesses.filter(filterBusiness => filterBusiness.business_id !== business.business_id)
           });
         } else {
           res.json().then(json => setErrors(json.errors));
@@ -42,9 +37,14 @@ const DeleteItem = ({ menuManagerState, item }) => {
       })
   };
 
+  const handleIconClick = (e) => {
+    e.stopPropagation();
+    setOpen(true);
+  }
+
   return (
     <>
-      <IconButton edge="end" aria-label="delete" onClick={() => setOpen(true)}>
+      <IconButton edge="end" aria-label="delete" onClick={handleIconClick}>
         <StyledDeleteIcon />
       </IconButton>    
       <Dialog
@@ -55,7 +55,7 @@ const DeleteItem = ({ menuManagerState, item }) => {
       >
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Delete <b>{item.item}</b>?
+            Delete <b>{business.name}</b>?
           </DialogContentText>
           <ErrorList errors={errors} />
         </DialogContent>
@@ -74,4 +74,4 @@ const DeleteItem = ({ menuManagerState, item }) => {
   )
 }
 
-export default DeleteItem;
+export default DeleteBusiness;

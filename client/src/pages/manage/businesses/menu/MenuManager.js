@@ -39,9 +39,7 @@ const MenuManager = ({ appState }) => {
 
   useEffect(() => {
     // Only run if businessId found it user.businesses
-    console.log(businessId)
     const permission = user.businesses.find(userBusiness => userBusiness.business_id === parseInt(businessId));
-    console.log(permission)
     if (permission) {
       fetch(`/businesses/${businessId}`)
       .then(res => {

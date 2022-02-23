@@ -76,9 +76,14 @@ const EditBusiness = ({ appState, business }) => {
       })
   }
 
+  const handleIconClick = (e) => {
+    e.stopPropagation();
+    setOpen(true);
+  }
+
   return (
     <>
-      <IconButton edge="end" aria-label="edit" onClick={() => setOpen(true)}>
+      <IconButton edge="end" aria-label="edit" onClick={handleIconClick}>
         <StyledEditIcon />
       </IconButton>
       <Dialog
