@@ -14,6 +14,9 @@ const ItemSquare = styled.div`
     display: block;
     padding-top: 100%;
   }
+  &:hover {
+    border: 3px solid #8b8b8b;
+  }
 `;
 
 const ItemContent = styled.div`
@@ -34,7 +37,7 @@ const ItemImage = styled.img`
 `;
 
 const ItemName = styled.span`
-  font-weight: 400;
+  font-weight: 350;
   height: 15%;
   display: flex;
   align-items: center;
@@ -43,6 +46,7 @@ const ItemName = styled.span`
 
 const ItemPrice = styled.div`
   flex-shrink: 0;
+  font-weight: 350;
   height: 15%;
   display: flex;
   font-size: 0.9em;
