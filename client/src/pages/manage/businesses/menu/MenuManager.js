@@ -78,7 +78,7 @@ const MenuManager = ({ appState }) => {
       {renderNewUserNotice()}
       <PageTitle 
         title={`${business.name}`} 
-        secondaryTitle="Menu Manager" 
+        secondaryTitle="Menu" 
         sideAction={<TransparentLoadingButton onClick={handleViewClick} startIcon={<FindInPageIcon />}>View Business</TransparentLoadingButton>} />
       <Container>
         <CategoriesList menuManagerState={menuManagerState} />
