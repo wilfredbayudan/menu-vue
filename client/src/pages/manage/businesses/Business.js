@@ -4,6 +4,8 @@ import ListItemText from '@mui/material/ListItemText';
 import EditBusiness from "./EditBusiness";
 import DeleteBusiness from "./DeleteBusiness";
 import { useNavigate } from "react-router-dom";
+import IconButton from '@mui/material/IconButton';
+import FindInPageIcon from '@mui/icons-material/FindInPage';
 
 const Business = ({ appState, business }) => {
 
@@ -11,17 +13,24 @@ const Business = ({ appState, business }) => {
 
   const handleBusinessClick = (e) => {
     e.stopPropagation();
-    navigate(`/manage/businesses/${business.business_id}/menu`)
+    navigate(`/manage/businesses/${business.business_id}/menu`);
+  }
+
+  const handlePreviewClick = () => {
+    navigate(`/${business.slug}`);
   }
 
   return (
     <ListItem button divider secondaryAction={
       <>
+        <IconButton edge="end" aria-label="Preview" onClick={handlePreviewClick}>
+          <FindInPageIcon />
+        </IconButton>
         <EditBusiness appState={appState} business={business} />
         <DeleteBusiness appState={appState} business={business} />
       </>
     }>
-      <ListItemText primary={business.name} onClick={handleBusinessClick} />
+      <ListItemText primary={business.name} secondary={`/${business.slug}`} onClick={handleBusinessClick} />
     </ListItem>
   )
 };
