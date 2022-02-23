@@ -42,6 +42,9 @@ const Items = ({ items, categoryName, businessState }) => {
       <ItemsContainer>
         {renderItems}
       </ItemsContainer>
+      {
+        items.length === 0 && "No items found."
+      }
     </Container>
   )
 };
