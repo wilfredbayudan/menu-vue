@@ -10,10 +10,8 @@ const ManageBusinessesIndex = ({ appState }) => {
 
   const businesses = user.businesses;
 
-  console.log(businesses);
-
   const renderBusinesses = businesses.map((businessItem, businessIdx) => {
-    return <Business key={businessIdx} business={businessItem} />
+    return <Business key={businessIdx} business={businessItem} appState={appState} />
   });
 
   return (

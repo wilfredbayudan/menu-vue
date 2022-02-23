@@ -31,7 +31,7 @@ class BusinessesController < ApplicationController
   # PATCH '/businesses/:id'
   def update
     business = find_business
-    business.update!(business_params)
+    business.update!(business_update_params)
     render json: business, status: :accepted
   end
 
@@ -64,6 +64,10 @@ class BusinessesController < ApplicationController
 
   def business_params
     params.permit(:name, :description, :image)
+  end
+
+  def business_update_params
+    params.permit(:description, :image)
   end
 
 end

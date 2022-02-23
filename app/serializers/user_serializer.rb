@@ -12,6 +12,7 @@ class UserSerializer < ActiveModel::Serializer
         name: business.name,
         description: business.description,
         slug: business.slug,
+        image: business.image,
         owner: user_business.owner
       }
     end

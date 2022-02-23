@@ -17,6 +17,7 @@ const BusinessForm = ({ formData, handleSubmit, handleChange, errors, loading, e
                 required
                 fullWidth
                 label="Business Name"
+                disabled={edit ? true : false}
                 name="name"
                 variant="filled"
                 value={formData.name}
@@ -26,6 +27,7 @@ const BusinessForm = ({ formData, handleSubmit, handleChange, errors, loading, e
             <FormInput>
               <ResponsiveTextInput
                 label="Description"
+                autoFocus={edit ? true : false}
                 multiline
                 fullWidth
                 rows="4"

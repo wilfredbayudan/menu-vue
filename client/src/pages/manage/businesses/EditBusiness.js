@@ -1,19 +1,19 @@
 import Dialog from '@mui/material/Dialog';
 import { useState } from "react";
 import DialogTitle from '@mui/material/DialogTitle';
-import StyledLoadingButton from "../../../styles/StyledLoadingButton";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import IconButton from '@mui/material/IconButton';
+import StyledEditIcon from "../../../styles/StyledEditIcon";
 import BusinessForm from "./BusinessForm";
 
-const AddBusiness = ({ appState }) => {
+const EditBusiness = ({ appState, business }) => {
 
   const { user, setUser } = appState;
 
   const [open, setOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    image: "",
+    name: business.name,
+    description: business.description,
+    image: business.image,
   })
   const [errors, setErrors] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -21,6 +21,16 @@ const AddBusiness = ({ appState }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleCloseWithoutSave = () => {
+    setFormData({
+      name: business.name,
+      description: business.description,
+      image: business.image
+    });
+    setOpen(false);
+    setErrors([]);
+  }
 
   const handleChange = e => {
     setFormData({
@@ -33,8 +43,8 @@ const AddBusiness = ({ appState }) => {
     e.preventDefault();
     console.log(formData);
     setLoading(true);
-    fetch(`/businesses`, {
-      method: "POST",
+    fetch(`/businesses/${business.business_id}`, {
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
         "accept": "application/json"
@@ -45,25 +55,21 @@ const AddBusiness = ({ appState }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then(json => {
+            console.log(json.id);
             setUser({
               ...user,
-              businesses: [
-                ...user.businesses,
-                {
-                  businesses_id: json.id,
+              businesses: user.businesses.map(mappedBusiness => {
+                if (mappedBusiness.business_id !== json.id) return mappedBusiness;
+                return {
+                  business_id: json.id,
                   name: json.name,
                   description: json.description,
-                  slug: json.slug,
                   image: json.image,
+                  slug: json.slug,
                   owner: true
                 }
-              ]
+              })
             });
-            setFormData({
-              name: "",
-              description: "",
-              image: "",
-            })
             handleClose();
           })
         } else {
@@ -74,20 +80,22 @@ const AddBusiness = ({ appState }) => {
 
   return (
     <>
-      <StyledLoadingButton onClick={() => setOpen(true)} startIcon={<AddCircleIcon />}>Add Business</StyledLoadingButton>
+      <IconButton edge="end" aria-label="edit" onClick={() => setOpen(true)}>
+        <StyledEditIcon />
+      </IconButton>
       <Dialog
         fullWidth
         maxWidth="sm"
         open={open}
-        onClose={handleClose}
+        onClose={handleCloseWithoutSave}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">New Business</DialogTitle>
-        <BusinessForm handleSubmit={handleSubmit} handleChange={handleChange} formData={formData} errors={errors} loading={loading} />
+        <BusinessForm edit handleSubmit={handleSubmit} handleChange={handleChange} formData={formData} errors={errors} loading={loading} />
       </Dialog>
     </>
   )
 }
 
-export default AddBusiness;
+export default EditBusiness;
