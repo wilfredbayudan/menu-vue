@@ -8,6 +8,7 @@ import Placeholder from "../../assets/images/placeholder.png"
 import Categories from "./Categories";
 import DisplayItems from "./DisplayItems";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
+import ContentNotice from "../../styles/ContentNotice";
 
 const Info = styled.div`
   display: flex;
@@ -108,7 +109,11 @@ const Business = ({ appState }) => {
   if (business) {
     return (
       <FloatedContent fullWidth>
-
+        {renderAuthorizedElement(
+          <ContentNotice>
+            You manage this business.
+          </ContentNotice>
+        )}
         <PageTitle title={business.name} sideAction={renderAuthorizedElement(<StyledLoadingButton onClick={handleManageClick}>Manage Menu</StyledLoadingButton>)} />
         <Info>
           <Image src={business.image ? business.image : Placeholder} />
