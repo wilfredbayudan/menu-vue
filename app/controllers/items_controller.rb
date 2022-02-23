@@ -30,8 +30,8 @@ class ItemsController < ApplicationController
 
   # PATCH '/businesses/:business_id/menus/categories/:category_id/items/:id/likes?action=
   def like
-    item = item_find
-    case params[:action]
+    item = Item.find(params[:item_id])
+    case params[:likeAction]
     when "like"
       item.like
     when "dislike"

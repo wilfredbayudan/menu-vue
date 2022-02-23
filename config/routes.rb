@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       end
     end
   end
+  patch '/businesses/:business_id/menu/categories/:category_id/items/:item_id/likes', to: 'items#like'
 
   get '*path',
     to: 'fallback#index',
