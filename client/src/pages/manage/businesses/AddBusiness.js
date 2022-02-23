@@ -31,7 +31,6 @@ const AddBusiness = ({ appState }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData);
     setLoading(true);
     fetch(`/businesses`, {
       method: "POST",

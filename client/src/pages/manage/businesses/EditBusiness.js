@@ -41,7 +41,6 @@ const EditBusiness = ({ appState, business }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(formData);
     setLoading(true);
     fetch(`/businesses/${business.business_id}`, {
       method: "PATCH",
@@ -55,7 +54,6 @@ const EditBusiness = ({ appState, business }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then(json => {
-            console.log(json.id);
             setUser({
               ...user,
               businesses: user.businesses.map(mappedBusiness => {
