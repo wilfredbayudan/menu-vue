@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Placeholder from "../../assets/images/placeholder.png";
+import LikeItem from "./LikeItem";
 
 const ItemSquare = styled.div`
   position: relative;
@@ -29,7 +30,7 @@ const ItemContent = styled.div`
 `;
 
 const ItemImage = styled.img`
-  max-height: 70%;
+  max-height: 65%;
   max-width: 100%;
 `;
 
@@ -44,7 +45,7 @@ const ItemName = styled.span`
 const ItemPrice = styled.div`
   flex-shrink: 0;
   font-weight: 350;
-  height: 15%;
+  height: 20%;
   display: flex;
   font-size: 0.85em;
   color: #1a1a1a;
@@ -53,18 +54,17 @@ const ItemPrice = styled.div`
 
 const RightAction = styled.div`
   position: absolute;
-  right: 2px;
+  right: 6px;
 `;
 
 const LeftAction = styled.div`
   position: absolute;
-  left: 2px;
+  left: 6px;
 `;
 
 const Price = styled.span`
   background-color: #ffd452;
   padding: 4px 10px;
-  margin-left: 5px;
   border-radius: 4px;
 `;
 
@@ -80,7 +80,7 @@ const Item = ({ item, businessState }) => {
             <Price>${item.price}</Price>
           </LeftAction>
           <RightAction>
-            Comment
+            <LikeItem item={item} businessState={businessState} />
           </RightAction>
         </ItemPrice>
       </ItemContent>

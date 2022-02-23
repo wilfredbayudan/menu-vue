@@ -3,6 +3,11 @@ import PageTitle from "../../../styles/PageTitle";
 import List from '@mui/material/List';
 import Business from "./Business";
 import AddBusiness from "./AddBusiness";
+import styled from "styled-components";
+
+const NoneFound = styled.p`
+  margin-top: 0;
+`;
 
 const ManageBusinessesIndex = ({ appState }) => {
 
@@ -20,6 +25,7 @@ const ManageBusinessesIndex = ({ appState }) => {
       <List>
         {renderBusinesses}
       </List>
+      { businesses.length === 0 && <NoneFound>No businesses found</NoneFound>}
       <AddBusiness appState={appState} />
     </FloatedContent>
   );
