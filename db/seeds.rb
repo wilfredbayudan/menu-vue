@@ -134,3 +134,75 @@ ahi = nigiri.items.create(
   price: 5.45,
   item: "Ahi"
 )
+
+corn = gunkan.items.create(
+  description: "Corn mixed with mayo.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/corn.jpg",
+  likes: 14,
+  price: 1.85,
+  item: "Corn"
+)
+
+ocean_salad = gunkan.items.create(
+  description: "Seasoned seeweed.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/oceansalad.jpg",
+  likes: 9,
+  price: 1.85,
+  item: "Ocean Salad"
+)
+
+tuna_salad = gunkan.items.create(
+  description: "Canned tuna, mayo, cucumbers and onions.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/tunasalad.jpg",
+  likes: 93,
+  price: 2.75,
+  item: "Tuna Salad"
+)
+
+natto = gunkan.items.create(
+  description: "Fermented soybeans.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/natto.jpg",
+  likes: 45,
+  price: 2.75,
+  item: "Natto"
+)
+
+spicy_salmon = gunkan.items.create(
+  description: "Salmon mixed with spicy mayo.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/spicysalmon.jpg",
+  likes: 35,
+  price: 4.55,
+  item: "Spicy Salmon"
+)
+
+ahi_poke = gunkan.items.create(
+  description: "Tuna mixed with sesame oil, Hawaiian salt, ichimi, white onions and green onions.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/ahipoke.jpg",
+  likes: 67,
+  price: 4.55,
+  item: "Ahi Poke"
+)
+
+tobikko = gunkan.items.create(
+  description: "Flying fish eggs.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/tobikko.jpg",
+  likes: 67,
+  price: 4.55,
+  item: "Tobikko"
+)
+
+spicy_tuna = gunkan.items.create(
+  description: "Our top seller!",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/spicytuna.jpg",
+  likes: 146,
+  price: 4.55,
+  item: "Spicy Tuna"
+)
+
+ikura = gunkan.items.create(
+  description: "Salmon roe.",
+  image: "https://genkisushihawaii.com/images2/menu/gunkan/ikura.jpg",
+  likes: 72,
+  price: 6.35,
+  item: "Ikura"
+)
