@@ -6,8 +6,6 @@ import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Avatar from '@mui/material/Avatar';
 import timeAgo from '../../utils/timeAgo';
-import Collapse from '@mui/material/Collapse';
-import { TransitionGroup } from 'react-transition-group';
 import { DeleteForever } from '@mui/icons-material';
 import styled from 'styled-components';
 import stringAvatar from '../../utils/stringAvatar';
@@ -19,13 +17,16 @@ const DeleteIcon = styled(DeleteForever)`
   }
 `;
 
-const CommentList = ({ item, commentsDisplay, comments, setComments, businessState, appState }) => {
+const CommentList = ({ itemData, setItemData, businessState, appState }) => {
 
   const { business } = businessState;
+  const { user } = appState;
 
   const handleDelete = (commentId) => {
-    console.log(comments.filter(comment => comment.id !== commentId));
-    setComments(comments.filter(comment => comment.id !== commentId));
+    setItemData({
+      ...itemData,
+      comments: itemData.comments.filter(comment => comment.id !== commentId)
+    })
     // fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}/comments/${commentId}`, {
     //   method: "DELETE"
     // })
@@ -37,7 +38,18 @@ const CommentList = ({ item, commentsDisplay, comments, setComments, businessSta
       // .catch(err => console.log(err));
   }
 
-  const renderComments = commentsDisplay.map(comment => {
+  const validateAccess = () => {
+    if (business && user) {
+      if (user.businesses.find(userBusiness => userBusiness.business_id === business.id)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  const hasAccess = validateAccess();
+
+  const renderComments = itemData.comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).map(comment => {
 
     const commentAuthor = comment.author || 'Anonymous';
 
@@ -51,7 +63,7 @@ const CommentList = ({ item, commentsDisplay, comments, setComments, businessSta
             primary={comment.comment}
             secondary={`Posted ${timeAgo(comment.created_at)} by ${commentAuthor}`}
           />
-          {<DeleteIcon onClick={() => handleDelete(comment.id)} />}
+          {comment.isAuthor || hasAccess ? <DeleteIcon onClick={() => handleDelete(comment.id)} /> : ""}
         </ListItem>
         <Divider variant="inset" component="li" />
       </React.Fragment>
@@ -61,7 +73,7 @@ const CommentList = ({ item, commentsDisplay, comments, setComments, businessSta
   return (
     <List sx={{ width: '100%', bgcolor: 'background.paper' }}>
       {
-        comments.length > 0 ? <TransitionGroup>{renderComments}</TransitionGroup> : 'No comments yet, be the first!'
+        itemData.comments.length > 0 ? renderComments : 'No comments yet, be the first!'
       }
     </List>
   );

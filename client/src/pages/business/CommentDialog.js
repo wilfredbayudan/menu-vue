@@ -17,34 +17,35 @@ const StyledDialogTitle = styled(DialogTitle)`
 `;
 
 const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
+  return <Slide direction="down" ref={ref} {...props} />;
 });
 
-const CommentDialog = ({item, comments, setComments, showComments, setShowComments, businessState, appState }) => {
+const CommentDialog = ({ itemData, setItemData, showComments, setShowComments, businessState, appState }) => {
 
   
   const handleClose = () => {
     setShowComments(false);
   };
 
-  const commentsDisplay = comments.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  if (!itemData) return null;
 
   return (
       <Dialog
         open={showComments}
         onClose={handleClose}
         aria-describedby="alert-dialog-description"
+        TransitionComponent={Transition}
         keepMounted
         scroll="paper"
         fullWidth
         maxWidth="sm"
       >
         <StyledDialogTitle>
-          <ItemName>{item.item} ⇢</ItemName> Comments
+          <ItemName>{itemData.item} ⇢</ItemName> Comments
         </StyledDialogTitle>
         <DialogContent>
-          <CommentForm item={item} comments={comments} setComments={setComments} businessState={businessState} />  
-          <CommentList item={item} commentsDisplay={commentsDisplay} comments={comments} setComments={setComments} businessState={businessState} />         
+          <CommentForm itemData={itemData} setItemData={setItemData} businessState={businessState} />  
+          <CommentList itemData={itemData} setItemData={setItemData} businessState={businessState} appState={appState} />         
         </DialogContent>
       </Dialog>
   );

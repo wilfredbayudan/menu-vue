@@ -69,7 +69,7 @@ const Price = styled.span`
   border-radius: 4px;
 `;
 
-const Item = ({ item, businessState }) => {
+const Item = ({ item, businessState, appState }) => {
 
   return (
     <ItemSquare>
@@ -82,7 +82,7 @@ const Item = ({ item, businessState }) => {
           </LeftAction>
           <RightAction>
             <LikeItem item={item} businessState={businessState} />
-            <Comment item={item} businessState={businessState} />
+            <Comment item={item} businessState={businessState} appState={appState} />
           </RightAction>
         </ItemPrice>
       </ItemContent>

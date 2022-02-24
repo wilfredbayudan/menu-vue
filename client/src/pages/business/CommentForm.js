@@ -16,7 +16,7 @@ const FormAction = styled.div`
   margin-bottom: 10px;
 `; 
 
-const CommentForm = ({ item, comments, setComments, businessState }) => {
+const CommentForm = ({ itemData, setItemData, businessState }) => {
 
   const { business, setBusiness } = businessState;
 
@@ -55,7 +55,7 @@ const CommentForm = ({ item, comments, setComments, businessState }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}/comments`, {
+    fetch(`/businesses/${business.id}/menu/categories/${itemData.category_id}/items/${itemData.id}/comments`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -75,16 +75,19 @@ const CommentForm = ({ item, comments, setComments, businessState }) => {
           ...json,
           isAuthor: true
         };
-        setComments([
-          ...comments,
-          newComment
-        ]);
+        setItemData({
+          ...itemData,
+          comments: [
+            ...itemData.comments,
+            newComment
+          ]
+        })
         setBusiness({
           ...business,
           menu: {
             ...business.menu,
             items: business.menu.items.map(mappedItem => {
-              if (mappedItem.id !== item.id) return mappedItem;
+              if (mappedItem.id !== itemData.id) return mappedItem;
               return {
                 ...mappedItem,
                 comments: mappedItem.comments + 1

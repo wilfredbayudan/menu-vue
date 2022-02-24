@@ -21,28 +21,22 @@ const Comment = ({ item, businessState, appState }) => {
 
   const { business } = businessState; 
 
-  const [comments, setComments] = useState([]);
+  const [itemData, setItemData] = useState(null)
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleCommentClick = () => {
     setLoading(true);
-    fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}/comments`)
+    fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}`)
       .then(res => {
         setLoading(false);
         if (res.ok) {
           setShowComments(true);
-          res.json().then(json => setComments(json));
+          res.json().then(json => setItemData(json));
         }
       })
       .catch(console.error);
   };
-
-  const handleClose = () => {
-    setShowComments(false);
-  };
-
-  
 
   return (
     <>
@@ -57,8 +51,8 @@ const Comment = ({ item, businessState, appState }) => {
         item={item}
         businessState={businessState}
         appState={appState}
-        comments={comments}
-        setComments={setComments}
+        itemData={itemData}
+        setItemData={setItemData}
         showComments={showComments}
         setShowComments={setShowComments}
       />
