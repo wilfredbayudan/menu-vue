@@ -6,6 +6,7 @@ import DeleteBusiness from "./DeleteBusiness";
 import { useNavigate } from "react-router-dom";
 import IconButton from '@mui/material/IconButton';
 import FindInPageIcon from '@mui/icons-material/FindInPage';
+import BusinessQR from "./BusinessQR";
 
 const Business = ({ appState, business }) => {
 
@@ -26,6 +27,7 @@ const Business = ({ appState, business }) => {
         <IconButton edge="end" aria-label="Preview" onClick={handlePreviewClick}>
           <FindInPageIcon />
         </IconButton>
+        <BusinessQR business={business} />
         <EditBusiness appState={appState} business={business} />
         <DeleteBusiness appState={appState} business={business} />
       </>
