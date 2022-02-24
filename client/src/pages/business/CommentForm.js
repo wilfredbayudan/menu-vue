@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import ResponsiveTextInput from "../../styles/ResponsiveTextInput";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import { Divider, TextField } from '@mui/material';
 
@@ -30,11 +29,13 @@ const CommentForm = ({ comments, setComments, item, businessState }) => {
   const [postSuccess, setPostSuccess] = useState(false);
 
   useEffect(() => {
+    let timeOut;
     if (postSuccess) {
-      setTimeout(() => {
+       timeOut = setTimeout(() => {
         setPostSuccess(false);
       }, 5000)
     }
+    return(() => clearTimeout(timeOut));
   }, [postSuccess, setPostSuccess]);
 
   useEffect(() => {
@@ -71,11 +72,24 @@ const CommentForm = ({ comments, setComments, item, businessState }) => {
             setFormData({
               author: json.author,
               comment: ""
-            })
+            });
             setComments([
               ...comments,
               json
-            ])
+            ]);
+            setBusiness({
+              ...business,
+              menu: {
+                ...business.menu,
+                items: business.menu.items.map(mappedItem => {
+                  if (mappedItem.id !== item.id) return mappedItem;
+                  return {
+                    ...mappedItem,
+                    comments: mappedItem.comments + 1
+                  }
+                })
+              }
+            })
             console.log(json);
           })
         }
