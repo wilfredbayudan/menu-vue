@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   width: 100%;
-  padding: 15px;
+  padding: 15px 0;
 `;
 
 const ItemsContainer = styled.div`
