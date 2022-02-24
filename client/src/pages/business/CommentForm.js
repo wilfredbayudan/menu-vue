@@ -73,12 +73,12 @@ const CommentForm = ({ item, comments, setComments, businessState }) => {
         });
         const newComment = {
           ...json,
-          author: true
+          isAuthor: true
         };
-        setComments({
+        setComments([
           ...comments,
           newComment
-        });
+        ]);
         setBusiness({
           ...business,
           menu: {
@@ -126,8 +126,9 @@ const CommentForm = ({ item, comments, setComments, businessState }) => {
         required
       />
       <FormAction>
-        <span>{postSuccess ? "Your comment has been posted!" : ''}</span>
-        <StyledLoadingButton type="submit" loading={loading} disabled={disabled}>Post</StyledLoadingButton>
+        <StyledLoadingButton type="submit" loading={loading} disabled={disabled}>
+        {postSuccess ? "Comment posted!" : 'Post'}
+        </StyledLoadingButton>
       </FormAction>
       <Divider />
     </Form>    

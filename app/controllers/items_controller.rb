@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
   # GET '/businesses/:business_id/menus/categories/:category_id/items/:id
   def show
     item = find_item
-    render json: item
+    render json: item, serializer: ItemWithCommentsSerializer
   end
 
   # POST '/businesses/:business_id/menus/categories/:category_id/items

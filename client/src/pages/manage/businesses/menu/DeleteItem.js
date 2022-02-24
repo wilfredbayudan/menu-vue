@@ -17,8 +17,7 @@ const DeleteItem = ({ menuManagerState, item }) => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
 
-  const handleClose = (e) => {
-    e.stopPropagation();
+  const handleClose = () => {
     setOpen(false);
   };
 
