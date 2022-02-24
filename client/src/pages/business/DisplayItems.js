@@ -34,7 +34,7 @@ const Items = ({ items, categoryName, businessState, appState }) => {
     navigate(`/${business.slug}`);
   }
 
-  const renderItems = items.map((item, idx) => <Item key={idx} businessState={businessState} appState={appState} item={item} />)
+  const renderItems = items.sort((a, b) => a.id - b.id).map((item, idx) => <Item key={idx} businessState={businessState} appState={appState} item={item} />)
 
   return (
     <Container>

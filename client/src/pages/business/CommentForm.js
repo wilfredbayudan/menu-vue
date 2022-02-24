@@ -40,6 +40,7 @@ const CommentForm = ({ itemData, setItemData, businessState }) => {
   useEffect(() => {
     if (formData.comment.trim().length > 2) {
       setDisabled(false);
+      setPostSuccess(false);
     } else {
       setDisabled(true);
     }
