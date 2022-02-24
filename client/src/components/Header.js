@@ -7,7 +7,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import Nav from "./Nav";
 
 const StyledHeader = styled.header`
-  z-index: 2;
+  z-index: 12;
   position: fixed;
   top: 0;
   width: 100%;

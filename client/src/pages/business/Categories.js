@@ -7,6 +7,10 @@ const Container = styled.div`
   background-color: #f4f4f4;
   padding: 1px;
   margin: 15px 0;
+  position: sticky;
+  top: 50px;
+  z-index: 10;
+  border-bottom: 1px solid #c6c6c6;
 `;
 
 const CategoriesList = styled.ul`
@@ -41,6 +45,8 @@ const CategoriesList = styled.ul`
 
   .current {
     li {
+      color: ${primaryColor};
+      font-weight: 400;
       border-bottom: 3px solid ${primaryColor};
     }
   }
