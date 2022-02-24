@@ -10,6 +10,7 @@ import DisplayItems from "./DisplayItems";
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
 import ContentNotice from "../../styles/ContentNotice";
 import LoaderOverlay from "../../components/LoaderOverlay";
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const Info = styled.div`
   display: flex;
@@ -115,7 +116,7 @@ const Business = ({ appState }) => {
             You manage this business.
           </ContentNotice>
         )}
-        <PageTitle title={business.name} sideAction={renderAuthorizedElement(<StyledLoadingButton onClick={handleManageClick}>Manage Menu</StyledLoadingButton>)} />
+        <PageTitle title={business.name} sideAction={renderAuthorizedElement(<StyledLoadingButton onClick={handleManageClick} startIcon={<SettingsIcon />}>Manage Menu</StyledLoadingButton>)} />
         <Info>
           <Image src={business.image ? business.image : Placeholder} />
           <Description>
