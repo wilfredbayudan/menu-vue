@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Placeholder from "../../assets/images/placeholder.png";
 import LikeItem from "./LikeItem";
+import Comment from "./Comment";
 
 const ItemSquare = styled.div`
   position: relative;
@@ -81,6 +82,7 @@ const Item = ({ item, businessState }) => {
           </LeftAction>
           <RightAction>
             <LikeItem item={item} businessState={businessState} />
+            <Comment item={item} businessState={businessState} />
           </RightAction>
         </ItemPrice>
       </ItemContent>
