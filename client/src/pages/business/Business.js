@@ -125,7 +125,7 @@ const Business = ({ appState }) => {
         </Info>
         <Categories categories={business.menu.categories} />
         <CategoryDescription>{selectedCategory && getCategoryObject().description}</CategoryDescription>
-        <DisplayItems items={filteredItems()} categoryName={categoryName()} businessState={businessState} />
+        <DisplayItems items={filteredItems()} categoryName={categoryName()} businessState={businessState} appState={appState} />
       </FloatedContent>
     )
   }

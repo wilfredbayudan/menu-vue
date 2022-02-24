@@ -24,7 +24,7 @@ const ItemsContainer = styled.div`
   grid-gap: 20px;
 `;
 
-const Items = ({ items, categoryName, businessState }) => {
+const Items = ({ items, categoryName, businessState, appState }) => {
 
   const { business } = businessState;
 
@@ -34,7 +34,7 @@ const Items = ({ items, categoryName, businessState }) => {
     navigate(`/${business.slug}`);
   }
 
-  const renderItems = items.map((item, idx) => <Item key={idx} businessState={businessState} item={item} />)
+  const renderItems = items.map((item, idx) => <Item key={idx} businessState={businessState} appState={appState} item={item} />)
 
   return (
     <Container>

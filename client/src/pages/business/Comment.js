@@ -1,13 +1,11 @@
+import React from "react";
 import CommentIcon from '@mui/icons-material/Comment';
 import IconButton from '@mui/material/IconButton';
 import { primaryColor } from "../../styles/colorList";
 import styled from "styled-components";
-import Dialog from '@mui/material/Dialog';
 import { useState } from "react";
 import DialogTitle from '@mui/material/DialogTitle';
-import LoaderOverlay from "../../components/LoaderOverlay";
-import CommentForm from "./CommentForm";
-import DialogContent from '@mui/material/DialogContent';
+import CommentDialog from "./CommentDialog";
 
 const CommentNumber = styled.span`
   margin-left: 8px;
@@ -27,12 +25,12 @@ const ItemName = styled.span`
   color: ${primaryColor};
 `;
 
-const Comment = ({ item, businessState }) => {
+const Comment = ({ item, businessState, appState }) => {
 
   const { business } = businessState; 
 
   const [comments, setComments] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleCommentClick = () => {
@@ -41,7 +39,7 @@ const Comment = ({ item, businessState }) => {
       .then(res => {
         setLoading(false);
         if (res.ok) {
-          setOpen(true);
+          setShowComments(true);
           res.json().then(json => setComments(json));
         }
       })
@@ -49,8 +47,10 @@ const Comment = ({ item, businessState }) => {
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setShowComments(false);
   };
+
+  
 
   return (
     <>
@@ -60,20 +60,15 @@ const Comment = ({ item, businessState }) => {
       <CommentNumber>
         {item.comments}
       </CommentNumber>
-      <LoaderOverlay loaderStatus={loading} />
-      <Dialog
-        fullWidth
-        maxWidth="sm"
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <StyledDialogTitle id="alert-dialog-title"><ItemName>{item.item} ⇢</ItemName> Comments</StyledDialogTitle>
-        <DialogContent>
-          <CommentForm businessState={businessState} item={item} comments={comments} setComments={setComments} />
-        </DialogContent>
-      </Dialog>
+      <CommentDialog
+        item={item}
+        businessState={businessState}
+        appState={appState}
+        comments={comments}
+        setComments={setComments}
+        showComments={showComments}
+        setShowComments={setShowComments}
+      />
     </>
   );
 };

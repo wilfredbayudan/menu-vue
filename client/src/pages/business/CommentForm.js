@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { TextField } from '@mui/material';
+import { Divider } from '@mui/material';
 import StyledLoadingButton from "../../styles/StyledLoadingButton";
-import { Divider, TextField } from '@mui/material';
 
 const Form = styled.form`
 
@@ -15,7 +16,7 @@ const FormAction = styled.div`
   margin-bottom: 10px;
 `; 
 
-const CommentForm = ({ comments, setComments, item, businessState }) => {
+const CommentForm = ({ item, comments, setComments, businessState }) => {
 
   const { business, setBusiness } = businessState;
 
@@ -29,13 +30,11 @@ const CommentForm = ({ comments, setComments, item, businessState }) => {
   const [postSuccess, setPostSuccess] = useState(false);
 
   useEffect(() => {
-    let timeOut;
     if (postSuccess) {
-       timeOut = setTimeout(() => {
+      setTimeout(() => {
         setPostSuccess(false);
-      }, 5000)
+      }, 3000)
     }
-    return(() => clearTimeout(timeOut));
   }, [postSuccess, setPostSuccess]);
 
   useEffect(() => {
@@ -64,35 +63,35 @@ const CommentForm = ({ comments, setComments, item, businessState }) => {
       },
       body: JSON.stringify(formData)
     })
-      .then(res => {
-        if (res.ok) {
-          setLoading(false);
-          res.json().then(json => {
-            setPostSuccess(true);
-            setFormData({
-              author: json.author,
-              comment: ""
-            });
-            setComments([
-              ...comments,
-              json
-            ]);
-            setBusiness({
-              ...business,
-              menu: {
-                ...business.menu,
-                items: business.menu.items.map(mappedItem => {
-                  if (mappedItem.id !== item.id) return mappedItem;
-                  return {
-                    ...mappedItem,
-                    comments: mappedItem.comments + 1
-                  }
-                })
+      .then(res => res.json())
+      .then(json => {
+        setLoading(false);
+        setPostSuccess(true);
+        setFormData({
+          ...formData,
+          comment: ''
+        });
+        const newComment = {
+          ...json,
+          author: true
+        };
+        setComments({
+          ...comments,
+          newComment
+        });
+        setBusiness({
+          ...business,
+          menu: {
+            ...business.menu,
+            items: business.menu.items.map(mappedItem => {
+              if (mappedItem.id !== item.id) return mappedItem;
+              return {
+                ...mappedItem,
+                comments: mappedItem.comments + 1
               }
             })
-            console.log(json);
-          })
-        }
+          }
+        })
       })
       .catch(err => console.log(err))
   }
@@ -109,7 +108,7 @@ const CommentForm = ({ comments, setComments, item, businessState }) => {
         fullWidth
         variant="filled"
         onChange={handleChange}
-        value={formData.created_by}
+        value={formData.author}
         required
       />
       <TextField
@@ -128,7 +127,7 @@ const CommentForm = ({ comments, setComments, item, businessState }) => {
       />
       <FormAction>
         <span>{postSuccess ? "Your comment has been posted!" : ''}</span>
-        <StyledLoadingButton loading={loading} disabled={disabled} type="submit">Post</StyledLoadingButton>
+        <StyledLoadingButton type="submit" loading={loading} disabled={disabled}>Post</StyledLoadingButton>
       </FormAction>
       <Divider />
     </Form>    
