@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
+puts "Destroying existing data..."
+
 User.destroy_all
 Business.destroy_all
 Menu.destroy_all
@@ -14,6 +16,7 @@ Item.destroy_all
 Comment.destroy_all
 UserBusiness.destroy_all
 
+puts "Creating new user test@mail.com with password test1234..."
 
 first_user = User.create(
   email: "test@mail.com",
@@ -22,6 +25,8 @@ first_user = User.create(
   last_name: "Last1"
 )
 
+puts "Creating Genki Sushi..."
+
 business = first_user.businesses.create(
   name: "Genki Sushi",
   description: "Genki Sushi is a chain of conveyor belt sushi restaurants established in 1990 in Japan. The chain expanded to include locations in Japan, Hong Kong, Indonesia, Singapore, Kuwait, the Philippines, China, Australia, Cambodia, Myanmar and the United States, including, California, Hawaii and Washington.",
@@ -29,10 +34,14 @@ business = first_user.businesses.create(
   slug: "genki-sushi"
 )
 
+puts "Giving user access to business..."
+
 role = business.user_businesses.last
 role.owner = true
 role.save
 menu = business.create_menu
+
+puts "Creating categories..."
 
 nigiri = menu.categories.create(
   category: "Nigiri",
@@ -64,12 +73,19 @@ sashimi = menu.categories.create(
   description: "A Japanese dish of bite-sized pieces of raw fish eaten with soy sauce and wasabi paste."
 )
 
+puts "Creating items..."
+
 hot_dog = nigiri.items.create(
   description: "Hot dog and rice wrapped with nori.",
   image: "https://genkisushihawaii.com/images2/menu/nigiri/hotdognig.jpg",
   likes: 12,
   price: 1.85,
   item: "Hot Dog"
+)
+
+hot_dog.comments.create(
+  author: "Wilfred Bayudan",
+  comment: "Hot dog sushi? Interesting..."
 )
 
 kanikama = nigiri.items.create(
@@ -86,6 +102,16 @@ tamago = nigiri.items.create(
   likes: 25,
   price: 2.75,
   item: "Tamago"
+)
+
+tamago.comments.create(
+  author: "Jane Doe",
+  comment: "My kids love this!"
+)
+
+tamago.comments.create(
+  author: "Jennifer Smith",
+  comment: "I always need to get 5 orders for my son, he enjoys it a lot."
 )
 
 string_bean = nigiri.items.create(
@@ -350,3 +376,5 @@ sashimi_combo = sashimi.items.create(
   price: 6.35,
   item: "Sashimi Combo"
 )
+
+puts "Seeding done!"

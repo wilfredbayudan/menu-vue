@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import { useState, useEffect } from "react";
 
 const LikeNumber = styled.span`
-  margin-left: 5px;
+  margin-left: 8px;
 `;
 
 const LikeItem = ({ item, businessState }) => {
