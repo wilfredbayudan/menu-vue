@@ -377,4 +377,46 @@ sashimi_combo = sashimi.items.create(
   item: "Sashimi Combo"
 )
 
+
+puts "Creating new user test2@mail.com with password test1234..."
+
+second_user = User.create(
+  email: "test2@mail.com",
+  password: "test1234",
+  first_name: "Test2",
+  last_name: "Last2"
+)
+
+puts "Creating Burger King..."
+
+business = second_user.businesses.create(
+  name: "Burger King",
+  description: "Burger King is an American multinational chain of hamburger fast food restaurants. Headquartered in Miami-Dade County, Florida, the company was founded in 1953 as Insta-Burger King, a Jacksonville, Florida–based restaurant chain.",
+  image: "https://pbs.twimg.com/media/ErJU_R2VkAE-w7Q?format=jpg&name=medium",
+  slug: "burger-king"
+)
+
+puts "Giving user access to business..."
+
+role = business.user_businesses.last
+role.owner = true
+role.save
+menu = business.create_menu
+
+puts "Creating categories..."
+
+chicken = menu.categories.create(
+  category: "Chicken & More",
+  slug: "chicken-more",
+  description: "Chicken and stuff."
+)
+
+hand_breaded = chicken.items.create(
+  description: "Some chicken sandwich.",
+  image: "https://www.pennlive.com/resizer/d1os-3VS3elS9yIcHxrlv7FBA1Q=/1280x0/smart/cloudfront-us-east-1.images.arcpublishing.com/advancelocal/EDDRNJNVR5GQZIMNQVDJW2GZLE.jpeg",
+  likes: 129,
+  price: 6.35,
+  item: "Hand Breaded Ch'king"
+)
+
 puts "Seeding done!"
