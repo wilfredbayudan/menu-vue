@@ -10,6 +10,7 @@ import ManageBusinessesIndex from '../pages/manage/businesses/ManageBusinessesIn
 import ManageBusinessesNew from '../pages/manage/businesses/ManageBusinessesNew';
 import AlertPage from '../components/AlertPage';
 import MenuManager from '../pages/manage/businesses/menu/MenuManager';
+import Browse from "../pages/browse/Browse";
 
 function App() {
 
@@ -42,7 +43,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Index appState={appState} />}>
           <Route index element={<Home />} />
-          <Route path="browse" element={<>Browse</>} />
+          <Route path="browse" element={<Browse appState={appState} />} />
           <Route path="how" element={<>How it works</>} />
           <Route path="about" element={<>About Us</>} />
           <Route path="signup" element={<Signup appState={appState} />} />
