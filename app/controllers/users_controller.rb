@@ -5,12 +5,8 @@ class UsersController < ApplicationController
 
   ## GET / '/businesses/:business_id/users'
   def index
-    if params[:business_id]
-      business = Business.find(params[:business_id])
-      render json: business.users, each_serializer: BusinessUserSerializer
-    else
-      render json: { errors: ["No business provided"] }, status: :not_found
-    end
+    business = Business.find(params[:business_id])
+    render json: business.users, each_serializer: BusinessUserSerializer
   end
 
   ## POST '/signup'

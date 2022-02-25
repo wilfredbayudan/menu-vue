@@ -19,8 +19,6 @@ const SelectBusiness = ({ ownedBusinesses, selectedBusiness, setSelectedBusiness
     return <MenuItem key={businessIdx} value={business.business_id}>{business.name}</MenuItem>;
   })
 
-  console.log(ownedBusinesses);
-
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
