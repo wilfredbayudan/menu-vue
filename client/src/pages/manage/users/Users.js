@@ -1,11 +1,11 @@
 import FloatedContent from "../../../styles/FloatedContent";
 import PageTitle from "../../../styles/PageTitle";
-import List from '@mui/material/List';
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import SelectBusiness from "./SelectBusiness";
 import ErrorList from "../../../components/ErrorList";
+import UsersList from "./UsersList";
 
 const Notice = styled.p`
 `;
@@ -25,7 +25,9 @@ const Users = ({ appState }) => {
 
   useEffect(() => {
     if (!businessId) return;
-    setSelectedBusiness(businessId);
+    if (ownedBusinesses.map(ownedBusiness => ownedBusiness.business_id).includes(businessId)) {
+      setSelectedBusiness(businessId);
+    }
   }, [businessId])
 
   useEffect(() => {
@@ -44,17 +46,19 @@ const Users = ({ appState }) => {
   return (
     <FloatedContent>
       <PageTitle title="Manage Users" />
-      <Notice>
-      You are allowed to invite existing users to manage businesses you have created.
-      </Notice>
       <SelectBusiness 
         ownedBusinesses={ownedBusinesses} 
         selectedBusiness={selectedBusiness} 
         setSelectedBusiness={setSelectedBusiness}
       />
-      <List>
-
-      </List>
+      {
+      businessUsers.length > 0 ?
+        <UsersList loggedInUserId={user.id} businessUsers={businessUsers} />
+      :
+        <Notice>
+          You are allowed to invite existing users to manage businesses you have created.
+        </Notice>
+      }
       <ErrorList errors={errors} />
     </FloatedContent>
   );

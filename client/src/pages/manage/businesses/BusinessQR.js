@@ -22,8 +22,6 @@ const QRCode = styled.img`
 
 const BusinessQR = ({ business }) => {
 
-  console.log(business);
-
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
