@@ -11,6 +11,7 @@ import ManageBusinessesNew from '../pages/manage/businesses/ManageBusinessesNew'
 import AlertPage from '../components/AlertPage';
 import MenuManager from '../pages/manage/businesses/menu/MenuManager';
 import Browse from "../pages/browse/Browse";
+import Users from "../pages/manage/users/Users";
 
 function App() {
 
@@ -56,6 +57,7 @@ function App() {
           {/* Manage Routes */}
           <Route path="manage" element={<ManageIndex appState={appState} />}>
             <Route index element={<>Dashboard</>} />
+            <Route path="users" element={<Users appState={appState} />} />
             {/* Manage Businesses Routes */}
             <Route path="businesses" element={<ManageBusinessesOutlet />}>
               <Route index element={<ManageBusinessesIndex appState={appState} />} />

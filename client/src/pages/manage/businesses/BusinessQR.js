@@ -6,6 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import styled from "styled-components";
 import { primaryColor } from "../../../styles/colorList";
 import DialogContent from '@mui/material/DialogContent';
+import LoaderOverlay from "../../../components/LoaderOverlay";
 
 const BusinessName = styled.span`
   color: ${primaryColor};
@@ -24,20 +25,30 @@ const BusinessQR = ({ business }) => {
   console.log(business);
 
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleClose = () => {
     setOpen(false);
   };
 
-  console.log(window.location.host);
-
   const url = `http://www.menuvue.com/${business.slug}`;
+  const codeImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${url}`
+
+  const handleViewClick = () => {
+    fetch(codeImageUrl)
+      .then(res => {
+        if (res.ok) {
+          setOpen(true);
+        }
+      })
+  }
 
   return (
     <>
-      <IconButton edge="end" aria-label="edit" onClick={() => setOpen(true)}>
+      <IconButton edge="end" aria-label="edit" onClick={handleViewClick}>
         <QrCodeScannerIcon />
       </IconButton>
+      <LoaderOverlay loaderStatus={loading} />
       <Dialog
         fullWidth
         maxWidth="sm"
@@ -50,7 +61,7 @@ const BusinessQR = ({ business }) => {
           <BusinessName>{business.name} ⇢</BusinessName> QR Code
         </StyledDialogTitle>
         <DialogContent>
-          <QRCode src={`https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${url}`} />
+          <QRCode src={codeImageUrl} onLoad={() => setLoading(false)} />
         </DialogContent>
       </Dialog>
     </>
