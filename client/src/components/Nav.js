@@ -144,7 +144,7 @@ const Nav = ({ appState, handleLogoutClick }) => {
     <div>
       <NavIcon onClick={toggleDrawer(true)} fontSize="large" />
       <SwipeableDrawer
-        anchor="top"
+        anchor="right"
         open={showNav}
         onClose={toggleDrawer(false)}
         onOpen={toggleDrawer(true)}
