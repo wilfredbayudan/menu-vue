@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   def index
     if params[:business_id]
       business = Business.find(params[:business_id])
-      render json: business.users, each_serializer: BusinessUserSerializer
+      render json: business.users, each_serializer: BusinessUserSerializer, business_id: params[:business_id]
     end
   end
 
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
       user = User.find(session[:user_id])
       business = user.businesses.find(params[:business_id])
       newUser = User.find_by(email: params[:email].downcase)
+      return render json: { errors: ["Not authorized to add user"]} unless user.user_business.find_by(business: params[:business_id]).owner
       if (newUser)
         business.users << newUser
         render json: newUser, serializer: BusinessUserSerializer

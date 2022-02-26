@@ -6,7 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useSearchParams } from "react-router-dom";
 
-const SelectBusiness = ({ ownedBusinesses, selectedBusiness, setSelectedBusiness }) => {
+const SelectBusiness = ({ businesses, selectedBusiness, setSelectedBusiness }) => {
 
   const [, setSearchParams] = useSearchParams();
 
@@ -15,7 +15,7 @@ const SelectBusiness = ({ ownedBusinesses, selectedBusiness, setSelectedBusiness
     setSearchParams({ businessId: event.target.value })
   };
 
-  const renderOwnedBusinesses = ownedBusinesses.map((business, businessIdx) => {
+  const renderBusinesses = businesses.map((business, businessIdx) => {
     return <MenuItem key={businessIdx} value={business.business_id}>{business.name}</MenuItem>;
   })
 
@@ -30,7 +30,7 @@ const SelectBusiness = ({ ownedBusinesses, selectedBusiness, setSelectedBusiness
           label="Select a business"
           onChange={handleChange}
         >
-          {renderOwnedBusinesses}
+          {renderBusinesses}
         </Select>
       </FormControl>
     </Box>

@@ -48,7 +48,7 @@ const Users = ({ appState }) => {
     <FloatedContent>
       <PageTitle title="Manage Users" />
       <SelectBusiness 
-        ownedBusinesses={ownedBusinesses} 
+        businesses={user.businesses} 
         selectedBusiness={selectedBusiness} 
         setSelectedBusiness={setSelectedBusiness}
       />
