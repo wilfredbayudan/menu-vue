@@ -31,8 +31,11 @@ const AddUser = ({ selectedBusiness, businessUsers, setBusinessUsers }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    setFormData({
+      email: ""
+    })
     setLoading(true);
-    fetch(`/businesses`, {
+    fetch(`/businesses/${selectedBusiness}/users`, {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -44,12 +47,10 @@ const AddUser = ({ selectedBusiness, businessUsers, setBusinessUsers }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then(json => {
-
-            setFormData({
-              name: "",
-              description: "",
-              image: "",
-            })
+            setBusinessUsers([
+              ...businessUsers,
+              json
+            ]);
             handleClose();
           })
         } else {

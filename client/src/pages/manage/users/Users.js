@@ -56,7 +56,7 @@ const Users = ({ appState }) => {
       businessUsers.length > 0 ?
         <>
           <UsersList loggedInUserId={user.id} businessUsers={businessUsers} />
-          <AddUser appState={appState} />
+          <AddUser selectedBusiness={selectedBusiness} businessUsers={businessUsers} setBusinessUsers={setBusinessUsers} />
         </>
       :
         <Notice>

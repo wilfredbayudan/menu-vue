@@ -6,7 +6,7 @@ class UserSerializer < ActiveModel::Serializer
     return [] unless self.object.businesses.length > 0
 
     user_businesses = self.object.user_businesses.map do |user_business|
-      business = Business.find(user_business.id)
+      business = Business.find(user_business.business_id)
       { 
         business_id: user_business.id,
         name: business.name,
