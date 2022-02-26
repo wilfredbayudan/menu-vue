@@ -10,12 +10,12 @@ const StyledListItem = styled(ListItem)`
   }
 `;
 
-const User = ({ loggedInUserId, businessUser, isOwner }) => {
+const User = ({ loggedInUserId, businessUser, isOwner, handleDeleteClick }) => {
   return (
     <StyledListItem divider secondaryAction={
       <>
         { isOwner && (businessUser.id !== loggedInUserId) &&
-          <IconButton edge="end" aria-label="Preview">
+          <IconButton edge="end" aria-label="Preview" onClick={() => handleDeleteClick(businessUser.id)}>
             <PersonRemoveIcon />
           </IconButton>
         }

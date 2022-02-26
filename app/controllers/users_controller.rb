@@ -19,7 +19,7 @@ class UsersController < ApplicationController
       business = user.businesses.find(params[:business_id])
       newUser = User.find_by(email: params[:email].downcase)
       if newUser
-      return render json: { errors: ["Not authorized to add user"]} unless business.user_businesses.find_by(user_id: session[:user_id]).owner
+      return render json: { errors: ["Not authorized to add user"]}, status: :unauthorized unless business.user_businesses.find_by!(user_id: session[:user_id]).owner
         business.users << newUser
         render json: newUser, serializer: BusinessUserSerializer, business_id: params[:business_id]
       else
@@ -43,7 +43,11 @@ class UsersController < ApplicationController
   def destroy
     ## DELETE /businesses/:business_id/users/:id
     if params[:business_id]
-      render json: Business.find(params[:business_id]);
+      user = User.find(params[:id])
+      business = Business.find(params[:business_id])
+      return render json: { errors: ["Not authorized to remove user"]}, status: :unauthorized unless business.user_businesses.find_by!(user_id: session[:user_id]).owner
+      business.user_businesses.find_by!(user_id: user.id).destroy
+      head :no_content
     end
   end
 

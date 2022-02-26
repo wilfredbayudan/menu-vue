@@ -30,10 +30,7 @@ const Users = ({ appState }) => {
     if (ownedBusinesses.map(ownedBusiness => ownedBusiness.business_id).includes(parseInt(businessId))) {
       setSelectedBusiness(businessId);
     }
-  }, [businessId])
-
-
-  console.log(isOwner)
+  }, [businessId, ownedBusinesses])
 
   useEffect(() => {
     if (!selectedBusiness || businessUsers.length > 0) return;
@@ -53,7 +50,7 @@ const Users = ({ appState }) => {
         }
       })
       .catch(console.error);
-  }, [selectedBusiness])
+  }, [businessId, selectedBusiness, businessUsers.length, user.id])
 
   return (
     <FloatedContent>
@@ -66,7 +63,7 @@ const Users = ({ appState }) => {
       {
       businessUsers.length > 0 &&
         <>
-          <UsersList loggedInUserId={user.id} businessUsers={businessUsers} isOwner={isOwner} />
+          <UsersList loggedInUserId={user.id} businessUsers={businessUsers} isOwner={isOwner} selectedBusiness={selectedBusiness} />
         </>
       }
       {
