@@ -33,6 +33,7 @@ const BusinessQR = ({ business }) => {
   const codeImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${url}`
 
   const handleViewClick = () => {
+    setLoading(true);
     fetch(codeImageUrl)
       .then(res => {
         if (res.ok) {
@@ -46,7 +47,6 @@ const BusinessQR = ({ business }) => {
       <IconButton edge="end" aria-label="edit" onClick={handleViewClick}>
         <QrCodeScannerIcon />
       </IconButton>
-      <LoaderOverlay loaderStatus={loading} />
       <Dialog
         fullWidth
         maxWidth="sm"
@@ -59,6 +59,7 @@ const BusinessQR = ({ business }) => {
           <BusinessName>{business.name} ⇢</BusinessName> QR Code
         </StyledDialogTitle>
         <DialogContent>
+          <LoaderOverlay loaderStatus={loading} />
           <QRCode src={codeImageUrl} onLoad={() => setLoading(false)} />
         </DialogContent>
       </Dialog>
