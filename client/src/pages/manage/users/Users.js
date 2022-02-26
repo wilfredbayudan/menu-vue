@@ -63,7 +63,7 @@ const Users = ({ appState }) => {
       {
       businessUsers.length > 0 &&
         <>
-          <UsersList loggedInUserId={user.id} businessUsers={businessUsers} isOwner={isOwner} selectedBusiness={selectedBusiness} />
+          <UsersList setErrors={setErrors} loggedInUserId={user.id} businessUsers={businessUsers} setBusinessUsers={setBusinessUsers} isOwner={isOwner} selectedBusiness={selectedBusiness} />
         </>
       }
       {
