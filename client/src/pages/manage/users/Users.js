@@ -6,6 +6,7 @@ import { useSearchParams } from "react-router-dom";
 import SelectBusiness from "./SelectBusiness";
 import ErrorList from "../../../components/ErrorList";
 import UsersList from "./UsersList";
+import AddUser from "./AddUser";
 
 const Notice = styled.p`
 `;
@@ -25,7 +26,7 @@ const Users = ({ appState }) => {
 
   useEffect(() => {
     if (!businessId) return;
-    if (ownedBusinesses.map(ownedBusiness => ownedBusiness.business_id).includes(businessId)) {
+    if (ownedBusinesses.map(ownedBusiness => ownedBusiness.business_id).includes(parseInt(businessId))) {
       setSelectedBusiness(businessId);
     }
   }, [businessId])
@@ -53,7 +54,10 @@ const Users = ({ appState }) => {
       />
       {
       businessUsers.length > 0 ?
-        <UsersList loggedInUserId={user.id} businessUsers={businessUsers} />
+        <>
+          <UsersList loggedInUserId={user.id} businessUsers={businessUsers} />
+          <AddUser appState={appState} />
+        </>
       :
         <Notice>
           You are allowed to invite existing users to manage businesses you have created.
