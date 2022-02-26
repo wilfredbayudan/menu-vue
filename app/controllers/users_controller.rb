@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authorize
-  skip_before_action :authorize, only: [:create]
+  skip_before_action :authorize, only: [:create, :destroy]
 
   ## GET / '/businesses/:business_id/users'
   def index
@@ -18,10 +18,10 @@ class UsersController < ApplicationController
       user = User.find(session[:user_id])
       business = user.businesses.find(params[:business_id])
       newUser = User.find_by(email: params[:email].downcase)
-      return render json: { errors: ["Not authorized to add user"]} unless user.user_business.find_by(business: params[:business_id]).owner
-      if (newUser)
+      if newUser
+      return render json: { errors: ["Not authorized to add user"]} unless business.user_businesses.find_by(user_id: session[:user_id]).owner
         business.users << newUser
-        render json: newUser, serializer: BusinessUserSerializer
+        render json: newUser, serializer: BusinessUserSerializer, business_id: params[:business_id]
       else
         render json: { errors: ["Account not found! User needs to have an existing account to grant access."]}, status: :unprocessable_entity
       end
@@ -38,6 +38,13 @@ class UsersController < ApplicationController
   def show
     user = User.find(session[:user_id])
     render json: user
+  end
+
+  def destroy
+    ## DELETE /businesses/:business_id/users/:id
+    if params[:business_id]
+      render json: Business.find(params[:business_id]);
+    end
   end
 
   private

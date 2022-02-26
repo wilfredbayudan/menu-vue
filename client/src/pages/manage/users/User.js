@@ -10,16 +10,19 @@ const StyledListItem = styled(ListItem)`
   }
 `;
 
-const User = ({ loggedInUserId, businessUser }) => {
+const User = ({ loggedInUserId, businessUser, isOwner }) => {
   return (
     <StyledListItem divider secondaryAction={
-      loggedInUserId !== businessUser.id ?
       <>
-        <IconButton edge="end" aria-label="Preview">
-          <PersonRemoveIcon />
-        </IconButton>
+        { isOwner && (businessUser.id !== loggedInUserId) &&
+          <IconButton edge="end" aria-label="Preview">
+            <PersonRemoveIcon />
+          </IconButton>
+        }
+        {
+          businessUser.owner && "Business Owner"
+        }
       </>
-      : <>Owner</>
     }>
       <ListItemText primary={`${businessUser.first_name} ${businessUser.last_name}`} secondary={businessUser.email} />
     </StyledListItem>

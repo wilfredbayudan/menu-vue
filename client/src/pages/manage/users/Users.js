@@ -21,6 +21,7 @@ const Users = ({ appState }) => {
   const [selectedBusiness, setSelectedBusiness] = useState('');
   const [businessUsers, setBusinessUsers] = useState([]);
   const [errors, setErrors] = useState([]);
+  const [isOwner, setIsOwner] = useState(false);
 
   const ownedBusinesses = user.businesses.filter(business => business.owner);
 
@@ -31,12 +32,22 @@ const Users = ({ appState }) => {
     }
   }, [businessId])
 
+
+  console.log(isOwner)
+
   useEffect(() => {
     if (!selectedBusiness || businessUsers.length > 0) return;
     fetch(`/businesses/${businessId}/users`)
       .then(res => {
         if (res.ok) {
-          res.json().then(json => setBusinessUsers(json));
+          res.json().then(json => {
+            setBusinessUsers(json);
+            if (json.find(businessUser => businessUser.id === user.id).owner) {
+              setIsOwner(true);
+            } else {
+              setIsOwner(false);
+            }
+          })
         } else {
           res.json().then(json => setErrors(json.errors));
         }
@@ -53,14 +64,17 @@ const Users = ({ appState }) => {
         setSelectedBusiness={setSelectedBusiness}
       />
       {
-      businessUsers.length > 0 ?
+      businessUsers.length > 0 &&
         <>
-          <UsersList loggedInUserId={user.id} businessUsers={businessUsers} />
-          <AddUser selectedBusiness={selectedBusiness} businessUsers={businessUsers} setBusinessUsers={setBusinessUsers} />
+          <UsersList loggedInUserId={user.id} businessUsers={businessUsers} isOwner={isOwner} />
         </>
+      }
+      {
+      isOwner ?
+        <AddUser selectedBusiness={selectedBusiness} businessUsers={businessUsers} setBusinessUsers={setBusinessUsers} />
       :
         <Notice>
-          You are allowed to invite existing users to manage businesses you have created.
+          You are only allowed to manage users for businesses you have created.
         </Notice>
       }
       <ErrorList errors={errors} />
