@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/businesses/slug/:slug_url', to: 'businesses#find_by_slug'
   resources :businesses do
-    resources :users, only: [:index, :post]
+    resources :users, only: [:index, :create]
     resource :menu, only: [:show] do
       resources :categories do
         resources :items do
