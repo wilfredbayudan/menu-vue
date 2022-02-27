@@ -34,12 +34,7 @@ const BusinessQR = ({ business }) => {
 
   const handleViewClick = () => {
     setLoading(true);
-    fetch(codeImageUrl)
-      .then(res => {
-        if (res.ok) {
-          setOpen(true);
-        }
-      })
+    setOpen(true);
   }
 
   return (
