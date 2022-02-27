@@ -6,7 +6,7 @@ const Home = () => {
 
   useEffect(() => {
     navigate('/browse'); // temporarily navigate home to browse page
-  }, []);
+  }, [navigate]);
 
   return null;
 };

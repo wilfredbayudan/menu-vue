@@ -15,7 +15,7 @@ import HelpIcon from '@mui/icons-material/Help';
 import styled from "styled-components";
 import { primaryColor } from "../styles/colorList";
 import { useNavigate } from "react-router-dom";
-import DashboardIcon from '@mui/icons-material/Dashboard';
+// import DashboardIcon from '@mui/icons-material/Dashboard';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import PeopleIcon from '@mui/icons-material/People';
 import LoginIcon from '@mui/icons-material/Login';
@@ -86,12 +86,12 @@ const Nav = ({ appState, handleLogoutClick }) => {
       user ?
       <>
         <List>
-          <ListItem button onClick={() => navigate("/manage")}>
+          {/* <ListItem button onClick={() => navigate("/manage")}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary={"Dashboard"} />
-          </ListItem>
+          </ListItem> */}
           <ListItem button onClick={() => navigate("/manage/businesses")}>
             <ListItemIcon>
               <StorefrontIcon />
