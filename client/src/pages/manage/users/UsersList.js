@@ -14,7 +14,7 @@ const UsersList = ({ selectedBusiness, setErrors, setBusinessUsers, loggedInUser
       })
   }
 
-  const renderUsers = businessUsers.map((businessUser, businessUserIdx) => {
+  const renderUsers = businessUsers.sort((a, b) => b.owner - a.owner).map((businessUser, businessUserIdx) => {
     return <User key={businessUserIdx} isOwner={isOwner} loggedInUserId={loggedInUserId} businessUser={businessUser} handleDeleteClick={handleDeleteClick} />
   })
 
