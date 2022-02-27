@@ -33,7 +33,7 @@ const Users = ({ appState }) => {
   }, [businessId, ownedBusinesses])
 
   useEffect(() => {
-    if (!selectedBusiness || businessUsers.length > 0) return;
+    if (!businessId) return;
     fetch(`/businesses/${businessId}/users`)
       .then(res => {
         if (res.ok) {
@@ -50,7 +50,7 @@ const Users = ({ appState }) => {
         }
       })
       .catch(console.error);
-  }, [businessId, selectedBusiness, businessUsers.length, user.id])
+  }, [businessId, user.id])
 
   return (
     <FloatedContent>
