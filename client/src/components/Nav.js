@@ -56,19 +56,19 @@ const Nav = ({ appState, handleLogoutClick }) => {
       onKeyDown={toggleDrawer(false)}
     >
       <List>
-        <ListItem button onClick={() => navigate("/")}>
+        {/* <ListItem button onClick={() => navigate("/")}>
           <ListItemIcon>
             <HomeIcon />
           </ListItemIcon>
           <ListItemText primary={"Home"} />
-        </ListItem>
+        </ListItem> */}
         <ListItem button onClick={() => navigate("/browse")}>
           <ListItemIcon>
             <MenuBookIcon />
           </ListItemIcon>
           <ListItemText primary={"Browse Businesses"} />
         </ListItem>
-        <ListItem button onClick={() => navigate("/how")}>
+        {/* <ListItem button onClick={() => navigate("/how")}>
           <ListItemIcon>
             <HelpIcon />
           </ListItemIcon>
@@ -79,7 +79,7 @@ const Nav = ({ appState, handleLogoutClick }) => {
             <InfoIcon />
           </ListItemIcon>
           <ListItemText primary={"About Us"} />
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider />
       {
