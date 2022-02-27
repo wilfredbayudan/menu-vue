@@ -94,7 +94,7 @@ const EditBusiness = ({ appState, business }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">New Business</DialogTitle>
+        <DialogTitle id="alert-dialog-title">Edit Business</DialogTitle>
         <BusinessForm edit handleSubmit={handleSubmit} handleChange={handleChange} formData={formData} errors={errors} loading={loading} />
       </Dialog>
     </>
