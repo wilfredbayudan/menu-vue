@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import Placeholder from "../../assets/images/placeholder.png";
 
 const Card = styled.section`
   padding: 20px 10px;
@@ -26,13 +27,17 @@ const BusinessImage = styled.img`
 
 const BusinessInfo = styled.div`
   padding: 8px 0 8px 0;
+  width: 100%;
+  @media (min-width: 768px) {
+    padding-right: 20px;
+  }
 `;
 
 const BusinessName = styled.h3`
   border-bottom: 3px solid #d9d9d9;
   padding-bottom: 10px;
   padding-top: 10px;
-  margin: 0;
+  width: 100%;
   @media (min-width: 768px) {
     padding-top: 5px;
     margin: 0 10px 4px 20px;
@@ -65,7 +70,7 @@ const Business = ({ business, appState }) => {
 
   return (
     <Card onClick={handleViewClick}>
-      <BusinessImage src={business.image} />
+      <BusinessImage src={business.image ? business.image : Placeholder} />
       <BusinessInfo>
         <BusinessName>{business.name}</BusinessName>
         <Description>{business.description}</Description>
