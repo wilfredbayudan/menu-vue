@@ -86,6 +86,14 @@ const LogInOutText = styled.span`
   }
 `;
 
+const Links = styled.div`
+  display: none;
+  @media (min-width: 390px) {
+    display: flex;
+    align-items: center;
+  }
+`;
+
 const Header = ({ appState }) => {
 
   const navigate = useNavigate(); 
@@ -110,14 +118,14 @@ const Header = ({ appState }) => {
           appState.user ? 
           <LogoutButton onClick={handleLogoutClick}><LogoutIcon /><LogInOutText>Log out</LogInOutText></LogoutButton>
           :
-          <>
+          <Links>
             <LoginLink to="/login">
               <PersonOutlineOutlinedIcon /><LogInOutText>Log in</LogInOutText>
             </LoginLink>
             <SignupLink to="/signup">
               Sign up
             </SignupLink>
-          </>
+          </Links>
         }
         <Nav appState={appState} handleLogoutClick={handleLogoutClick} />
       </RightContent>
