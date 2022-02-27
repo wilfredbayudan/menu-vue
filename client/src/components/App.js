@@ -12,9 +12,9 @@ import AlertPage from '../components/AlertPage';
 import MenuManager from '../pages/manage/businesses/menu/MenuManager';
 import Browse from "../pages/browse/Browse";
 import Users from "../pages/manage/users/Users";
+import Home from "../pages/home/Home";
 
-function App() {
-
+const App = () => {
   const [user, setUser] = useState(null);
 
   const appState = {
@@ -30,14 +30,6 @@ function App() {
       })
       .catch(console.error)
   },[])
-
-  const Home = () => {
-    return (
-      <div>
-        <h1>Home Route</h1>
-      </div>
-    )
-  }
 
   return (
     <BrowserRouter>
