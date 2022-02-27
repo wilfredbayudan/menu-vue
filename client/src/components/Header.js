@@ -88,9 +88,10 @@ const LogInOutText = styled.span`
 
 const Links = styled.div`
   display: none;
-  @media (min-width: 390px) {
+  @media (min-width: 400px) {
     display: flex;
     align-items: center;
+    gap: 10px;
   }
 `;
 
