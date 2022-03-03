@@ -13,12 +13,15 @@ import MenuManager from '../pages/manage/businesses/menu/MenuManager';
 import Browse from "../pages/browse/Browse";
 import Users from "../pages/manage/users/Users";
 import Home from "../pages/home/Home";
+import AlertOverlay from "./AlertOverlay";
 
 const App = () => {
   const [user, setUser] = useState(null);
+  const [alert, setAlert] = useState(false);
 
   const appState = {
-    user, setUser
+    user, setUser,
+    alert, setAlert
   }
 
   useEffect(() => {
@@ -33,6 +36,7 @@ const App = () => {
 
   return (
     <BrowserRouter>
+      <AlertOverlay alert={alert} setAlert={setAlert} />
       <Routes>
         <Route path="/" element={<Index appState={appState} />}>
           <Route index element={<Home />} />
