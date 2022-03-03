@@ -9,7 +9,6 @@ import DialogActions from '@mui/material/DialogActions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ErrorList from "../../../components/ErrorList";
 import ResponsiveTextInput from "../../../styles/ResponsiveTextInput";
-import FormInput from "../../../styles/FormInput";
 
 const DeleteBusiness = ({ appState, business }) => {
 
@@ -63,6 +62,7 @@ const DeleteBusiness = ({ appState, business }) => {
               Delete <b>{business.name}</b>?
             </DialogContentText>
               <ResponsiveTextInput
+                autoFocus
                 sx={{ marginTop: "10px" }}
                 fullWidth
                 label="Confirmation"

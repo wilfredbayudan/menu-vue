@@ -29,7 +29,9 @@ const BusinessQR = ({ business }) => {
     setOpen(false);
   };
 
-  const url = `http://www.menuvue.com/${business.slug}`;
+  const host = window.location.hostname === "localhost" ? "localhost:4000" : window.location.hostname;
+
+  const url = `${window.location.protocol}//${host}/${business.slug}`;
   const codeImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=500x500&data=${url}`
 
   const handleViewClick = () => {
