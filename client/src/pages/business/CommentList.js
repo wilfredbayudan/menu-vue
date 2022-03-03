@@ -19,23 +19,37 @@ const DeleteIcon = styled(DeleteForever)`
 
 const CommentList = ({ itemData, setItemData, businessState, appState }) => {
 
-  const { business } = businessState;
+  const { business, setBusiness } = businessState;
   const { user } = appState;
 
+  console.log(business)
+
   const handleDelete = (commentId) => {
-    setItemData({
-      ...itemData,
-      comments: itemData.comments.filter(comment => comment.id !== commentId)
+    fetch(`/businesses/${business.id}/menu/categories/${itemData.category_id}/items/${itemData.id}/comments/${commentId}`, {
+      method: "DELETE"
     })
-    // fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}/comments/${commentId}`, {
-    //   method: "DELETE"
-    // })
-    //   .then(res => {
-    //     if (res.ok) {
-          // console.log(comments)
-      //   }
-      // })
-      // .catch(err => console.log(err));
+      .then(res => {
+        if (res.ok) {
+          setItemData({
+            ...itemData,
+            comments: itemData.comments.filter(comment => comment.id !== commentId)
+          })
+          setBusiness({
+            ...business,
+            menu: {
+              ...business.menu,
+              items: business.menu.items.map(mappedItem => {
+                if (mappedItem.id !== itemData.id) return mappedItem;
+                return {
+                  ...mappedItem,
+                  comments: mappedItem.comments - 1
+                }
+              })
+            }
+          })
+        }
+      })
+      .catch(err => console.log(err));
   }
 
   const validateAccess = () => {
