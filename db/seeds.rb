@@ -21,8 +21,8 @@ puts "Creating new user test@mail.com with password test1234..."
 first_user = User.create(
   email: "test@mail.com",
   password: "test1234",
-  first_name: "Test1",
-  last_name: "Last1"
+  first_name: "Sushi",
+  last_name: "Ishus"
 )
 
 puts "Creating Genki Sushi..."
@@ -383,8 +383,8 @@ puts "Creating new user test2@mail.com with password test1234..."
 second_user = User.create(
   email: "test2@mail.com",
   password: "test1234",
-  first_name: "Test2",
-  last_name: "Last2"
+  first_name: "Robert",
+  last_name: "Trebor"
 )
 
 puts "Creating Burger King..."
@@ -402,6 +402,10 @@ role = business.user_businesses.last
 role.owner = true
 role.save
 menu = business.create_menu
+
+puts "Giving first user access to business..."
+
+first_user.businesses << business
 
 puts "Creating categories..."
 
