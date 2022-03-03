@@ -24,7 +24,8 @@ const DeleteBusiness = ({ appState, business }) => {
     setOpen(false);
   };
 
-  const handleDeleteClick = () => {
+  const handleDelete = (e) => {
+    e.preventDefault();
     fetch(`/businesses/${business.business_id}`, { method: "DELETE" })
       .then(res => {
         setLoading(false);
@@ -56,34 +57,36 @@ const DeleteBusiness = ({ appState, business }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Delete <b>{business.name}</b>?
-          </DialogContentText>
-            <ResponsiveTextInput
-              sx={{ marginTop: "10px" }}
-              fullWidth
-              label="Confirmation"
-              name="confirmation"
-              helperText={`Enter "${business.slug}" to confirm`}
-              variant="filled"
-              value={confirmation}
-              onChange={e => setConfirmation(e.target.value)}
-            />            
+        <form onSubmit={handleDelete}>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Delete <b>{business.name}</b>?
+            </DialogContentText>
+              <ResponsiveTextInput
+                sx={{ marginTop: "10px" }}
+                fullWidth
+                label="Confirmation"
+                name="confirmation"
+                helperText={`Enter "${business.slug}" to confirm`}
+                variant="filled"
+                value={confirmation}
+                onChange={e => setConfirmation(e.target.value)}
+              />            
 
-          <ErrorList errors={errors} />
-        </DialogContent>
-        <DialogActions>
-        <StyledLoadingButton
-          disabled={confirmation !== business.slug}
-          onClick={handleDeleteClick}
-          loading={loading}
-          type="submit"
-          sx={{ margin: "10px" }} 
-          startIcon={<DeleteIcon />}>
-          Delete
-        </StyledLoadingButton>
-        </DialogActions>
+            <ErrorList errors={errors} />
+          </DialogContent>
+          <DialogActions>
+          <StyledLoadingButton
+            disabled={confirmation !== business.slug}
+            onClick={handleDelete}
+            loading={loading}
+            type="submit"
+            sx={{ margin: "10px" }} 
+            startIcon={<DeleteIcon />}>
+            Delete
+          </StyledLoadingButton>
+          </DialogActions>          
+        </form>
       </Dialog>
     </>
   )
