@@ -40,3 +40,10 @@ Before you continue, ensure you have met the following requirements:
 By default, the frontend can be accessed through http://localhost:4000
 
 Have fun!
+
+## Usage
+
+### Frontend Routes
+* `/` - **Homepage**
+
+Will temporarily reroute to `/browse`.
