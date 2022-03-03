@@ -78,7 +78,7 @@ const Item = ({ item, businessState, appState }) => {
         <ItemImage src={item.image ? item.image : Placeholder} />
         <ItemPrice>
           <LeftAction>
-            <Price>${item.price}</Price>
+            <Price>${item.price.toFixed(2)}</Price>
           </LeftAction>
           <RightAction>
             <LikeItem item={item} businessState={businessState} />

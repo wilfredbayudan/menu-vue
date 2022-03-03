@@ -74,7 +74,7 @@ const Item = ({ item, menuManagerState }) => {
           <LeftAction>
             <EditItem menuManagerState={menuManagerState} item={item} />
           </LeftAction>
-          <span>${item.price}</span>
+          <span>${item.price.toFixed(2)}</span>
           <RightAction>
             <DeleteItem menuManagerState={menuManagerState} item={item} />
           </RightAction>
