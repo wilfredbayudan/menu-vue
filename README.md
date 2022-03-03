@@ -46,4 +46,8 @@ Have fun!
 ### Frontend Routes (GET requests)
 * `/` - **Homepage**
 
-Will temporarily reroute to `/browse`.
+Will temporarily reroute to `/browse`. New layout for homepage coming soon.
+
+* `/browse` - **Browse**
+
+Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
