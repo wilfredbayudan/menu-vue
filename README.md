@@ -22,3 +22,19 @@ Live Demo at https://menu-vue.herokuapp.com and http://www.menuvue.com
 - [x] Like/Dislike Items
 - [x] Comment on Items
 - [x] Users may create/manage multiple businesses
+
+## Installation
+### Prerequisites
+Before you continue, ensure you have met the following requirements:
+* You have installed the latest version of [Node.js and NPM](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+* You have installed the latest version of [Ruby](https://www.ruby-lang.org/en/documentation/installation/).
+* You have installed the latest version of [PostgreSQL](https://www.postgresql.org).
+---
+1. [Fork and clone](https://github.com/wilfredbayudan/menu-vue/fork) this repository.
+2. Run `npm install --prefix client` in the Terminal to install dependencies.
+3. Run `bundle install` to install dependency gems.
+4. Run `rails db:create db:migrate` to setup database.
+5. Run `rails s` to start backend server.
+6. Run `npm start --prefix client` in another terminal to start frontend server.
+
+Have fun!
