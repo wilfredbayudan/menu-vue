@@ -51,3 +51,57 @@ Will temporarily reroute to `/browse`. New layout for homepage coming soon.
 * `/browse` - **Browse**
 
 Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
+
+* `/login` - **Browse**
+
+Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
+
+* `/how` - **How It Works**
+
+Reserved for a "How It Works" description page.
+
+* `/about` - **About**
+
+Reserved for a "About Us" page.
+
+* `/signup` - **Sign up**
+
+Renders a sign up form for new user registration.
+
+* `/login` - **About**
+
+Renders a log in form to authenticate users.
+
+* `/401` - **Not Authorized**
+
+Renders a "Not Authorized" notification page.
+
+* `/:slugUrl` - **Business Menu Page**
+
+Fetches and displays menu information for a business using it's slug url.
+
+* `/:slugUrl/:categorySlug` - **Business Menu Page - Category**
+
+Fetches and displays items within specified category from specified business.
+
+* `/manage` - **Manage**
+
+Default control panel for logged in users.
+
+* `/manage/users` - **Manage - Users**
+
+Allows business owners to manage user access to businesses.
+
+* `/manage/businesses` - **Manage - Businesses**
+
+List of businesses user manages and options available
+
+* `/manage/businesses/new` - **Manage - Businesses - New**
+
+Form to create new business
+
+* `/manage/businesses/:businessId/menu` - **Manage - Businesses - Business - Menu**
+
+Menu manager to create, update, and edit categories and items for business menu
+
+Backend routes coming soon....
