@@ -8,6 +8,8 @@ import StyledLoadingButton from "../../../styles/StyledLoadingButton";
 import DialogActions from '@mui/material/DialogActions';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ErrorList from "../../../components/ErrorList";
+import ResponsiveTextInput from "../../../styles/ResponsiveTextInput";
+import FormInput from "../../../styles/FormInput";
 
 const DeleteBusiness = ({ appState, business }) => {
 
@@ -16,6 +18,7 @@ const DeleteBusiness = ({ appState, business }) => {
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [confirmation, setConfirmation] = useState("");
 
   const handleClose = () => {
     setOpen(false);
@@ -57,10 +60,22 @@ const DeleteBusiness = ({ appState, business }) => {
           <DialogContentText id="alert-dialog-description">
             Delete <b>{business.name}</b>?
           </DialogContentText>
+            <ResponsiveTextInput
+              sx={{ marginTop: "10px" }}
+              fullWidth
+              label="Confirmation"
+              name="confirmation"
+              helperText={`Enter "${business.slug}" to confirm`}
+              variant="filled"
+              value={confirmation}
+              onChange={e => setConfirmation(e.target.value)}
+            />            
+
           <ErrorList errors={errors} />
         </DialogContent>
         <DialogActions>
         <StyledLoadingButton
+          disabled={confirmation !== business.slug}
           onClick={handleDeleteClick}
           loading={loading}
           type="submit"
