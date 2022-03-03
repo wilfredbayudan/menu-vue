@@ -43,7 +43,7 @@ Have fun!
 
 ## Usage
 
-### Frontend Routes
+### Frontend Routes (GET requests)
 * `/` - **Homepage**
 
 Will temporarily reroute to `/browse`.
