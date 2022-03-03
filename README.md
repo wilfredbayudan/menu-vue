@@ -7,3 +7,18 @@ Although other services already provide QR code menus, Menu Vue implements addit
 Live Demo at https://menu-vue.herokuapp.com and http://www.menuvue.com
 
 ![Menu Vue Demo](preview.gif)
+
+## Technologies Used
+* ReactJS
+* Ruby on Rails
+
+## Features
+- [x] Users may signup for an account
+- [x] Users may login/logout
+- [x] **C**reate / **R**ead / **U**pdate / **D**elete Businesses
+- [x] **C**reate / **R**ead / **U**pdate / **D**elete Categories
+- [x]  **C**reate / **R**ead / **U**pdate / **D**elete Items
+- [x] Generate QR Code to view menu
+- [x] Like/Dislike Items
+- [x] Comment on Items
+- [x] Users may create/manage multiple businesses
