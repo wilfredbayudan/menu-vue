@@ -423,4 +423,20 @@ hand_breaded = chicken.items.create(
   item: "Hand Breaded Ch'king"
 )
 
+puts "Creating Just Ramen..."
+
+business = first_user.businesses.create(
+  name: "Just Ramen",
+  description: "Noodles and noodles.",
+  image: "",
+  slug: "just-ramen"
+)
+
+puts "Giving user access to business..."
+
+role = business.user_businesses.last
+role.owner = true
+role.save
+menu = business.create_menu
+
 puts "Seeding done!"
