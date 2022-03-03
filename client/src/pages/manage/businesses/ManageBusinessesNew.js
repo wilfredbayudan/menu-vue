@@ -38,7 +38,6 @@ const ManageBusinessesNew = ({ appState }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
     fetch("/businesses", {
       method: "POST",
       headers: {
@@ -51,8 +50,6 @@ const ManageBusinessesNew = ({ appState }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then(json => {
-            console.log(json);
-            console.log(user);
             setUser({
               ...user,
               businesses: [
