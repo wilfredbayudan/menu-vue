@@ -5,6 +5,7 @@ In recent years, we have seen businesses rapidly increase their use of technolog
 Although other services already provide QR code menus, Menu Vue implements additional user interactions that provide both customers and business owners with valuable information. Customers can leave feedback about items, allowing other customers to make a more informed decision on what to order, and letting business owners know what needs improving.
 
 Live Demo at https://menu-vue.herokuapp.com and http://www.menuvue.com
+
 *Demo is hosted on Heroku and may take a moment to load*
 
 ![Menu Vue Demo](preview.gif)
