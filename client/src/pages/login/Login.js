@@ -10,7 +10,7 @@ import FormInput from "../../styles/FormInput";
 
 const Login = ({ appState }) => {
 
-  const { user, setUser } = appState;
+  const { user, setUser, setAlert } = appState;
 
   const navigate = useNavigate();
 
@@ -51,7 +51,9 @@ const Login = ({ appState }) => {
             ...formData,
             password: ""
           })
-          res.json().then(json => setErrors(json.errors))
+          res.json()
+            .then(json => setErrors(json.errors))
+            .catch(setAlert({ text: "Something went wrong..." }))
         }
       })
   }

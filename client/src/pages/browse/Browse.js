@@ -6,6 +6,7 @@ import BusinessList from "./BusinessList";
 const Browse = ({ appState }) => {
 
   const [businessList, setBusinessList] = useState([]);
+  const {setAlert} = appState;
 
   useEffect(() => {
     fetch('/businesses')
@@ -13,7 +14,9 @@ const Browse = ({ appState }) => {
         if (res.ok) {
           res.json().then(json => setBusinessList(json));
         } else {
-          res.json().then(console.error);
+          res.json()
+            .then(console.error)
+            .catch(setAlert({ text: "Something went wrong..." }))
         }
       })
   }, []);
