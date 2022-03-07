@@ -22,9 +22,9 @@ Live Demo at https://menu-vue.herokuapp.com and http://www.menuvue.com
 - [x] **C**reate / **R**ead / **U**pdate / **D**elete Categories
 - [x]  **C**reate / **R**ead / **U**pdate / **D**elete Items
 - [x] Generate QR Code to view menu
-- [x] Like/Dislike Items
-- [x] Comment on Items
-- [x] Users may create/manage multiple businesses
+- [x] Like/Unlike items
+- [x] Comment on items
+- [x] Create/manage multiple businesses with one account
 
 ## Installation
 ### Prerequisites
@@ -34,7 +34,7 @@ Before you continue, ensure you have met the following requirements:
 * You have installed the latest version of [PostgreSQL](https://www.postgresql.org).
 ---
 1. [Fork and clone](https://github.com/wilfredbayudan/menu-vue/fork) this repository.
-2. Run `npm install --prefix client` in the Terminal to install dependencies.
+2. Run `npm install --prefix client` in the terminal to install dependencies.
 3. Run `bundle install` to install dependency gems.
 4. Run `rails db:create db:migrate` to setup database.
 5. Run `rails s` to start backend server.
