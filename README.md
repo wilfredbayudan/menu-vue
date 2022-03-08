@@ -51,6 +51,7 @@ Have fun!
 * `/` - **Homepage**
 
 Will temporarily reroute to `/browse`. New layout for homepage coming soon.
+
 ----
 
 * `/browse` - **Browse**
