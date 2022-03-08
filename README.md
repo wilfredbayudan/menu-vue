@@ -141,6 +141,7 @@ Menu manager to create, update, and edit categories and items for business menu
 * **POST** `/signup`
 
 Create and authenticate a new user. 
+
 The body of the request **must** contain a `first_name`, `last_name`, `email`, and `password`. Email addresses must be unique and passwords are case-sensitive.
 
 *Example request*:
