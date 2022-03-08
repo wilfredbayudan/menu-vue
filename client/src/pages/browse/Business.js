@@ -14,14 +14,21 @@ const Card = styled.section`
     flex-direction: row;
   }
   &:hover { 
-    background-color: #f4fefb;
+    background-color: #fff2d4;
   }
+`;
+
+const ImageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const BusinessImage = styled.img`
   width: 100%;
   @media (min-width: 768px) {
     width: 200px;
+    max-height: 100%;
   }
 `;
 
@@ -70,7 +77,9 @@ const Business = ({ business, appState }) => {
 
   return (
     <Card onClick={handleViewClick}>
-      <BusinessImage src={business.image ? business.image : Placeholder} />
+      <ImageContainer>
+        <BusinessImage src={business.image ? business.image : Placeholder} />
+      </ImageContainer>
       <BusinessInfo>
         <BusinessName>{business.name}</BusinessName>
         <Description>{business.description}</Description>
