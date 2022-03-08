@@ -19,9 +19,9 @@ const Browse = ({ appState }) => {
         } else {
           res.json()
             .then(console.error)
-            .catch(setAlert({ text: "Something went wrong..." }))
         }
       })
+      .catch(setAlert({ text: "Something went wrong..." }));
   }, [setAlert]);
 
   if (loading) {
