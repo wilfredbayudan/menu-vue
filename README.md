@@ -48,25 +48,25 @@ Have fun!
 
 ### Frontend Routes (GET requests)
 ---
-* `/` - **Homepage**
+* `/`
 
 Will temporarily reroute to `/browse`. New layout for homepage coming soon.
 
 -----
 
-* `/browse` - **Browse**
+* `/browse`
 
 Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
 
 -----
 
-* `/how` - **How It Works**
+* `/how`
 
 Reserved for a "How It Works" description page.
 
 -----
 
-* `/about` - **About**
+* `/about`
 
 Reserved for a "About Us" page.
 
