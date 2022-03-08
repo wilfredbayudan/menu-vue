@@ -167,7 +167,7 @@ In response, the newly created user is returned as an object.
 ```
 -----
 
-More backend routes coming soon...
+More backend route documentation coming soon...
 
 
 ## Contributing
