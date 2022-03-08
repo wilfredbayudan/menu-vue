@@ -22,8 +22,6 @@ const CommentList = ({ itemData, setItemData, businessState, appState }) => {
   const { business, setBusiness } = businessState;
   const { user } = appState;
 
-  console.log(business)
-
   const handleDelete = (commentId) => {
     fetch(`/businesses/${business.id}/menu/categories/${itemData.category_id}/items/${itemData.id}/comments/${commentId}`, {
       method: "DELETE"
