@@ -144,7 +144,7 @@ Create and authenticate a new user.
 
 The body of the request **must** contain a `first_name`, `last_name`, `email`, and `password`. Email addresses must be unique and passwords are case-sensitive.
 
-*REQUEST*:
+**REQUEST**
 ```
 {
     "first_name": "Bob",
@@ -157,7 +157,7 @@ The body of the request **must** contain a `first_name`, `last_name`, `email`, a
 
 In response, the newly created user is returned as an object.
 
-*RESPONSE*:
+**RESPONSE**
 ```
 {
     "id": 6,
