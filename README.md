@@ -105,6 +105,9 @@ Menu manager to create, update, and edit categories and items for business menu
 
 Backend routes coming soon....
 
+### Backend Routes
+*Feel free to test these routes using [Postman](https://www.postman.com/)*
+
 ## Contributing
 
 Contributing bug reports and pull requests are welcome on GitHub at https://github.com/wilfredbayudan/menu-vue. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the code of conduct.
