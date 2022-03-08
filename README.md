@@ -133,8 +133,32 @@ Menu manager to create, update, and edit categories and items for business menu
 -----
 
 ### Backend Routes
----
 *Feel free to test these routes using [Postman](https://www.postman.com/)*
+---
+
+* **POST** `/bucketlists`
+
+Post requests to this endpoint will create and save a bucketlist. The body of the request must contain a `name`, `description`, `created_by`, and a `pin`.
+
+In response, the newly created bucketlist is returned as an object.
+
+*Example response*:
+```
+{
+    "id": 6,
+    "name": "Mr. Postman",
+    "description": "A song is not a bucketlist!",
+    "created_by": "Lil Wayne",
+    "likes": 0,
+    "created_at": "2021-12-29T09:09:32.764Z",
+    "updated_at": "2021-12-29T09:09:32.764Z",
+    "pin": "1234",
+    "bucketlist_destinations": [],
+    "tags": []
+}
+```
+-----
+
 
 ## Contributing
 
