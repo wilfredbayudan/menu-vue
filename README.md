@@ -138,25 +138,31 @@ Menu manager to create, update, and edit categories and items for business menu
 
 ---
 
-* **POST** `/bucketlists`
+* **POST** `/signup`
 
-Post requests to this endpoint will create and save a bucketlist. The body of the request must contain a `name`, `description`, `created_by`, and a `pin`.
+Post requests to this endpoint will create a user and authenticate them. The body of the request **must** contain a `first_name`, `last_name`, `email`, and `password`. Email addresses must be unique and passwords are case-sensitive.
 
-In response, the newly created bucketlist is returned as an object.
+*Example request*:
+```
+{
+   "first_name": "Bob",
+    "last_name": "Johnson",
+    "email": "bob@johnson.com",
+    "password": "test1234",
+    "password_confirmation": "test1234"
+}
+```
+
+In response, the newly created user is returned as an object.
 
 *Example response*:
 ```
 {
     "id": 6,
-    "name": "Mr. Postman",
-    "description": "A song is not a bucketlist!",
-    "created_by": "Lil Wayne",
-    "likes": 0,
-    "created_at": "2021-12-29T09:09:32.764Z",
-    "updated_at": "2021-12-29T09:09:32.764Z",
-    "pin": "1234",
-    "bucketlist_destinations": [],
-    "tags": []
+    "email": "bob@johnson.com",
+    "first_name": "Bob",
+    "last_name": "Johnson",
+    "businesses": []
 }
 ```
 -----
