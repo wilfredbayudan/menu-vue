@@ -47,7 +47,7 @@ Have fun!
 ## Usage
 
 ### Frontend Routes (GET requests)
----
+
 * `/`
 
 Will temporarily reroute to `/browse`. New layout for homepage coming soon.
@@ -135,8 +135,6 @@ Menu manager to create, update, and edit categories and items for business menu
 ### Backend Routes
 
 *Feel free to test these routes using [Postman](https://www.postman.com/)*
-
----
 
 * **POST** `/signup`
 
