@@ -55,7 +55,7 @@ const Login = ({ appState }) => {
             .then(json => setErrors(json.errors))
         }
       })
-      .catch(setAlert({ text: "Something went wrong..." }));
+      .catch(() => setAlert({ text: "Something went wrong..." }));
   }
 
   const checkIfLoggedIn = () => {
