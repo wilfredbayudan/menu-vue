@@ -15,13 +15,15 @@ const Browse = ({ appState }) => {
       .then(res => {
         setLoading(false);
         if (res.ok) {
-          res.json().then(json => setBusinessList(json));
+          res.json()
+            .then(json => setBusinessList(json))
+            .catch(() => setAlert({ text: `Failed to fetch businesses.`}))
         } else {
           res.json()
             .then(console.error)
+            .catch(() => setAlert({ text: `Failed to fetch businesses.`}))
         }
       })
-      .catch(setAlert({ text: "Something went wrong..." }));
   }, [setAlert]);
 
   if (loading) {
