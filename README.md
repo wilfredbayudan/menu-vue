@@ -47,22 +47,23 @@ Have fun!
 ## Usage
 
 ### Frontend Routes (GET requests)
+---
 * `/` - **Homepage**
 
 Will temporarily reroute to `/browse`. New layout for homepage coming soon.
-
+---
 * `/browse` - **Browse**
-
+---
 Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
-
+---
 * `/how` - **How It Works**
-
+---
 Reserved for a "How It Works" description page.
-
+---
 * `/about` - **About**
-
+---
 Reserved for a "About Us" page.
-
+---
 * `/signup` - **Sign up**
 
 Renders a sign up form for new user registration.
