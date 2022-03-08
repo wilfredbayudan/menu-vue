@@ -58,7 +58,7 @@ Will temporarily reroute to `/browse`. New layout for homepage coming soon.
 
 Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
 
---------
+----------------------------------------------------------------
 
 * `/how` - **How It Works**
 
