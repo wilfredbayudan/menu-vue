@@ -145,7 +145,7 @@ Post requests to this endpoint will create a user and authenticate them. The bod
 *Example request*:
 ```
 {
-   "first_name": "Bob",
+    "first_name": "Bob",
     "last_name": "Johnson",
     "email": "bob@johnson.com",
     "password": "test1234",
