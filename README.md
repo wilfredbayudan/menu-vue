@@ -40,7 +40,7 @@ Before you continue, ensure you have met the following requirements:
 5. Run `rails s` to start backend server.
 6. Run `npm start --prefix client` in another terminal to start frontend server.
 
-By default, the frontend can be accessed through http://localhost:4000
+By default, the frontend can be accessed through http://localhost:4000 and the backend can be accessed through http://localhost:3000
 
 Have fun!
 
