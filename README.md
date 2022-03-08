@@ -51,19 +51,19 @@ Have fun!
 * `/` - **Homepage**
 
 Will temporarily reroute to `/browse`. New layout for homepage coming soon.
----
+
 * `/browse` - **Browse**
----
+
 Displays list of businesses, it's photo, description, and popular items. Clicking a business will navigate to public business page.
----
+
 * `/how` - **How It Works**
----
+
 Reserved for a "How It Works" description page.
----
+
 * `/about` - **About**
----
+
 Reserved for a "About Us" page.
----
+
 * `/signup` - **Sign up**
 
 Renders a sign up form for new user registration.
@@ -107,6 +107,7 @@ Menu manager to create, update, and edit categories and items for business menu
 Backend routes coming soon....
 
 ### Backend Routes
+---
 *Feel free to test these routes using [Postman](https://www.postman.com/)*
 
 ## Contributing
