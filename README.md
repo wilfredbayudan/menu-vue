@@ -72,61 +72,61 @@ Reserved for a "About Us" page.
 
 -----
 
-* `/signup` - **Sign up**
+* `/signup`
 
 Renders a sign up form for new user registration.
 
 -----
 
-* `/login` - **About**
+* `/login`
 
 Renders a log in form to authenticate users.
 
 -----
 
-* `/401` - **Not Authorized**
+* `/401`
 
 Renders a "Not Authorized" notification page.
 
 -----
 
-* `/:slugUrl` - **Business Menu Page**
+* `/:slugUrl`
 
 Fetches and displays menu information for a business using it's slug url.
 
 -----
 
-* `/:slugUrl/:categorySlug` - **Business Menu Page - Category**
+* `/:slugUrl/:categorySlug`
 
 Fetches and displays items within specified category from specified business.
 
 -----
 
-* `/manage` - **Manage**
+* `/manage`
 
 Default control panel for logged in users.
 
 -----
 
-* `/manage/users` - **Manage - Users**
+* `/manage/users`
 
 Allows business owners to manage user access to businesses.
 
 -----
 
-* `/manage/businesses` - **Manage - Businesses**
+* `/manage/businesses` 
 
 List of businesses user manages and options available
 
 -----
 
-* `/manage/businesses/new` - **Manage - Businesses - New**
+* `/manage/businesses/new`
 
 Form to create new business
 
 -----
 
-* `/manage/businesses/:businessId/menu` - **Manage - Businesses - Business - Menu**
+* `/manage/businesses/:businessId/menu` 
 
 Menu manager to create, update, and edit categories and items for business menu
 
