@@ -113,7 +113,6 @@ const CommentForm = ({ itemData, setItemData, businessState }) => {
         variant="filled"
         onChange={handleChange}
         value={formData.author}
-        required
       />
       <TextField
         margin="dense"
