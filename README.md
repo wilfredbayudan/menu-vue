@@ -140,7 +140,8 @@ Menu manager to create, update, and edit categories and items for business menu
 
 * **POST** `/signup`
 
-Post requests to this endpoint will create a user and authenticate them. The body of the request **must** contain a `first_name`, `last_name`, `email`, and `password`. Email addresses must be unique and passwords are case-sensitive.
+Create and authenticate a new user. 
+The body of the request **must** contain a `first_name`, `last_name`, `email`, and `password`. Email addresses must be unique and passwords are case-sensitive.
 
 *Example request*:
 ```
