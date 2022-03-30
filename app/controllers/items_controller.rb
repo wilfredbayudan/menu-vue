@@ -1,7 +1,14 @@
 class ItemsController < ApplicationController
 
   before_action :authorize_permission
-  skip_before_action :authorize_permission, only: [:index, :show, :like]
+  skip_before_action :authorize_permission, only: [:index, :show, :like, :ztoa]
+
+
+  # GET '/items/ztoa'
+  def ztoa
+    items = Item.order("item DESC")
+    render json: items
+  end
 
   # GET '/businesses/:business_id/menus/categories/:category_id/items
   def index
