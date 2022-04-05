@@ -16,17 +16,15 @@ import Home from "../pages/home/Home";
 import AlertOverlay from "./AlertOverlay";
 import { login } from "../store/userSlice";
 import { useDispatch } from "react-redux";
+import { setAlert } from "../store/alertSlice";
 
 const App = () => {
   const [user, setUser] = useState(null);
-  const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
 
   const appState = {
     user,
     setUser,
-    alert,
-    setAlert,
   };
 
   useEffect(() => {
@@ -43,11 +41,11 @@ const App = () => {
 
   return (
     <BrowserRouter>
-      <AlertOverlay alert={alert} setAlert={setAlert} />
+      <AlertOverlay />
       <Routes>
-        <Route path="/" element={<Index appState={appState} />}>
+        <Route path="/" element={<Index />}>
           <Route index element={<Home />} />
-          <Route path="browse" element={<Browse appState={appState} />} />
+          <Route path="browse" element={<Browse />} />
           <Route path="how" element={<>How it works</>} />
           <Route path="about" element={<>About Us</>} />
           <Route path="signup" element={<Signup appState={appState} />} />

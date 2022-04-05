@@ -1,6 +1,6 @@
 export function setAlert(status) {
   return {
-    type: "alert/login",
+    type: "alert/setAlert",
     payload: status,
   };
 }

@@ -98,7 +98,7 @@ const Links = styled.div`
   }
 `;
 
-const Header = ({ appState }) => {
+const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
