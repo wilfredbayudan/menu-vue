@@ -10,9 +10,9 @@ import FormInput from "../../styles/FormInput";
 import ContentNotice from "../../styles/ContentNotice";
 import { login } from "../../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { setAlert } from "../../store/alertSlice";
 
-const Login = ({ appState }) => {
-  const { user, setUser, setAlert } = appState;
+const Login = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
 
@@ -49,7 +49,6 @@ const Login = ({ appState }) => {
         setLoading(false);
         if (res.ok) {
           res.json().then((json) => {
-            setUser(json);
             // Set Redux State
             dispatch(login(json));
             navigate("/manage/businesses");
@@ -62,11 +61,7 @@ const Login = ({ appState }) => {
           res.json().then((json) => setErrors(json.errors));
         }
       })
-      .catch(() => setAlert({ text: "Something went wrong..." }));
-  };
-
-  const checkIfLoggedIn = () => {
-    console.log(appState);
+      .catch(() => dispatch(setAlert({ text: "Something went wrong..." })));
   };
 
   if (userState.user !== null) {
@@ -77,7 +72,7 @@ const Login = ({ appState }) => {
   }
 
   return (
-    <FloatedContent side="right" onLoad={checkIfLoggedIn}>
+    <FloatedContent side="right">
       <PageTitle title="Log in" />
       <ContentNotice style={{ marginBottom: "10px" }}>
         <b>Demo Email:</b> test@mail.com
