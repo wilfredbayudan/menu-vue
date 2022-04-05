@@ -9,7 +9,7 @@ const ItemSquare = styled.div`
   border: 3px solid #e3e3e3;
   box-sizing: border-box;
   &:before {
-    content: '';
+    content: "";
     display: block;
     padding-top: 100%;
   }
@@ -69,8 +69,7 @@ const Price = styled.span`
   border-radius: 4px;
 `;
 
-const Item = ({ item, businessState, appState }) => {
-
+const Item = ({ item, businessState }) => {
   return (
     <ItemSquare>
       <ItemContent>
@@ -82,12 +81,12 @@ const Item = ({ item, businessState, appState }) => {
           </LeftAction>
           <RightAction>
             <LikeItem item={item} businessState={businessState} />
-            <Comment item={item} businessState={businessState} appState={appState} />
+            <Comment item={item} businessState={businessState} />
           </RightAction>
         </ItemPrice>
       </ItemContent>
     </ItemSquare>
-  )
+  );
 };
 
 export default Item;

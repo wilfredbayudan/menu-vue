@@ -1,6 +1,6 @@
 import React from "react";
-import CommentIcon from '@mui/icons-material/Comment';
-import IconButton from '@mui/material/IconButton';
+import CommentIcon from "@mui/icons-material/Comment";
+import IconButton from "@mui/material/IconButton";
 import { primaryColor } from "../../styles/colorList";
 import styled from "styled-components";
 import { useState } from "react";
@@ -17,22 +17,23 @@ const StyledCommentIcon = styled(CommentIcon)`
   }
 `;
 
-const Comment = ({ item, businessState, appState }) => {
+const Comment = ({ item, businessState }) => {
+  const { business } = businessState;
 
-  const { business } = businessState; 
-
-  const [itemData, setItemData] = useState(null)
+  const [itemData, setItemData] = useState(null);
   const [showComments, setShowComments] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleCommentClick = () => {
     setLoading(true);
-    fetch(`/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}`)
-      .then(res => {
+    fetch(
+      `/businesses/${business.id}/menu/categories/${item.category_id}/items/${item.id}`
+    )
+      .then((res) => {
         setLoading(false);
         if (res.ok) {
           setShowComments(true);
-          res.json().then(json => setItemData(json));
+          res.json().then((json) => setItemData(json));
         }
       })
       .catch(console.error);
@@ -43,14 +44,11 @@ const Comment = ({ item, businessState, appState }) => {
       <IconButton edge="end" aria-label="Comment" onClick={handleCommentClick}>
         <StyledCommentIcon />
       </IconButton>
-      <CommentNumber>
-        {item.comments}
-      </CommentNumber>
+      <CommentNumber>{item.comments}</CommentNumber>
       <LoaderOverlay overlayStatus={loading} />
       <CommentDialog
         item={item}
         businessState={businessState}
-        appState={appState}
         itemData={itemData}
         setItemData={setItemData}
         showComments={showComments}
