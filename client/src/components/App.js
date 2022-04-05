@@ -16,16 +16,9 @@ import Home from "../pages/home/Home";
 import AlertOverlay from "./AlertOverlay";
 import { login } from "../store/userSlice";
 import { useDispatch } from "react-redux";
-import { setAlert } from "../store/alertSlice";
 
 const App = () => {
-  const [user, setUser] = useState(null);
   const dispatch = useDispatch();
-
-  const appState = {
-    user,
-    setUser,
-  };
 
   useEffect(() => {
     fetch("/me")
