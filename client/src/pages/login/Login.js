@@ -16,8 +16,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.user);
 
-  console.log(userState);
-
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
