@@ -10,17 +10,14 @@ const NoneFound = styled.p`
   margin-top: 0;
 `;
 
-const ManageBusinessesIndex = ({ appState }) => {
-  const { user } = appState;
+const ManageBusinessesIndex = () => {
   const userState = useSelector((state) => state.user);
 
   // const businesses = user.businesses;
   const businesses = userState.user.businesses;
 
   const renderBusinesses = businesses.map((businessItem, businessIdx) => {
-    return (
-      <Business key={businessIdx} business={businessItem} appState={appState} />
-    );
+    return <Business key={businessIdx} business={businessItem} />;
   });
 
   return (
@@ -28,7 +25,7 @@ const ManageBusinessesIndex = ({ appState }) => {
       <PageTitle title="Manage Businesses" />
       <List>{renderBusinesses}</List>
       {businesses.length === 0 && <NoneFound>No businesses found</NoneFound>}
-      <AddBusiness appState={appState} />
+      <AddBusiness />
     </FloatedContent>
   );
 };

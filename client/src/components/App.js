@@ -60,16 +60,13 @@ const App = () => {
             }
           />
           <Route path=":slugUrl" element={<Outlet />}>
-            <Route index element={<Business appState={appState} />} />
-            <Route
-              path=":categorySlug"
-              element={<Business appState={appState} />}
-            />
+            <Route index element={<Business />} />
+            <Route path=":categorySlug" element={<Business />} />
           </Route>
           {/* Manage Routes */}
-          <Route path="manage" element={<ManageIndex appState={appState} />}>
+          <Route path="manage" element={<ManageIndex />}>
             <Route index element={<>Dashboard</>} />
-            <Route path="users" element={<Users appState={appState} />} />
+            <Route path="users" element={<Users />} />
             {/* Manage Businesses Routes */}
             <Route path="businesses" element={<ManageBusinessesOutlet />}>
               <Route
