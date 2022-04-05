@@ -1,25 +1,23 @@
 import { useState } from "react";
-import Box from '@mui/material/Box';
-import SwipeableDrawer from '@mui/material/SwipeableDrawer';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import HomeIcon from '@mui/icons-material/Home';
-import LogoutIcon from '@mui/icons-material/Logout';
-import InfoIcon from '@mui/icons-material/Info';
-import MenuIcon from '@mui/icons-material/Menu';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import HelpIcon from '@mui/icons-material/Help';
+import Box from "@mui/material/Box";
+import SwipeableDrawer from "@mui/material/SwipeableDrawer";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItem from "@mui/material/ListItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import LogoutIcon from "@mui/icons-material/Logout";
+import MenuIcon from "@mui/icons-material/Menu";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import styled from "styled-components";
 import { primaryColor } from "../styles/colorList";
 import { useNavigate } from "react-router-dom";
 // import DashboardIcon from '@mui/icons-material/Dashboard';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import PeopleIcon from '@mui/icons-material/People';
-import LoginIcon from '@mui/icons-material/Login';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+import StorefrontIcon from "@mui/icons-material/Storefront";
+import PeopleIcon from "@mui/icons-material/People";
+import LoginIcon from "@mui/icons-material/Login";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import { useSelector } from "react-redux";
 
 const NavIcon = styled(MenuIcon)`
   cursor: pointer;
@@ -28,19 +26,20 @@ const NavIcon = styled(MenuIcon)`
   }
 `;
 
-const Nav = ({ appState, handleLogoutClick }) => {
-  
+const Nav = ({ handleLogoutClick }) => {
+  const userState = useSelector((state) => state.user);
+
   const [showNav, setShowNav] = useState(false);
 
-  const { user } = appState;
+  const { user } = userState;
 
   const navigate = useNavigate();
 
   const toggleDrawer = (open) => (event) => {
     if (
       event &&
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
     ) {
       return;
     }
@@ -50,7 +49,7 @@ const Nav = ({ appState, handleLogoutClick }) => {
 
   const list = () => (
     <Box
-      sx={{ width: 'auto' }}
+      sx={{ width: "auto" }}
       role="presentation"
       onClick={toggleDrawer(false)}
       onKeyDown={toggleDrawer(false)}
@@ -82,60 +81,57 @@ const Nav = ({ appState, handleLogoutClick }) => {
         </ListItem> */}
       </List>
       <Divider />
-      {
-      user ?
-      <>
-        <List>
-          {/* <ListItem button onClick={() => navigate("/manage")}>
+      {user ? (
+        <>
+          <List>
+            {/* <ListItem button onClick={() => navigate("/manage")}>
             <ListItemIcon>
               <DashboardIcon />
             </ListItemIcon>
             <ListItemText primary={"Dashboard"} />
           </ListItem> */}
-          <ListItem button onClick={() => navigate("/manage/businesses")}>
-            <ListItemIcon>
-              <StorefrontIcon />
-            </ListItemIcon>
-            <ListItemText primary={"My Businesses"} />
-          </ListItem>
-          <ListItem button onClick={() => navigate("/manage/users")}>
-            <ListItemIcon>
-              <PeopleIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Manage Users"} />
-          </ListItem>
-        </List>
-        <Divider />
-      </>
-      : null
-      }
+            <ListItem button onClick={() => navigate("/manage/businesses")}>
+              <ListItemIcon>
+                <StorefrontIcon />
+              </ListItemIcon>
+              <ListItemText primary={"My Businesses"} />
+            </ListItem>
+            <ListItem button onClick={() => navigate("/manage/users")}>
+              <ListItemIcon>
+                <PeopleIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Manage Users"} />
+            </ListItem>
+          </List>
+          <Divider />
+        </>
+      ) : null}
       <List>
-        {
-        user ?
-        <>
-          <ListItem button onClick={handleLogoutClick}>
-            <ListItemIcon>
-              <LogoutIcon />
-            </ListItemIcon>
-            <ListItemText primary={`Log out (${user.email})`} />
-          </ListItem>
-        </>
-        :
-        <>
-          <ListItem button onClick={() => navigate("/login")}>
-            <ListItemIcon>
-              <LoginIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Log in"} />
-          </ListItem>
-          <ListItem button onClick={() => navigate("/signup")}>
-            <ListItemIcon>
-              <AppRegistrationIcon />
-            </ListItemIcon>
-            <ListItemText primary={"Sign up"} />
-          </ListItem>
-        </>
-      }
+        {user ? (
+          <>
+            <ListItem button onClick={handleLogoutClick}>
+              <ListItemIcon>
+                <LogoutIcon />
+              </ListItemIcon>
+              <ListItemText primary={`Log out (${user.email})`} />
+            </ListItem>
+          </>
+        ) : (
+          <>
+            <ListItem button onClick={() => navigate("/login")}>
+              <ListItemIcon>
+                <LoginIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Log in"} />
+            </ListItem>
+            <ListItem button onClick={() => navigate("/signup")}>
+              <ListItemIcon>
+                <AppRegistrationIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Sign up"} />
+            </ListItem>
+          </>
+        )}
       </List>
     </Box>
   );
@@ -153,6 +149,6 @@ const Nav = ({ appState, handleLogoutClick }) => {
       </SwipeableDrawer>
     </div>
   );
-}
+};
 
 export default Nav;

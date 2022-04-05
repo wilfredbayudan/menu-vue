@@ -1,10 +1,12 @@
-import styled from 'styled-components'
-import MenuVueLogo from '../assets/images/logo.png'
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import styled from "styled-components";
+import MenuVueLogo from "../assets/images/logo.png";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import { Link, useNavigate } from "react-router-dom";
 import { primaryColor } from "../styles/colorList";
-import LogoutIcon from '@mui/icons-material/Logout';
+import LogoutIcon from "@mui/icons-material/Logout";
 import Nav from "./Nav";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../store/userSlice";
 
 const StyledHeader = styled.header`
   z-index: 12;
@@ -16,13 +18,14 @@ const StyledHeader = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
-`
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px,
+    rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+`;
 
 const Logo = styled.img`
   height: 100%;
   cursor: pointer;
-`
+`;
 
 const LeftContent = styled.div`
   height: 100%;
@@ -96,43 +99,43 @@ const Links = styled.div`
 `;
 
 const Header = ({ appState }) => {
-
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
 
   const handleLogoutClick = () => {
-    fetch('/logout', { method: "DELETE" })
-      .then(res => {
-        if (res.ok) {
-          appState.setUser(null);
-          navigate("/login");
-        }
-      })
-  }
+    fetch("/logout", { method: "DELETE" }).then((res) => {
+      if (res.ok) {
+        dispatch(logout());
+        navigate("/login");
+      }
+    });
+  };
 
   return (
     <StyledHeader>
       <LeftContent>
-        <Logo src={MenuVueLogo} onClick={() => navigate('/')} />
+        <Logo src={MenuVueLogo} onClick={() => navigate("/")} />
       </LeftContent>
       <RightContent>
-        {
-          appState.user ? 
-          <LogoutButton onClick={handleLogoutClick}><LogoutIcon /><LogInOutText>Log out</LogInOutText></LogoutButton>
-          :
+        {userState.user ? (
+          <LogoutButton onClick={handleLogoutClick}>
+            <LogoutIcon />
+            <LogInOutText>Log out</LogInOutText>
+          </LogoutButton>
+        ) : (
           <Links>
             <LoginLink to="/login">
-              <PersonOutlineOutlinedIcon /><LogInOutText>Log in</LogInOutText>
+              <PersonOutlineOutlinedIcon />
+              <LogInOutText>Log in</LogInOutText>
             </LoginLink>
-            <SignupLink to="/signup">
-              Sign up
-            </SignupLink>
+            <SignupLink to="/signup">Sign up</SignupLink>
           </Links>
-        }
-        <Nav appState={appState} handleLogoutClick={handleLogoutClick} />
+        )}
+        <Nav handleLogoutClick={handleLogoutClick} />
       </RightContent>
     </StyledHeader>
-  )
-
+  );
 };
 
 export default Header;
