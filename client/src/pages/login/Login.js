@@ -8,9 +8,15 @@ import { useNavigate } from "react-router-dom";
 import PrimaryLink from "../../styles/PrimaryLink";
 import FormInput from "../../styles/FormInput";
 import ContentNotice from "../../styles/ContentNotice";
+import { login } from "../../store/userSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ appState }) => {
   const { user, setUser, setAlert } = appState;
+  const dispatch = useDispatch();
+  const userState = useSelector((state) => state.user);
+
+  console.log(userState);
 
   const navigate = useNavigate();
 
@@ -44,6 +50,8 @@ const Login = ({ appState }) => {
         if (res.ok) {
           res.json().then((json) => {
             setUser(json);
+            // Set Redux State
+            dispatch(login(json));
             navigate("/manage/businesses");
           });
         } else {
@@ -61,7 +69,7 @@ const Login = ({ appState }) => {
     console.log(appState);
   };
 
-  if (user) {
+  if (userState.user !== null) {
     setTimeout(() => {
       navigate("/manage/businesses");
     }, 500);
