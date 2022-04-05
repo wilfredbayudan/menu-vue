@@ -13,7 +13,7 @@ const Card = styled.section`
   @media (min-width: 768px) {
     flex-direction: row;
   }
-  &:hover { 
+  &:hover {
     background-color: #fff2d4;
   }
 `;
@@ -65,15 +65,16 @@ const PopularItems = styled.p`
   }
 `;
 
-const Business = ({ business, appState }) => {
-
+const Business = ({ business }) => {
   const navigate = useNavigate();
 
   const handleViewClick = () => {
     navigate(`/${business.slug}`);
   };
 
-  const popularItems = business.popular_items.map(item => item.item).join(', ');
+  const popularItems = business.popular_items
+    .map((item) => item.item)
+    .join(", ");
 
   return (
     <Card onClick={handleViewClick}>
@@ -83,7 +84,9 @@ const Business = ({ business, appState }) => {
       <BusinessInfo>
         <BusinessName>{business.name}</BusinessName>
         <Description>{business.description}</Description>
-        <PopularItems><b>Popular Items:</b> {popularItems}</PopularItems>
+        <PopularItems>
+          <b>Popular Items:</b> {popularItems}
+        </PopularItems>
       </BusinessInfo>
     </Card>
   );

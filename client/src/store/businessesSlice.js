@@ -1,3 +1,12 @@
+export function fetchBusinesses() {
+  return function (dispatch) {
+    dispatch({ type: "businesses/loading" });
+    fetch("/businesses")
+      .then((res) => res.json())
+      .then((json) => dispatch({ type: "businesses/loaded", payload: json }));
+  };
+}
+
 const initialState = {
   entities: [], // array of businesses
   status: "idle",
